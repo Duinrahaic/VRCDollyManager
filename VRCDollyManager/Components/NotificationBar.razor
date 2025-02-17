@@ -1,0 +1,37 @@
+﻿@using VRCDollyManager.Models
+@using VRCDollyManager.Services
+@inject NotificationService NotificationService
+@implements IDisposable
+
+
+<div class="notification">
+    <Notification NotificationMessage="_notification"/>
+
+</div>
+
+@code
+{
+    private NotificationMessage? _notification;
+
+    protected override void OnInitialized()
+    {
+        NotificationService.OnNotification += UpdateMessage;
+    }
+
+    private async void UpdateMessage(NotificationMessage notification)
+    {
+        return;
+        _notification = null;
+        await InvokeAsync(StateHasChanged); // Ensure UI updates before setting new notification
+
+        await Task.Delay(10); // Small delay to allow UI refresh
+
+        _notification = notification; // Set the new notification
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        NotificationService.OnNotification -= UpdateMessage;
+    }
+}

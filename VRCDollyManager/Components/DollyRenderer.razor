@@ -1,0 +1,71 @@
+﻿@using System.Text.Json
+@using System.Text.Json.Serialization
+@using HarfBuzzSharp
+@using VRCDollyManager.Extensions
+@using VRCDollyManager.Models
+@inject  IJSRuntime JS
+<div class="dolly-details-container">
+    <div class="dolly-renderer-container">
+        <canvas id="preview"></canvas>
+    </div>
+    @*<div class="dolly-details">
+        <div class="dolly-details-header">
+            <Blazicon Svg="Lucide.Tags"/>
+            Tags
+        </div>
+        <div class="dolly-details-body">
+
+            <div class="chip-container">
+                @foreach (var tag in Tags)
+                {
+                    <Chip Tag="@tag"/>
+                }
+            </div>
+        </div>
+    </div>*@
+</div>
+
+@code {
+    List<string> Tags { get; set; } = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("ThreeInterop.initScene");
+        }
+    }
+
+
+    public async Task LoadDollyPath(Dolly dolly)
+    {
+        //Tags = dolly.Tags;
+        StateHasChanged();
+        var keyframes = dolly.GetCameraKeyFrames() ?? new List<CameraKeyFrame>();
+
+        if (!keyframes.Any() || keyframes.Count < 2)
+        {
+            Console.WriteLine("Error: No keyframes provided.");
+            await ClearScene();
+            return;
+        }
+
+        var options = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase, // Change to CamelCase for JS compatibility
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
+
+        var json = JsonSerializer.Serialize(keyframes, options);
+
+        await JS.InvokeVoidAsync("ThreeInterop.renderPath", json);
+    }
+
+    public async Task ClearScene()
+    {
+        Tags.Clear();
+        StateHasChanged();
+        await JS.InvokeVoidAsync("ThreeInterop.clearScene");
+    }
+
+}

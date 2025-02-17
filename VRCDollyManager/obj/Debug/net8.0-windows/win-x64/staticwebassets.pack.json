@@ -1,0 +1,97 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\obj\\Debug\\net8.0-windows\\win-x64\\scopedcss\\bundle\\VRCDollyManager.styles.css",
+      "PackagePath": "staticwebassets\\VRCDollyManager.styles.css"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\app.css.map",
+      "PackagePath": "staticwebassets\\css\\app.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\app.scss",
+      "PackagePath": "staticwebassets\\css\\app.scss"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_animations.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_animations.scss"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_chip.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_chip.scss"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_form.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_form.scss"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_frame.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_frame.scss"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_modal.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_modal.scss"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_notification.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_notification.scss"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_social.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_social.scss"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_table.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_table.scss"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_threejs.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_threejs.scss"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_variables.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_variables.scss"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\download.js",
+      "PackagePath": "staticwebassets\\js\\download.js"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\threeInterop.js",
+      "PackagePath": "staticwebassets\\js\\threeInterop.js"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\threejs\\three.core.min.js",
+      "PackagePath": "staticwebassets\\js\\threejs\\three.core.min.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows\\win-x64\\staticwebassets\\msbuild.VRCDollyManager.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows\\win-x64\\staticwebassets\\msbuild.VRCDollyManager.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows\\win-x64\\staticwebassets\\msbuild.build.VRCDollyManager.props",
+      "PackagePath": "build\\VRCDollyManager.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows\\win-x64\\staticwebassets\\msbuild.buildMultiTargeting.VRCDollyManager.props",
+      "PackagePath": "buildMultiTargeting\\VRCDollyManager.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows\\win-x64\\staticwebassets\\msbuild.buildTransitive.VRCDollyManager.props",
+      "PackagePath": "buildTransitive\\VRCDollyManager.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

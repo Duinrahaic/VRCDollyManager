@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRCDollyManager", "VRCDollyManager\VRCDollyManager.csproj", "{3DB73798-1C30-42FD-B6A1-EF417ACC3071}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DB73798-1C30-42FD-B6A1-EF417ACC3071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DB73798-1C30-42FD-B6A1-EF417ACC3071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DB73798-1C30-42FD-B6A1-EF417ACC3071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DB73798-1C30-42FD-B6A1-EF417ACC3071}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

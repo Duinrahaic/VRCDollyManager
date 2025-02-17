@@ -1,0 +1,36 @@
+﻿@import "variables";
+
+.social-media
+{
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 0 4px;
+  align-items: center;
+  justify-content: center;
+  
+  .social-button
+  {
+	padding: 4px;
+	color: $on-background;
+	cursor: pointer;
+	background: transparent;
+	
+	&.inactive
+	{
+	  color: red !important;
+	}
+	
+	&.active
+	{
+	  color: $secondary;
+	}
+	
+	&:hover
+	{
+	  background: $surface;
+	  border-radius: 8px;
+	}
+	
+  }
+}

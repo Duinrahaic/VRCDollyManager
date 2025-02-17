@@ -1,0 +1,209 @@
+@import "variables"; // Your dark mode variables
+
+.app-table-container
+{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
+  background-color: $surface;
+  color: $on-surface;
+  position: relative;
+  min-height: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-wrapper
+{
+  background-color: $surface;
+  flex-shrink: 0; /* Prevents it from shrinking */
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin-right: 10px;
+  
+  table
+  {
+	width: 100%;
+	border-collapse: collapse;
+	
+	thead th
+	{
+	  padding: 10px;
+	  border-bottom: 1px solid $background;
+	  text-align: left;
+	  background: $surface;
+	  color: $on-surface;
+	  position: sticky;
+	  top: 0;
+	  z-index: 3; /* Ensures it stays above scrolling content */
+	  width: 30%;
+	  user-select: none;
+	  
+	  .th-container
+	  {
+		display: flex;
+		flex-direction: row;
+		gap: 8px;
+		align-items: center;
+		justify-content: start;
+	  }
+	  
+	  svg
+	  {
+		height: 20px;
+		width: 20px;
+	  }
+	  
+	  &.name
+	  {
+		width: calc(100% - 40px - 40px - 30%);
+	  }
+	  
+	  &.padded-cell
+	  {
+		width: 40px;
+	  }
+	}
+  }
+}
+
+.table-body
+{
+  overflow-anchor: none;
+  overflow-y: auto;
+  height: Calc(100vh - 140px);
+  
+  &::-webkit-scrollbar
+  {
+	width: 10px;
+  }
+  
+  &::-webkit-scrollbar-track
+  {
+	background: $surface;
+  }
+  
+  &::-webkit-scrollbar-thumb
+  {
+	background: $primary;
+	border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover
+  {
+	background: lighten($primary, 10%);
+  }
+  
+  // Firefox Scrollbar
+  scrollbar-color: $primary $surface;
+  scrollbar-width: thin;
+  
+  table
+  {
+	width: 100%;
+	border-collapse: collapse;
+	
+	tr
+	{
+	  transition: background-color 0.2s ease-in-out;
+	  
+	  &:hover
+	  {
+		background-color: darken($surface, 2%);
+		
+		.controls-container
+		{
+		  opacity: 1;
+		}
+	  }
+	}
+	
+  }
+  
+  
+  td
+  {
+	padding: 8px;
+	color: $on-surface;
+	width: 30%;
+	
+	
+	&.name
+	{
+	  width: calc(100% - 40px - 40px);
+	  user-select: none;
+	  
+	  .tag-container
+	  {
+		display: flex;
+		flex-wrap: wrap; // Ensures wrapping of items when space is limited
+		gap: 8px; // Adjusts spacing between tags
+		padding: 8px;
+		max-width: 100%; // Ensures it adapts to parent width
+		overflow: hidden; // Prevents overflow
+	  }
+	}
+	
+	&.padded-cell
+	{
+	  width: 40px;
+	  
+	  &.selected
+	  {
+		svg
+		{
+		  color: $primary;
+		}
+	  }
+	  
+	  &.unselected
+	  {
+		svg
+		{
+		  color: #333333;
+		}
+	  }
+	  
+	  
+	}
+	
+	.tag-container
+	{
+	  display: grid;
+	  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); // Adjust min size as needed
+	  gap: 8px; // Spacing between tags
+	  align-items: center;
+	  padding: 8px;
+	}
+	
+	.controls-container
+	{
+	  
+	  display: flex;
+	  flex-direction: row;
+	  gap: 8px;
+	  justify-content: end;
+	  align-items: center;
+	  color: $on-primary;
+	  transition: opacity 0.2s ease-in-out;
+	  
+	  
+	  button
+	  {
+		flex-direction: column;
+		gap: 1px;
+		padding: 2px 8px;
+		
+		span
+		{
+		  font-size: 12px;
+		}
+		
+	  }
+	}
+  }
+  
+  
+}

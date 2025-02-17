@@ -1,0 +1,53 @@
+<Window
+    x:Class="VRCDollyManager.Client.Views.ClientWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:VRCDollyManager.Client.ViewModels"
+    xmlns:client1="clr-namespace:VRCDollyManager.Client"
+    Title="VRC Dolly Manager"
+    Icon="/Assets/icon.ico"
+    Width="800"
+    Height="480"
+    MinWidth="800"
+    MinHeight="480"
+    d:DesignHeight="1080"
+    d:DesignWidth="1920"
+    x:DataType="vm:ClientWindowViewModel"
+    CanResize="True"
+    SizeToContent="Manual"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:ClientWindowViewModel />
+    </Design.DataContext>
+
+    <DockPanel>
+
+
+        <Grid
+            Margin="0"
+            ClipToBounds="True"
+            ShowGridLines="False">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Panel
+                Name="PanelView"
+                Grid.Row="0"
+                Background="Black">
+                <client1:BlazorWebView
+                    Name="WebView"
+                    HostPage="index.html"
+                    RootComponents="{DynamicResource rootComponents}"
+                    Services="{DynamicResource services}"
+                    ZoomFactor="0" />
+            </Panel>
+
+        </Grid>
+    </DockPanel>
+</Window>

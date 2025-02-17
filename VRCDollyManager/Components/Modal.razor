@@ -1,0 +1,61 @@
+﻿@using VRCDollyManager.Models
+@inject IJSRuntime JSRuntime
+
+@if (IsOpen)
+{
+    <div class="modal-overlay" @onclick="CloseModal">
+        <div class="modal-content @GetSizeClass()" @onclick:stopPropagation>
+            <div class="modal-header">
+                <h2>@Title</h2>
+                <button class="close-button" @onclick="CloseModal">
+                    <Blazicon Svg="Lucide.X"/>
+                </button>
+
+            </div>
+            <div class="modal-body">
+                @ChildContent
+            </div>
+            @if (FooterContent != null)
+            {
+                <div class="modal-footer">
+                    @FooterContent
+                </div>
+            }
+        </div>
+
+    </div>
+}
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? FooterContent { get; set; }
+    [Parameter] public string Title { get; set; } = "Modal Title";
+    [Parameter] public EventCallback<bool> OnClose { get; set; }
+    [Parameter] public ModalSize Size { get; set; } = ModalSize.Medium;
+
+    private bool IsOpen { get; set; }
+
+    public void OpenModal()
+    {
+        IsOpen = true;
+        StateHasChanged();
+    }
+
+    public async Task CloseModal()
+    {
+        IsOpen = false;
+        await OnClose.InvokeAsync(false);
+        StateHasChanged();
+    }
+
+    private string GetSizeClass()
+    {
+        return Size switch
+        {
+            ModalSize.Small => "modal-small",
+            ModalSize.Large => "modal-large",
+            _ => "modal-medium"
+        };
+    }
+
+}

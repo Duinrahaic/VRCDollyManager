@@ -1,0 +1,156 @@
+﻿@page "/"
+@using VRCDollyManager.Components
+@using VRCDollyManager.Extensions
+@using VRCDollyManager.Models
+@using VRCDollyManager.Services
+@inject IDollyFileWatcherService DollyService
+@inject IJSRuntime JS
+@inject OscService OSC
+
+<div class="app-frame-header">
+    <h1>VRC Dolly Manager </h1>
+    <button id="refresh" @onclick="Refresh" class="@(_onRefresh ? "refreshing" : "")">
+        <Blazicon Svg="Lucide.RefreshCw"/>
+    </button>
+    <SearchBar OnSearch="OnFilterUpdate"/>
+</div>
+<div class="app-frame-content-container">
+    <div class="app-frame-content">
+        <div id="content" class="app-frame-row" style="flex-grow: 1; background: none;">
+            <div class="app-table-container" style="width: calc(100% - 240px);">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="padded-cell">
+                            </th>
+                            <th class="name">
+                                <div class="th-container">
+                                    <Blazicon Svg="Lucide.Video"/>
+                                    Dolly Name (@_dollyCount)
+                                </div>
+                            </th>
+                            @*<th>
+                                <div class="th-container">
+                                    <Blazicon Svg="Lucide.Tags"/>
+                                    Tags
+                                </div>
+
+                            </th>
+                            <th class="padded-cell"> </th>*@
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="table-body">
+                    <table>
+                        <tbody>
+                        <Virtualize @ref="_virtualizeRef" ItemsProvider="LoadDollyData" ItemSize="40">
+                            <ItemContent Context="dolly">
+                                <DollyRowItem Dolly="dolly" Selected="_selectedDolly == dolly" OnSelect="OnSelect"/>
+                            </ItemContent>
+                        </Virtualize>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="app-details-container" style="width: 240px;">
+                <DollyRenderer @ref="Renderer"/>
+
+            </div>
+        </div>
+    </div>
+    <div class="app-frame-content">
+        <div id="options" class="app-frame-row" style="background:none;">
+            <button class="@(_relative ? "active" : "inactive")" @onclick="() => _relative = !_relative">
+                <Blazicon Svg="@(Lucide.PersonStanding)"/>
+                Relative
+            </button>
+            <button disabled="@(_selectedDolly == null)" @onclick="OpenEdit">
+                <Blazicon Svg="@(Lucide.Pencil)"/>
+                Edit
+            </button>
+            <button disabled="@(_selectedDolly == null)" @onclick="LoadDolly">
+                <Blazicon Svg="@(Lucide.MonitorDown)"/>
+                Load
+            </button>
+            <button disabled="@(_selectedDolly == null)" @onclick="DownloadVDM">
+                <Blazicon Svg="@(Lucide.FileUp)"/>
+                Export VDM
+            </button>
+            <button disabled="@(_selectedDolly == null)" @onclick="DownloadDolly">
+                <Blazicon Svg="@(Lucide.Camera)"/>
+                Export Dolly
+            </button>
+            <NotificationBar/>
+            <div class="social-media">
+                <OSCButton/>
+                @*
+                    <LinkButton Icon="Lucide.Cog" OnClick="OpenSettings"/>
+                *@
+                <LinkButton Icon="Lucide.Github" OnClick="@(() => BrowserHelper.OpenUrl("www.github.com"))"/>
+                <LinkButton Icon="Lucide.Rabbit" OnClick="OpenAbout"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<Modal @ref="About" Title="About">
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+    <p>Test</p>
+</Modal>
+<Modal @ref="Edit" Title="Edit Dolly" OnClose="Refresh" Size="ModalSize.Large">
+    <ChildContent>
+        <DollyForm DollyModel="EditDollyModel"/>
+    </ChildContent>
+    <FooterContent>
+        <button class="danger" style="margin-right: auto;" @onclick="DeleteDolly">
+            <Blazicon Svg="Lucide.Trash"/>
+            Delete
+        </button>
+        <button form="dollyForm" @onclick="UpdateEditDolly">
+            <Blazicon Svg="Lucide.Save"/>
+            Save
+        </button>
+    </FooterContent>
+</Modal>
+<Modal @ref="Preview" Title="Preview Modal">
+
+</Modal>
+<Modal @ref="Settings" Title="VRM Settings">
+
+</Modal>

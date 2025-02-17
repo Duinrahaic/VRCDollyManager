@@ -1,0 +1,84 @@
+﻿@using VRCDollyManager.Models
+
+<EditForm Model="@DollyModel" id="dollyForm">
+    <DataAnnotationsValidator/>
+
+    <!-- Name Field (Binds to Alias but Displays Name) -->
+    <div class="form-item">
+        <label for="alias">
+            <Blazicon Svg="Lucide.Signature"/>
+            Name:
+        </label>
+    </div>
+    <div class="form-item row">
+        <InputText id="alias" autocomplete="off" @bind-Value="DollyModel.Alias" class="form-control" placeholder="@DollyModel.Name"/>
+    </div>
+    <!-- Tags Management -->
+    <div class="form-item">
+        <label>
+            <Blazicon Svg="Lucide.Tags"/>
+            Tags:
+        </label>
+    </div>
+    <div class="form-item row" @onkeydown:stopPropagation>
+        <input id="tags" autocomplete="off" @onkeydown="HandleTagInput" value="@TagsInput" @oninput="OnTagInput" class="form-control"/>
+        <button type="button" @onclick="AddTag" disabled="@(!CanAddTag)">
+            <Blazicon Svg="Lucide.Plus"/>
+        </button>
+    </div>
+    <div class="form-item">
+        @if (DollyModel.Tags.Any() || true)
+        {
+            <div class="chip-container">
+                @foreach (var tag in DollyModel.Tags)
+                {
+                    <Chip Tag="@tag" CanClick="true" OnClick="RemoveTag"/>
+                }
+            </div>
+        }
+    </div>
+
+</EditForm>
+
+@code {
+    [Parameter] public required Dolly DollyModel { get; set; } = new Dolly() ?? new Dolly();
+    private string TagsInput { get; set; } = string.Empty;
+
+    bool CanAddTag =>
+        !string.IsNullOrWhiteSpace(TagsInput) &&
+        !DollyModel.Tags.Contains(TagsInput, StringComparer.OrdinalIgnoreCase);
+
+    private void OnTagInput(ChangeEventArgs e)
+    {
+        TagsInput = e.Value?.ToString() ?? string.Empty;
+    }
+
+    private void HandleTagInput(KeyboardEventArgs e)
+    {
+        if (e.Key != "Enter") return;
+
+        AddTag();
+    }
+
+    private void AddTag()
+    {
+        if (!CanAddTag) return;
+        DollyModel.Tags.Add(TagsInput);
+        TagsInput = string.Empty;
+    }
+
+    private void UpdateTags(ChangeEventArgs e)
+    {
+        var tagString = e.Value?.ToString();
+        if (!string.IsNullOrWhiteSpace(tagString))
+        {
+            DollyModel.Tags = tagString.Split(',').Select(t => t.Trim()).Where(t => !string.IsNullOrEmpty(t)).ToList();
+        }
+    }
+
+    private void RemoveTag(string tag)
+    {
+        DollyModel.Tags.Remove(tag);
+    }
+
+}

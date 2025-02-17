@@ -1,0 +1,1987 @@
+{
+  "Version": 1,
+  "Hash": "e1iAjaPdC1pY/aTLw45H1NK5lOyAHhpEoEqXBSK6gvU=",
+  "Source": "VRCDollyManager",
+  "BasePath": "/",
+  "Mode": "Root",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "VRCDollyManager\\wwwroot",
+      "Source": "VRCDollyManager",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\.nuget\\packages\\blazicons\\2.1.30\\staticwebassets\\Blazicons.ugzwxlf6d1.bundle.scp.css",
+      "SourceId": "Blazicons",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\.nuget\\packages\\blazicons\\2.1.30\\staticwebassets\\",
+      "BasePath": "_content/Blazicons",
+      "RelativePath": "Blazicons.ugzwxlf6d1.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "Fingerprint": "ugzwxlf6d1",
+      "Integrity": "jiA9KaGozNtDILg6qDFmGbFgnSKZBQ1YxEwdDGsG9lc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Duinrahaic\\.nuget\\packages\\blazicons\\2.1.30\\staticwebassets\\Blazicons.ugzwxlf6d1.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\obj\\Debug\\net8.0-windows\\win-x64\\scopedcss\\bundle\\VRCDollyManager.styles.css",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\obj\\Debug\\net8.0-windows\\win-x64\\scopedcss\\bundle\\",
+      "BasePath": "/",
+      "RelativePath": "VRCDollyManager#[.{fingerprint}]?.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "Fingerprint": "jkif1jpz0d",
+      "Integrity": "wyhON3GYSGwiZwvHEPOLs7IORPsfG2ZVaFcakQW+YjI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\obj\\Debug\\net8.0-windows\\win-x64\\scopedcss\\bundle\\VRCDollyManager.styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\app.css",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/app#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vllw4aj49l",
+      "Integrity": "na4TwZcnLUyXI6aaOLRXKpVcB5X+cCzwabKJgAc/2sc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\app.css"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\app.css.map",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/app.css#[.{fingerprint}]?.map",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "4rwuevbi4t",
+      "Integrity": "UNtU0spHGuVoA+GhMQ7QKbKU+hincmOVdVWkOQ5ezsI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\app.css.map"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\app.scss",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/app#[.{fingerprint}]?.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "n3s55kgirt",
+      "Integrity": "fW22cIOoMNaMwxqlJ+TUxoJTtGE89D4mn8QUwKQYsIw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\app.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_animations.scss",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/scss/_animations#[.{fingerprint}]?.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "99fl1cahiq",
+      "Integrity": "fXFL95E4ebMWFsYjieSTenl5CwuCsULh+oaJMantrLM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\scss\\_animations.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_chip.scss",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/scss/_chip#[.{fingerprint}]?.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "71dpm3wey3",
+      "Integrity": "xa+SwX2V8T7duuQv/4HUjc9mnzYlmS7bmbh9YAerjrw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\scss\\_chip.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_form.scss",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/scss/_form#[.{fingerprint}]?.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "dlprcuqwcl",
+      "Integrity": "r+EJ7SmB+N3Rzt38iJRX7hc/ReYNnlWRbuBRxWct6rA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\scss\\_form.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_frame.scss",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/scss/_frame#[.{fingerprint}]?.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "wdg62wi4qv",
+      "Integrity": "jIXl6wyu6j/YOahk8JsbtUEkFYmYROdV/hX0FNRo5O8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\scss\\_frame.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_modal.scss",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/scss/_modal#[.{fingerprint}]?.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "68ixvonsih",
+      "Integrity": "hinR0KGvEud3hY3xYmWyHNyRnB/W9fBJR1SKDRvxlSw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\scss\\_modal.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_notification.scss",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/scss/_notification#[.{fingerprint}]?.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "egn6m6jyih",
+      "Integrity": "PhpBUNNX92oGLav9LOIcpWRllAFvokfrl4f+l472L2w=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\scss\\_notification.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_social.scss",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/scss/_social#[.{fingerprint}]?.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9xw2vxfzvp",
+      "Integrity": "05lsICN48f3qKhCBrBWM2n8psnDm+EfixjarJe5NKIQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\scss\\_social.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_table.scss",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/scss/_table#[.{fingerprint}]?.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "7d1nuwfe8b",
+      "Integrity": "Vctsye8t+JrTC9OufWdiaxbxoSzoWCxE5nAobvNN2i8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\scss\\_table.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_threejs.scss",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/scss/_threejs#[.{fingerprint}]?.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "7a5vbnwwft",
+      "Integrity": "f9PRL9WlcqUf3M4aE6ZzV3zwcET4Zpryl1Z+jofDd/s=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\scss\\_threejs.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_variables.scss",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/scss/_variables#[.{fingerprint}]?.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rostbv9weu",
+      "Integrity": "hXLR7k/chkX4KM+Cnx3eW/WwWXCBhYIppcA2nMyR79k=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\scss\\_variables.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\index.html",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "index#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5ln3uac6xu",
+      "Integrity": "199esIN+55jEEBNlTvZC9xTyxfsyXt7NjZq/qKoptSg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\download.js",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "js/download#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8aspkw0edk",
+      "Integrity": "cO8rAlhgAiJY2ADlP00FrlJSJqm28c7Ck6tQGnUMSxE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\download.js"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\threeInterop.js",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "js/threeInterop#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "g8ffkiiamp",
+      "Integrity": "4LbyiPS3E6duTFRuhA24vWvwkqQfg6fXcsczg9pvS1k=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\threeInterop.js"
+    },
+    {
+      "Identity": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\threejs\\three.core.min.js",
+      "SourceId": "VRCDollyManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "js/threejs/three.core.min#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "yvmpyvlpth",
+      "Integrity": "4vGaOaRz0xj+0VnxP+021tuKfUZXeqOXa4wik//ZP0Y=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\threejs\\three.core.min.js"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "_content/Blazicons/Blazicons.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Duinrahaic\\.nuget\\packages\\blazicons\\2.1.30\\staticwebassets\\Blazicons.ugzwxlf6d1.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "147"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jiA9KaGozNtDILg6qDFmGbFgnSKZBQ1YxEwdDGsG9lc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Dec 2024 15:26:03 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jiA9KaGozNtDILg6qDFmGbFgnSKZBQ1YxEwdDGsG9lc="
+        }
+      ]
+    },
+    {
+      "Route": "_content/Blazicons/Blazicons.ugzwxlf6d1.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Duinrahaic\\.nuget\\packages\\blazicons\\2.1.30\\staticwebassets\\Blazicons.ugzwxlf6d1.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "147"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jiA9KaGozNtDILg6qDFmGbFgnSKZBQ1YxEwdDGsG9lc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Dec 2024 15:26:03 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ugzwxlf6d1"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jiA9KaGozNtDILg6qDFmGbFgnSKZBQ1YxEwdDGsG9lc="
+        },
+        {
+          "Name": "label",
+          "Value": "_content/Blazicons/Blazicons.bundle.scp.css"
+        }
+      ]
+    },
+    {
+      "Route": "css/app.css",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14745"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"na4TwZcnLUyXI6aaOLRXKpVcB5X+cCzwabKJgAc/2sc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:50:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-na4TwZcnLUyXI6aaOLRXKpVcB5X+cCzwabKJgAc/2sc="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.css.4rwuevbi4t.map",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\app.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3865"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UNtU0spHGuVoA+GhMQ7QKbKU+hincmOVdVWkOQ5ezsI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:50:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4rwuevbi4t"
+        },
+        {
+          "Name": "label",
+          "Value": "css/app.css.map"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UNtU0spHGuVoA+GhMQ7QKbKU+hincmOVdVWkOQ5ezsI="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.css.map",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\app.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3865"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UNtU0spHGuVoA+GhMQ7QKbKU+hincmOVdVWkOQ5ezsI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:50:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UNtU0spHGuVoA+GhMQ7QKbKU+hincmOVdVWkOQ5ezsI="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.n3s55kgirt.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\app.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "238"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fW22cIOoMNaMwxqlJ+TUxoJTtGE89D4mn8QUwKQYsIw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Feb 2025 21:12:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "n3s55kgirt"
+        },
+        {
+          "Name": "label",
+          "Value": "css/app.scss"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fW22cIOoMNaMwxqlJ+TUxoJTtGE89D4mn8QUwKQYsIw="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\app.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "238"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fW22cIOoMNaMwxqlJ+TUxoJTtGE89D4mn8QUwKQYsIw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Feb 2025 21:12:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-fW22cIOoMNaMwxqlJ+TUxoJTtGE89D4mn8QUwKQYsIw="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.vllw4aj49l.css",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14745"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"na4TwZcnLUyXI6aaOLRXKpVcB5X+cCzwabKJgAc/2sc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:50:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vllw4aj49l"
+        },
+        {
+          "Name": "label",
+          "Value": "css/app.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-na4TwZcnLUyXI6aaOLRXKpVcB5X+cCzwabKJgAc/2sc="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_animations.99fl1cahiq.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_animations.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "471"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fXFL95E4ebMWFsYjieSTenl5CwuCsULh+oaJMantrLM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "99fl1cahiq"
+        },
+        {
+          "Name": "label",
+          "Value": "css/scss/_animations.scss"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fXFL95E4ebMWFsYjieSTenl5CwuCsULh+oaJMantrLM="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_animations.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_animations.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "471"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fXFL95E4ebMWFsYjieSTenl5CwuCsULh+oaJMantrLM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-fXFL95E4ebMWFsYjieSTenl5CwuCsULh+oaJMantrLM="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_chip.71dpm3wey3.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_chip.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "970"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xa+SwX2V8T7duuQv/4HUjc9mnzYlmS7bmbh9YAerjrw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "71dpm3wey3"
+        },
+        {
+          "Name": "label",
+          "Value": "css/scss/_chip.scss"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-xa+SwX2V8T7duuQv/4HUjc9mnzYlmS7bmbh9YAerjrw="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_chip.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_chip.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "970"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xa+SwX2V8T7duuQv/4HUjc9mnzYlmS7bmbh9YAerjrw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xa+SwX2V8T7duuQv/4HUjc9mnzYlmS7bmbh9YAerjrw="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_form.dlprcuqwcl.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_form.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3916"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"r+EJ7SmB+N3Rzt38iJRX7hc/ReYNnlWRbuBRxWct6rA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dlprcuqwcl"
+        },
+        {
+          "Name": "label",
+          "Value": "css/scss/_form.scss"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-r+EJ7SmB+N3Rzt38iJRX7hc/ReYNnlWRbuBRxWct6rA="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_form.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_form.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3916"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"r+EJ7SmB+N3Rzt38iJRX7hc/ReYNnlWRbuBRxWct6rA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-r+EJ7SmB+N3Rzt38iJRX7hc/ReYNnlWRbuBRxWct6rA="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_frame.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_frame.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2200"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jIXl6wyu6j/YOahk8JsbtUEkFYmYROdV/hX0FNRo5O8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jIXl6wyu6j/YOahk8JsbtUEkFYmYROdV/hX0FNRo5O8="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_frame.wdg62wi4qv.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_frame.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2200"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jIXl6wyu6j/YOahk8JsbtUEkFYmYROdV/hX0FNRo5O8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wdg62wi4qv"
+        },
+        {
+          "Name": "label",
+          "Value": "css/scss/_frame.scss"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jIXl6wyu6j/YOahk8JsbtUEkFYmYROdV/hX0FNRo5O8="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_modal.68ixvonsih.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_modal.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2701"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hinR0KGvEud3hY3xYmWyHNyRnB/W9fBJR1SKDRvxlSw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "68ixvonsih"
+        },
+        {
+          "Name": "label",
+          "Value": "css/scss/_modal.scss"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hinR0KGvEud3hY3xYmWyHNyRnB/W9fBJR1SKDRvxlSw="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_modal.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_modal.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2701"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hinR0KGvEud3hY3xYmWyHNyRnB/W9fBJR1SKDRvxlSw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hinR0KGvEud3hY3xYmWyHNyRnB/W9fBJR1SKDRvxlSw="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_notification.egn6m6jyih.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_notification.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "756"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"PhpBUNNX92oGLav9LOIcpWRllAFvokfrl4f+l472L2w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "egn6m6jyih"
+        },
+        {
+          "Name": "label",
+          "Value": "css/scss/_notification.scss"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-PhpBUNNX92oGLav9LOIcpWRllAFvokfrl4f+l472L2w="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_notification.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_notification.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "756"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"PhpBUNNX92oGLav9LOIcpWRllAFvokfrl4f+l472L2w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-PhpBUNNX92oGLav9LOIcpWRllAFvokfrl4f+l472L2w="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_social.9xw2vxfzvp.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_social.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "461"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"05lsICN48f3qKhCBrBWM2n8psnDm+EfixjarJe5NKIQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9xw2vxfzvp"
+        },
+        {
+          "Name": "label",
+          "Value": "css/scss/_social.scss"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-05lsICN48f3qKhCBrBWM2n8psnDm+EfixjarJe5NKIQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_social.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_social.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "461"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"05lsICN48f3qKhCBrBWM2n8psnDm+EfixjarJe5NKIQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-05lsICN48f3qKhCBrBWM2n8psnDm+EfixjarJe5NKIQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_table.7d1nuwfe8b.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_table.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3135"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Vctsye8t+JrTC9OufWdiaxbxoSzoWCxE5nAobvNN2i8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7d1nuwfe8b"
+        },
+        {
+          "Name": "label",
+          "Value": "css/scss/_table.scss"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Vctsye8t+JrTC9OufWdiaxbxoSzoWCxE5nAobvNN2i8="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_table.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_table.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3135"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Vctsye8t+JrTC9OufWdiaxbxoSzoWCxE5nAobvNN2i8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Vctsye8t+JrTC9OufWdiaxbxoSzoWCxE5nAobvNN2i8="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_threejs.7a5vbnwwft.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_threejs.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "851"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"f9PRL9WlcqUf3M4aE6ZzV3zwcET4Zpryl1Z+jofDd/s=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:50:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7a5vbnwwft"
+        },
+        {
+          "Name": "label",
+          "Value": "css/scss/_threejs.scss"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-f9PRL9WlcqUf3M4aE6ZzV3zwcET4Zpryl1Z+jofDd/s="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_threejs.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_threejs.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "851"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"f9PRL9WlcqUf3M4aE6ZzV3zwcET4Zpryl1Z+jofDd/s=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:50:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-f9PRL9WlcqUf3M4aE6ZzV3zwcET4Zpryl1Z+jofDd/s="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_variables.rostbv9weu.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_variables.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "861"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hXLR7k/chkX4KM+Cnx3eW/WwWXCBhYIppcA2nMyR79k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rostbv9weu"
+        },
+        {
+          "Name": "label",
+          "Value": "css/scss/_variables.scss"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hXLR7k/chkX4KM+Cnx3eW/WwWXCBhYIppcA2nMyR79k="
+        }
+      ]
+    },
+    {
+      "Route": "css/scss/_variables.scss",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_variables.scss",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "861"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hXLR7k/chkX4KM+Cnx3eW/WwWXCBhYIppcA2nMyR79k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hXLR7k/chkX4KM+Cnx3eW/WwWXCBhYIppcA2nMyR79k="
+        }
+      ]
+    },
+    {
+      "Route": "index.5ln3uac6xu.html",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "602"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"199esIN+55jEEBNlTvZC9xTyxfsyXt7NjZq/qKoptSg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 01:01:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5ln3uac6xu"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-199esIN+55jEEBNlTvZC9xTyxfsyXt7NjZq/qKoptSg="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "602"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"199esIN+55jEEBNlTvZC9xTyxfsyXt7NjZq/qKoptSg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 01:01:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-199esIN+55jEEBNlTvZC9xTyxfsyXt7NjZq/qKoptSg="
+        }
+      ]
+    },
+    {
+      "Route": "js/download.8aspkw0edk.js",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\download.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "257"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cO8rAlhgAiJY2ADlP00FrlJSJqm28c7Ck6tQGnUMSxE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 01:00:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8aspkw0edk"
+        },
+        {
+          "Name": "label",
+          "Value": "js/download.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cO8rAlhgAiJY2ADlP00FrlJSJqm28c7Ck6tQGnUMSxE="
+        }
+      ]
+    },
+    {
+      "Route": "js/download.js",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\download.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "257"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cO8rAlhgAiJY2ADlP00FrlJSJqm28c7Ck6tQGnUMSxE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 01:00:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cO8rAlhgAiJY2ADlP00FrlJSJqm28c7Ck6tQGnUMSxE="
+        }
+      ]
+    },
+    {
+      "Route": "js/threeInterop.g8ffkiiamp.js",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\threeInterop.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7315"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4LbyiPS3E6duTFRuhA24vWvwkqQfg6fXcsczg9pvS1k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "g8ffkiiamp"
+        },
+        {
+          "Name": "label",
+          "Value": "js/threeInterop.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4LbyiPS3E6duTFRuhA24vWvwkqQfg6fXcsczg9pvS1k="
+        }
+      ]
+    },
+    {
+      "Route": "js/threeInterop.js",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\threeInterop.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7315"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4LbyiPS3E6duTFRuhA24vWvwkqQfg6fXcsczg9pvS1k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Feb 2025 00:05:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4LbyiPS3E6duTFRuhA24vWvwkqQfg6fXcsczg9pvS1k="
+        }
+      ]
+    },
+    {
+      "Route": "js/threejs/three.core.min.js",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\threejs\\three.core.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "369850"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4vGaOaRz0xj+0VnxP+021tuKfUZXeqOXa4wik//ZP0Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Feb 2025 20:55:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4vGaOaRz0xj+0VnxP+021tuKfUZXeqOXa4wik//ZP0Y="
+        }
+      ]
+    },
+    {
+      "Route": "js/threejs/three.core.min.yvmpyvlpth.js",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\threejs\\three.core.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "369850"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4vGaOaRz0xj+0VnxP+021tuKfUZXeqOXa4wik//ZP0Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Feb 2025 20:55:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "yvmpyvlpth"
+        },
+        {
+          "Name": "label",
+          "Value": "js/threejs/three.core.min.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4vGaOaRz0xj+0VnxP+021tuKfUZXeqOXa4wik//ZP0Y="
+        }
+      ]
+    },
+    {
+      "Route": "VRCDollyManager.jkif1jpz0d.styles.css",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\obj\\Debug\\net8.0-windows\\win-x64\\scopedcss\\bundle\\VRCDollyManager.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "69"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wyhON3GYSGwiZwvHEPOLs7IORPsfG2ZVaFcakQW+YjI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 14 Feb 2025 14:35:04 GMT"
+        },
+        {
+          "Name": "Link",
+          "Value": "<_content/Blazicons/Blazicons.ugzwxlf6d1.bundle.scp.css>; rel=\"preload\"; as=\"style\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jkif1jpz0d"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-wyhON3GYSGwiZwvHEPOLs7IORPsfG2ZVaFcakQW+YjI="
+        },
+        {
+          "Name": "label",
+          "Value": "VRCDollyManager.styles.css"
+        }
+      ]
+    },
+    {
+      "Route": "VRCDollyManager.styles.css",
+      "AssetFile": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\obj\\Debug\\net8.0-windows\\win-x64\\scopedcss\\bundle\\VRCDollyManager.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "69"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wyhON3GYSGwiZwvHEPOLs7IORPsfG2ZVaFcakQW+YjI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 14 Feb 2025 14:35:04 GMT"
+        },
+        {
+          "Name": "Link",
+          "Value": "<_content/Blazicons/Blazicons.ugzwxlf6d1.bundle.scp.css>; rel=\"preload\"; as=\"style\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-wyhON3GYSGwiZwvHEPOLs7IORPsfG2ZVaFcakQW+YjI="
+        }
+      ]
+    }
+  ]
+}

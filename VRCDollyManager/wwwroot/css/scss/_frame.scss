@@ -1,0 +1,165 @@
+@import "variables";
+@import "animations";
+
+html, body
+{
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: $background;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.app
+{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.app-frame
+{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  
+  .app-frame-header
+  {
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: center;
+	color: $on-background;
+	gap: 12px;
+	padding: 4px 8px;
+	margin-top: 4px;
+	
+	h1
+	{
+	  margin: 0;
+	  font-size: 1.5rem;
+	  user-select: none;
+	}
+	
+	button
+	{
+	  &#refresh
+	  {
+		color: $on-background;
+		cursor: pointer;
+		padding: 6px;
+		background: transparent;
+		
+		&.refreshing
+		{
+		  svg
+		  {
+			animation: spin 1s linear infinite;
+			color: $primary;
+		  }
+		  
+		  pointer-events: none;
+		  
+		}
+		
+		&:hover
+		{
+		  background: $surface;
+		  border-radius: 8px;
+		}
+		
+	  }
+	  
+	  
+	}
+	
+	
+	.button-group
+	{
+	  margin-left: auto;
+	  display: flex;
+	  flex-direction: row;
+	  gap: 8px;
+	}
+	
+	
+  }
+  
+  .app-details-container
+  {
+	display: flex;
+	border-radius: 8px;
+	
+  }
+  
+  .app-frame-content-container
+  {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	gap: 8px;
+	padding: 8px;
+	position: relative;
+	
+	.app-frame-content
+	{
+	  display: flex;
+	  flex-direction: column;
+	  height: 100%;
+	  flex-grow: 1;
+	  gap: 8px;
+	  
+	  #content
+	  {
+		align-items: unset;
+		padding: 0;
+		overflow: hidden;
+		flex-direction: column;
+	  }
+	  
+	  .app-frame-row
+	  {
+		display: flex;
+		flex-direction: row !important;
+		justify-content: start;
+		align-items: center;
+		gap: 8px;
+		border-radius: 8px;
+		padding: 2px 4px;
+		background: $surface;
+		
+		&#options
+		{
+		  button
+		  {
+			svg
+			{
+			  height: 20px;
+			  width: 20px;
+			}
+			
+			&.active
+			{
+			  
+			}
+			
+			&.inactive
+			{
+			  color: $on-background;
+			  background: $background;
+			  border-radius: 8px;
+			  
+			  &:hover
+			  {
+				background: $surface;
+			  }
+			}
+		  }
+		}
+	  }
+	}
+  }
+}

@@ -1,0 +1,24 @@
+﻿<div class="chip @(CanClick ? "clickable" : string.Empty)" @onclick="OnClickHandler">
+    <Blazicon Svg="Lucide.Tag"/>
+    <div class="text">
+        @Tag
+    </div>
+    @if (CanClick)
+    {
+        <Blazicon Svg="Lucide.X"/>
+    }
+</div>
+
+@code{
+
+    [Parameter] public bool CanClick { get; set; } = false;
+    [Parameter] public string Tag { get; set; } = string.Empty;
+    [Parameter] public EventCallback<string> OnClick { get; set; }
+
+    private void OnClickHandler()
+    {
+        if (!CanClick) return;
+        OnClick.InvokeAsync(Tag);
+    }
+
+}

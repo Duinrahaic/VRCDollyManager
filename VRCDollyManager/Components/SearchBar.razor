@@ -1,0 +1,23 @@
+﻿<div id="search" class="search-bar">
+    <div class="search-input @Selected">
+        <Blazicon Svg="Lucide.Search"/>
+        <input placeholder="Search Dolly Paths..."
+               onfocusin="(() => _focused = true; )"
+               onfocusout="(() => _focused = false; )"
+               @oninput="OnInput"/>
+    </div>
+</div>
+
+@code
+{
+    [Parameter] public EventCallback<string> OnSearch { get; set; }
+
+    private bool _focused = false;
+    private string Selected => _focused ? "selected" : "";
+
+    private void OnInput(ChangeEventArgs e)
+    {
+        OnSearch.InvokeAsync(e.Value?.ToString());
+    }
+
+}

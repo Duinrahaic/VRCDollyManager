@@ -1,0 +1,15 @@
+﻿@using VRCDollyManager.Models
+
+@if (NotificationMessage == null)
+{
+    return;
+}
+
+<div class="message @NotificationMessage.Type.ToString().ToLower()">
+    <Blazicon Svg="@NotificationMessage.Icon"/>
+    <div class="message-content"> @NotificationMessage.Message </div>
+</div>
+
+@code {
+    [Parameter] public NotificationMessage? NotificationMessage { get; set; }
+}

@@ -1,0 +1,54 @@
+﻿@using VRCDollyManager.Models
+<tr @onclick="OnClick">
+    <td class="padded-cell @(Selected ? "selected" : "unselected")">
+        <Blazicon Svg="Lucide.Check"/>
+    </td>
+    <td class="name">
+        <div class="dolly-name">
+            @Dolly.GetDisplayName()
+        </div>
+        @*@if (Dolly.Tags.Any() || true)
+        {
+            <div class="tag-container">
+                @foreach (var tag in Dolly.Tags)
+                {
+                    <Chip Tag="@tag"/>
+                }
+                <Chip Tag="test"/>
+                <Chip Tag="test"/>
+                <Chip Tag="test"/>
+                <Chip Tag="test"/>
+                <Chip Tag="test"/>
+                <Chip Tag="test"/>
+                <Chip Tag="test"/>
+                <Chip Tag="test"/>
+                <Chip Tag="test"/>
+                <Chip Tag="test"/>
+                <Chip Tag="test"/>
+                <Chip Tag="test"/>
+                <Chip Tag="test"/>
+
+            </div>
+        }*@
+    </td>
+    @*<td class="padded-cell" @onclick:preventDefault @onclick:stopPropagation>
+        <div class="controls-container">
+            <button>
+                <Blazicon Svg="Lucide.MonitorDown"/>
+                <span>Load</span>
+            </button>
+        </div>
+    </td>*@
+</tr>
+
+@code{
+    [Parameter] public required Dolly Dolly { get; set; }
+    [Parameter] public bool Selected { get; set; } // Bindable state
+    [Parameter] public EventCallback<Dolly> OnSelect { get; set; }
+
+    private async Task OnClick()
+    {
+        await OnSelect.InvokeAsync(Dolly);
+    }
+
+}

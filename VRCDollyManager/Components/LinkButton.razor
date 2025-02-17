@@ -1,0 +1,15 @@
+﻿<button class="social-button" @onclick="OnClickHandler">
+    <Blazicon Svg="@Icon"/>
+</button>
+
+@code {
+
+    [Parameter] public required SvgIcon Icon { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+
+    private void OnClickHandler()
+    {
+        OnClick.InvokeAsync();
+    }
+
+}

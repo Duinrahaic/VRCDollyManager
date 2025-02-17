@@ -1,0 +1,54 @@
+﻿@import "variables";
+@import "animations";
+
+.notification
+{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-grow: 1;
+  
+  .message
+  {
+	background: $surface;
+	color: $on-surface;
+	border-radius: 8px;
+	padding: 2px 12px;
+	display: flex;
+	flex-direction: row;
+	gap: 8px;
+	align-items: center;
+	justify-content: start;
+	width: 100%;
+	//animation: slideIn 0.3s ease-out, slideOut 0.3s ease-in 4.7s forwards;
+	
+	&.error
+	{
+	  @include error;
+	}
+	
+	&.success
+	{
+	  @include success;
+	}
+	
+	&.info
+	{
+	  @include info;
+	}
+	
+	.message-content
+	{
+	  flex-grow: 1;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+	  
+	  svg
+	  {
+		height: 20px;
+	  }
+	}
+  }
+}
+

@@ -1,0 +1,28 @@
+// Dark mode color variables
+$background: #121212; // 0dp elevation surface overlay
+$surface: #1E1E1E; // 1dp elevation surface overlay
+$primary: #BB86FC; // Primary color (Material Dark Purple)
+$secondary: #03DAC6; // Secondary color (Teal)
+$on-background: #E0E0E0; // Text/icons on background
+$on-surface: #FFFFFF; // Text/icons on surface
+$on-primary: #000000; // Text/icons on primary (usually high contrast)
+$on-secondary: #000000; // Text/icons on secondary (usually high contrast)
+$danger: #dc1536; // Error color
+
+@mixin error
+{
+  background-color: #CF6679; // Error color
+  color: #FFFFFF; // Text/icons on error
+}
+
+@mixin success
+{
+  background-color: #4CAF50; // Success color
+  color: #FFFFFF; // Text/icons on success
+}
+
+@mixin info
+{
+  background-color: #2196F3; // Info color
+  color: #FFFFFF; // Text/icons on info
+}
