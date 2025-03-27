@@ -16,6 +16,7 @@ public class CameraKeyFrame
     public double Duration { get; set; }
     public Position Position { get; set; } = new();
     public Rotation Rotation { get; set; } = new();
+    public bool IsLocal { get; set; } = false;
 }
 
 public class Position

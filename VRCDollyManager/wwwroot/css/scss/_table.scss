@@ -4,14 +4,13 @@
 {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  flex-grow: 1;
   background-color: $surface;
   color: $on-surface;
   position: relative;
   min-height: 0;
   border-radius: 8px;
   overflow: hidden;
+  width: 80%;
 }
 
 .table-wrapper
@@ -169,14 +168,8 @@
 	  
 	}
 	
-	.tag-container
-	{
-	  display: grid;
-	  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); // Adjust min size as needed
-	  gap: 8px; // Spacing between tags
-	  align-items: center;
-	  padding: 8px;
-	}
+
+
 	
 	.controls-container
 	{

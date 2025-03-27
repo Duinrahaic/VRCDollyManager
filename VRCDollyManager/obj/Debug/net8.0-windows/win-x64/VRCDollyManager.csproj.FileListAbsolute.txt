@@ -212,3 +212,4 @@ C:\Users\Duinrahaic\RiderProjects\VRCDollyManager\VRCDollyManager\bin\Debug\net8
 C:\Users\Duinrahaic\RiderProjects\VRCDollyManager\VRCDollyManager\bin\Debug\net8.0-windows\win-x64\System.IO.Pipelines.dll
 C:\Users\Duinrahaic\RiderProjects\VRCDollyManager\VRCDollyManager\bin\Debug\net8.0-windows\win-x64\System.Text.Encodings.Web.dll
 C:\Users\Duinrahaic\RiderProjects\VRCDollyManager\VRCDollyManager\bin\Debug\net8.0-windows\win-x64\System.Text.Json.dll
+C:\Users\Duinrahaic\RiderProjects\VRCDollyManager\VRCDollyManager\obj\Debug\net8.0-windows\win-x64\VRCDollyManager.sourcelink.json

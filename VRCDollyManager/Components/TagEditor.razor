@@ -1,0 +1,85 @@
+﻿@using VRCDollyManager.Models
+@using VRCDollyManager.Services
+@inject IDollyFileWatcherService DollyService
+
+
+<div class="dolly-details-header">
+    <div class="dolly-details-header-container">
+        <input id="tags" autocomplete="off" @onkeydown="HandleTagInput" value="@TagsInput" @oninput="OnTagInput" class="form-control"/>
+        <button style="border-bottom-left-radius: 0; border-top-left-radius: 0;" type="button" @onclick="AddTag" disabled="@(!CanAddTag())">
+            <Blazicon Svg="Lucide.Plus"/>
+        </button>
+    </div>
+</div>
+<div class="dolly-details-body">
+    <div class="tag-container">
+        @foreach (var tag in Tags)
+        {
+            <Chip Tag="@tag" CanClick="true" OnClick="RemoveTag"/>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public Dolly? DollyModel { get; set; } = null;
+    private string TagsInput { get; set; } = string.Empty;
+
+    private List<string> Tags { get; set; } = new();
+    
+    protected override void OnParametersSet()
+    {
+        Tags = DollyModel?.Tags ?? new();
+    }
+
+
+    bool CanAddTag()
+    {
+        if(DollyModel == null) return false;
+        return !string.IsNullOrWhiteSpace(TagsInput) &&
+               !DollyModel.Tags.Contains(TagsInput, StringComparer.OrdinalIgnoreCase);
+    }
+        
+
+    private void OnTagInput(ChangeEventArgs e)
+    {
+        TagsInput = e.Value?.ToString() ?? string.Empty;
+    }
+
+    private void HandleTagInput(KeyboardEventArgs e)
+    {
+        if (e.Key != "Enter") return;
+
+        AddTag();
+    }
+
+    private void AddTag()
+    {
+        if (!CanAddTag() || DollyModel == null) return;
+        DollyModel.Tags.Add(TagsInput);
+        TagsInput = string.Empty;
+        DollyService.UpdateDollyAsync(DollyModel);
+    }
+
+    private void UpdateTags(ChangeEventArgs e)
+    {
+        if(DollyModel == null) return;
+        
+        var tagString = e.Value?.ToString();
+        if (!string.IsNullOrWhiteSpace(tagString))
+        {
+            DollyModel.Tags = tagString.Split(',').Select(t => t.Trim()).Where(t => !string.IsNullOrEmpty(t)).ToList();
+            DollyService.UpdateDollyAsync(DollyModel);
+        }
+    }
+
+    private void RemoveTag(string tag)
+    {
+        if(DollyModel == null) return;
+        DollyModel.Tags.Remove(tag);
+        DollyService.UpdateDollyAsync(DollyModel);
+    }
+    
+    
+    
+    
+}

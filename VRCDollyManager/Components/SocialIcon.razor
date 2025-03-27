@@ -1,0 +1,11 @@
+﻿<div class="social-icon">
+    <a href="@Link" target="_blank">
+        <i class="@Icon"></i>
+    </a>
+</div>
+
+@code 
+{    
+    [Parameter] public required string Icon { get; set; }
+    [Parameter] public string Link { get; set; } = "#";
+}

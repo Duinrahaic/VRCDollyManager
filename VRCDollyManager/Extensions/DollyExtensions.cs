@@ -10,11 +10,46 @@ public static class DollyExtensions
         return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
             "VRChat", "CameraPaths");
     }
+    public static string GetTempDollyPath()
+    {
+        return Path.Combine(GetDollyPath(),"Temp");
+    }
     
     public static string GetDollyFilePath(this Dolly dolly)
     {
         return Path.Combine(GetDollyPath(), dolly.Name);
     }
+    public static string? GetRelativeDollyKeyframes(this Dolly dolly)
+    {
+        var data = dolly.GetCameraKeyFrames();
+        if (data == null)
+            return null;
+        foreach (var frame in data)
+        {
+            frame.IsLocal = true;
+        }
+
+        try
+        {
+            // if folder exists make it 
+            if (!Directory.Exists(GetTempDollyPath()))
+                Directory.CreateDirectory(GetTempDollyPath());
+            
+            
+            var json = JsonSerializer.Serialize(data);
+            // write all lines to file and return the path
+            var path = Path.Combine(GetTempDollyPath(), $"modified_{dolly.Name}");
+            File.WriteAllText(path, json);
+            return path;
+        }catch(Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+        return null;
+    }
+    
+    
 
     public static string GetDollyDbPath()
     {

@@ -118,13 +118,23 @@ public class BlazorWebView : NativeControlHost
                 {
                     e.EnvironmentOptions = new CoreWebView2EnvironmentOptions
                     {
-                        AdditionalBrowserArguments = "--enable-experimental-web-platform-features"
+                        AdditionalBrowserArguments = "--enable-experimental-web-platform-features",
+
+
                     };
                 }
             };
+            
+            _blazorWebView.WebView.CoreWebView2InitializationCompleted+= (sender, args) =>
+            {
+                _blazorWebView.WebView.CoreWebView2.IsDefaultDownloadDialogOpenChanged += (sender, e) =>
+                {
+                    if (_blazorWebView.WebView.CoreWebView2.IsDefaultDownloadDialogOpen)
+                        _blazorWebView.WebView.CoreWebView2.CloseDefaultDownloadDialog();
+                };
+            };
 
-
-            foreach (var component in RootComponents) _blazorWebView.RootComponents.Add(component);
+        foreach (var component in RootComponents) _blazorWebView.RootComponents.Add(component);
 
             return new PlatformHandle(_blazorWebView.Handle, "HWND");
         }

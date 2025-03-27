@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\css\\app.scss"
     },
     {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_about.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_about.scss"
+    },
+    {
       "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_animations.scss",
       "PackagePath": "staticwebassets\\css\\scss\\_animations.scss"
     },
@@ -39,6 +43,10 @@
     {
       "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_notification.scss",
       "PackagePath": "staticwebassets\\css\\scss\\_notification.scss"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_pad.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_pad.scss"
     },
     {
       "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_social.scss",

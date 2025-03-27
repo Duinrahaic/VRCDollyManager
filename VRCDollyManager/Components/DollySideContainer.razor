@@ -1,0 +1,82 @@
+﻿@using VRCDollyManager.Models
+
+
+<div class="app-details-container-options">
+    <button class="dolly-option @GetSelectedClass(DollySidePanelOptions.Preview)" @onclick="() => _currentOption = DollySidePanelOptions.Preview">
+        <Blazicon Svg="Lucide.Presentation" />
+        Preview
+    </button>
+    <button class="dolly-option @GetSelectedClass(DollySidePanelOptions.Tags)" @onclick="() => _currentOption = DollySidePanelOptions.Tags">
+        <Blazicon Svg="Lucide.Tags" />
+        Tags
+    </button>
+    <button style="display:none;: hidden;" class="dolly-option @GetSelectedClass(DollySidePanelOptions.Director)" @onclick="() => _currentOption = DollySidePanelOptions.Director">
+        <Blazicon Svg="Lucide.Clapperboard" />
+        Director
+    </button>
+    
+</div>
+<div class="app-details-container @(GetVisibilityClass(DollySidePanelOptions.Preview))">
+    <DollyRenderer @ref="Renderer"/>
+</div>
+<div class="app-details-container @(GetVisibilityClass(DollySidePanelOptions.Tags))">
+    <TagEditor DollyModel="_selectedDolly" />
+</div>
+
+<div class="app-details-container @(GetVisibilityClass(DollySidePanelOptions.Director))">
+    <DirectorPanel @bind-DollyList="_directorList" />
+</div>
+
+
+
+
+
+@code {
+    [Parameter]
+    public Dolly? SelectedDolly { get; set; } = null;
+    [Parameter]
+    public EventCallback RefreshCallback { get; set; }
+    
+    private List<DirectorDolly> _directorList = new();
+    
+    
+    private Dolly? _selectedDolly;
+    
+    private DollySidePanelOptions _currentOption = DollySidePanelOptions.Preview;
+    private DollyRenderer? Renderer { get; set; }
+    
+    protected override void OnParametersSet()
+    {
+        _selectedDolly = SelectedDolly;
+        if (_selectedDolly == null)
+        {
+            Renderer?.ClearScene();
+        }
+        else
+        {
+            Renderer?.LoadDollyPath(_selectedDolly);
+        }
+    }
+
+    private void OnSelect(Dolly dolly)
+    {
+        _selectedDolly = dolly;
+        StateHasChanged();
+    }
+    
+    private string GetVisibilityClass(DollySidePanelOptions option)
+    {
+        return _currentOption == option ? "visible" : "";
+    }
+    private string GetSelectedClass(DollySidePanelOptions option)
+    {
+        return _currentOption == option ? "selected" : "";
+    }
+    
+    public void QueueDolly(Dolly dolly)
+    {
+        _directorList.Add(new DirectorDolly(dolly));
+        InvokeAsync(StateHasChanged);
+    }
+}
+

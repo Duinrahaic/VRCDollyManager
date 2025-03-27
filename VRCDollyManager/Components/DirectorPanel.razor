@@ -1,0 +1,199 @@
+﻿@using System.Runtime.Intrinsics.Arm
+@using VRCDollyManager.Models
+@using VRCDollyManager.Services
+@inject OscService OSC
+@inject IDollyFileWatcherService DollyService
+@implements IDisposable
+
+<div class="dolly-details-header">
+    <div class="dolly-details-header-container">
+        <button class="move-up" type="button" @onclick="MoveUp" disabled="@((_selectedDolly == null || DollyList.First().Id == _selectedDolly.Id))">
+                                                                                                                                                  <Blazicon Svg="Lucide.ChevronUp"/>
+        </button>
+        <button class="move-down" type="button" @onclick="MoveDown" disabled="@(_selectedDolly == null || (DollyList.Last() == _selectedDolly))">
+            <Blazicon Svg="Lucide.ChevronDown"/>
+        </button>
+        <button class="remove" type="button" @onclick="RemoveDolly" disabled="@(_selectedDolly == null)">
+            <Blazicon Svg="Lucide.X"/>
+        </button>
+    </div>
+</div>
+<div class="dolly-details-body" style="margin-top: 40px;">
+    <ul class="dolly-list">
+        @foreach (var director in DollyList)
+        {
+        <li class="dolly-item">
+            <span>@director.Dolly.GetDisplayName()</span>
+            <div class="dolly-controls">
+               
+            </div>
+        </li>
+        }
+    </ul>
+</div>
+
+<div class="dolly-details-footer">
+    <div class="dolly-details-footer-container" style="gap: 8px;">
+        <button class="toggle surface @(_shuffle ? "active" : "inactive")" type="button" @onclick="ToggleShuffle">
+            <Blazicon Svg="Lucide.Shuffle"/>
+        </button>
+        <button class="toggle surface inactive" type="button">
+            <Blazicon Svg="Lucide.SkipBack"/>
+        </button>
+        <button class="toggle surface @(_isPlaying ? "active" : "inactive")" type="button" @onclick="TogglePlay">
+            <Blazicon Svg="@(GetPlayIcon())"/>
+        </button>
+        <button class="toggle surface inactive" type="button">
+            <Blazicon Svg="Lucide.SkipForward"/>
+        </button>
+        <button class="toggle surface @(IsLooping ? "active" : "inactive")" type="button" @onclick="SetLoop">
+            <Blazicon Svg="@(GetLoopIcon())"/>
+        </button>
+    </div>
+</div>
+
+@code
+{
+    [Parameter] public List<DirectorDolly> DollyList { get; set; } = new();
+    [Parameter] public EventCallback<List<DirectorDolly>> DollyListChanged { get; set; }
+
+    private DirectorDolly _selectedDolly = null;
+    
+    private bool _isPlaying = false;
+    private LoopType _loopType = LoopType.None;
+    private bool IsLooping => _loopType != LoopType.None;
+    private bool _shuffle = false;
+    
+    private readonly object _lock = new(); // Thread safety lock
+
+    protected override void OnInitialized()
+    {
+        DollyService.DollyChanged += UpdateDollyList;
+    }
+
+    private void UpdateDollyList(object? sender, DollyChangedEventArgs e)
+    {
+        lock (_lock)
+        {
+            if (e.ChangeType != DollyChangeType.Removed)
+            {
+                var dollyToRemove = DollyList.FirstOrDefault(d => d.Dolly.Name == e.FileName);
+                if (dollyToRemove != null)
+                {
+                    DollyList.Remove(dollyToRemove);
+                    StateHasChanged();
+                }
+            }
+
+            if (e.ChangeType == DollyChangeType.Updated)
+            {
+                
+            }
+
+        }
+    }
+
+    private void MoveUp()
+    {
+        if(_selectedDolly == null) return;
+        var id = _selectedDolly.Id;
+        
+        lock (_lock)
+        {
+            int index = DollyList.FindIndex(d => d.Id == id);
+            if (index > 0)
+            {
+                (DollyList[index], DollyList[index - 1]) = (DollyList[index - 1], DollyList[index]); // Swap elements
+                StateHasChanged();
+            }
+        }
+    }
+
+    private void MoveDown()
+    {
+        if(_selectedDolly == null) return;
+        var id = _selectedDolly.Id;
+        
+        lock (_lock)
+        {
+            int index = DollyList.FindIndex(d => d.Id == id);
+            if (index >= 0 && index < DollyList.Count - 1)
+            {
+                (DollyList[index], DollyList[index + 1]) = (DollyList[index + 1], DollyList[index]); // Swap elements
+                StateHasChanged();
+            }
+        }
+    }
+
+    private void RemoveDolly()
+    {
+        if(_selectedDolly == null) return;
+        var id = _selectedDolly.Id;
+        
+        lock (_lock)
+        {
+            var foundDolly = DollyList.FirstOrDefault(d => d.Id == id);
+            if (foundDolly != null)
+            {
+                DollyList.Remove(foundDolly);
+                StateHasChanged();
+            }
+        }
+    }
+
+    private async Task UpdateDollyList()
+    {
+        await InvokeAsync(StateHasChanged);
+        await DollyListChanged.InvokeAsync(DollyList);
+    }
+
+    private SvgIcon GetPlayIcon() => _isPlaying ? Lucide.Play : Lucide.Square;
+
+    private SvgIcon GetLoopIcon() => _loopType switch
+    {
+        LoopType.Loop1 => Lucide.Repeat1,
+        _ => Lucide.Repeat
+    };
+
+    private enum LoopType
+    {
+        None,
+        Loop,
+        Loop1
+    }
+
+    private void TogglePlay()
+    {
+        lock (_lock)
+        {
+            _isPlaying = !_isPlaying;
+        }
+    }
+
+    private void ToggleShuffle()
+    {
+        lock (_lock)
+        {
+            _shuffle = !_shuffle;
+        }
+    }
+
+    private void SetLoop()
+    {
+        lock (_lock)
+        {
+            _loopType = _loopType switch
+            {
+                LoopType.None => LoopType.Loop,
+                LoopType.Loop => LoopType.Loop1,
+                _ => LoopType.None
+            };
+        }
+    }
+    
+    
+    public void Dispose()
+    {
+        DollyService.DollyChanged -= UpdateDollyList;
+    }
+}

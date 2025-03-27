@@ -1,16 +1,14 @@
 ﻿@using VRCDollyManager.Models
-@inject IJSRuntime JSRuntime
 
-@if (IsOpen)
-{
-    <div class="modal-overlay" @onclick="CloseModal">
+<div class="modal-container @(IsOpen ? "show" : "hide")">
+    <div class="modal-backdrop" @onclick="Close"></div>
+    <div class="modal-overlay">
         <div class="modal-content @GetSizeClass()" @onclick:stopPropagation>
             <div class="modal-header">
                 <h2>@Title</h2>
-                <button class="close-button" @onclick="CloseModal">
+                <button class="close-button" @onclick="Close">
                     <Blazicon Svg="Lucide.X"/>
                 </button>
-
             </div>
             <div class="modal-body">
                 @ChildContent
@@ -22,9 +20,8 @@
                 </div>
             }
         </div>
-
     </div>
-}
+</div>
 
 @code {
     [Parameter] public RenderFragment? ChildContent { get; set; }
@@ -41,8 +38,10 @@
         StateHasChanged();
     }
 
-    public async Task CloseModal()
+    public async Task Close()
     {
+        StateHasChanged();
+        await Task.Delay(200); // Wait for animation to finish
         IsOpen = false;
         await OnClose.InvokeAsync(false);
         StateHasChanged();

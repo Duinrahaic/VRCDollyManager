@@ -23,12 +23,15 @@
             return;
         }
 
+        // Clean up previous scene if any
+        this.disposeScene();
+
         // Create Three.js Scene
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0x1E1E1E); // Dark gray background
 
         this.camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 3000);
-        this.renderer = new THREE.WebGLRenderer({canvas, antialias: true});
+        this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 
         this.renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
 
@@ -40,9 +43,25 @@
         // ✅ Default Grid (Will be resized dynamically)
         this.createGrid(100);
 
-        // ✅ Default camera position (will be adjusted later)
+        // ✅ Default camera position
         this.camera.position.set(0, 10, 20);
         this.camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+        this.renderer.render(this.scene, this.camera);
+
+        // ✅ Ensure only one resize event listener
+        window.removeEventListener("resize", this.onWindowResize);
+        window.addEventListener("resize", () => this.onWindowResize());
+    },
+
+    // ✅ Resize Handler
+    onWindowResize: function () {
+        const canvas = document.getElementById("preview");
+        if (!canvas || !this.camera || !this.renderer) return;
+
+        this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
 
         this.renderer.render(this.scene, this.camera);
     },
@@ -51,7 +70,10 @@
     createGrid: function (size) {
         if (this.gridHelper) {
             this.scene.remove(this.gridHelper);
+            this.gridHelper.geometry.dispose();
+            this.gridHelper.material.dispose();
         }
+
         const divisions = Math.max(10, size / 5);
         this.gridHelper = new THREE.GridHelper(size, divisions, 0x444444, 0x444444);
         this.gridHelper.position.y = 0;
@@ -98,11 +120,9 @@
 
         // ✅ Auto-adjust camera distance based on path size
         const maxDim = Math.max(pathSize.x, pathSize.y, pathSize.z);
-        this.orbitRadius = maxDim * 1.5; // Ensure enough space
-
-        // ✅ Adjust camera height dynamically if path is tall
-        const minHeight = 10;  // Minimum height for low paths
-        const extraHeight = pathSize.y * 1.5;  // Raise camera if path is high
+        this.orbitRadius = maxDim * 1.5;
+        const minHeight = 10;
+        const extraHeight = pathSize.y * 1.5;
         const cameraHeight = Math.max(minHeight, extraHeight);
 
         // ✅ Adjust camera FOV dynamically if needed
@@ -110,7 +130,7 @@
         let optimalDistance = maxDim / fovFactor;
 
         if (optimalDistance > 1000) {
-            this.camera.fov = Math.max(30, this.camera.fov - 10); // Reduce FOV for large paths
+            this.camera.fov = Math.max(30, this.camera.fov - 10);
             this.camera.updateProjectionMatrix();
         }
 
@@ -120,45 +140,38 @@
 
         // ✅ Render the path
         const geometry = new THREE.BufferGeometry().setFromPoints(this.pathCurve.getPoints(100));
-        const material = new THREE.LineBasicMaterial({color: 0xBB86FC});
+        const material = new THREE.LineBasicMaterial({ color: 0xBB86FC });
         this.curveObject = new THREE.Line(geometry, material);
         this.scene.add(this.curveObject);
 
         // ✅ Add dolly (moving object)
         const sphereGeometry = new THREE.SphereGeometry(0.5, 32, 32);
-        const sphereMaterial = new THREE.MeshBasicMaterial({color: 0xFFFFFF});
+        const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF });
         this.dolly = new THREE.Mesh(sphereGeometry, sphereMaterial);
         this.scene.add(this.dolly);
 
+        // ✅ Ensure only one animation loop
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+        }
+
         let t = 0;
         const animateDolly = () => {
-            if (!this.pathCurve) {
-                console.error("Error: pathCurve is undefined.");
-                return;
-            }
+            if (!this.pathCurve) return;
 
             this.animationId = requestAnimationFrame(animateDolly);
 
             t += 0.002;
-            if (t > 1) t = 0;  // ✅ Loop infinitely
+            if (t > 1) t = 0;
 
-            try {
-                const position = this.pathCurve.getPointAt(t);
-                if (position) {
-                    this.dolly.position.set(position.x, position.y, position.z);
-                } else {
-                    console.error("Error: getPointAt returned undefined at t =", t);
-                }
-            } catch (error) {
-                console.error("Error calling getPointAt(t):", error);
+            const position = this.pathCurve.getPointAt(t);
+            if (position) {
+                this.dolly.position.set(position.x, position.y, position.z);
             }
 
-            // ✅ Continuously rotate camera around the path
             this.rotationAngle += 0.002;
             this.camera.position.x = Math.sin(this.rotationAngle) * this.orbitRadius;
             this.camera.position.z = Math.cos(this.rotationAngle) * this.orbitRadius;
-
-            // ✅ Raise the camera if path is high
             this.camera.position.y = cameraHeight;
             this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
@@ -170,8 +183,6 @@
 
     // ✅ Clear Path and Dolly (Keep Grid)
     clearScene: function () {
-        if (!this.scene) return;
-
         if (this.animationId) {
             cancelAnimationFrame(this.animationId);
             this.animationId = null;
@@ -192,5 +203,24 @@
         }
 
         this.renderer.render(this.scene, this.camera);
+    },
+
+    // ✅ Full scene disposal to prevent memory leaks
+    disposeScene: function () {
+        if (!this.scene) return;
+
+        this.clearScene();
+
+        if (this.gridHelper) {
+            this.scene.remove(this.gridHelper);
+            this.gridHelper.geometry.dispose();
+            this.gridHelper.material.dispose();
+            this.gridHelper = null;
+        }
+
+        this.renderer.dispose();
+        this.scene = null;
+        this.camera = null;
+        this.renderer = null;
     }
 };

@@ -36,10 +36,19 @@
   .text
   {
 	white-space: nowrap;
-	max-width: 12ch;
+	max-width: 24ch;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	font-size: 12px;
+  }
+  
+  button{
+	background: transparent;
+	border: none;
+	color: $on-primary;
+	cursor: pointer;
+	padding: 2px;
+	border-radius: 50%;
   }
 }
 
@@ -52,3 +61,4 @@
   max-width: 100%; // Ensures it adapts to parent width
   overflow: hidden; // Prevents overflow
 }
+

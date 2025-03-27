@@ -50,9 +50,19 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 build_metadata.AdditionalFiles.TargetPath = 
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/About.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBYm91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Chip.razor]
 build_metadata.AdditionalFiles.SourceItemGroup = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDaGlwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/DirectorPanel.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaXJlY3RvclBhbmVsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/DollyForm.razor]
@@ -68,6 +78,16 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/DollyRowItem.razor]
 build_metadata.AdditionalFiles.SourceItemGroup = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEb2xseVJvd0l0ZW0ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/DollySideContainer.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEb2xseVNpZGVDb250YWluZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/DollyTable.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEb2xseVRhYmxlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/LinkButton.razor]
@@ -98,6 +118,16 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/SearchBar.razor]
 build_metadata.AdditionalFiles.SourceItemGroup = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZWFyY2hCYXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/SocialIcon.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTb2NpYWxJY29uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/TagEditor.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUYWdFZGl0b3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Main.razor]

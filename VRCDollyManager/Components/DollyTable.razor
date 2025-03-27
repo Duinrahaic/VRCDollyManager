@@ -1,0 +1,176 @@
+﻿@using VRCDollyManager.Extensions
+@using VRCDollyManager.Models
+@using VRCDollyManager.Services
+@inject IDollyFileWatcherService DollyService
+@inject IJSRuntime JS
+
+
+
+<div class="table-wrapper">
+    <table>
+        <thead>
+        <tr>
+            <th class="padded-cell">
+            </th>
+            <th class="name">
+                <div class="th-container">
+                    <Blazicon Svg="Lucide.Video"/>
+                    Dolly (@_dollyCount)
+                </div>
+            </th>
+            <th style="padding: 0;">
+                <div class="th-container" style="justify-content: end;">
+                    <button disabled="@(_selectedDolly == null)" @onclick="OpenEdit" style="padding:4px;">
+                        <Blazicon Svg="Lucide.Pencil" />
+                        Edit
+                    </button>
+                    <button disabled="@(_selectedDolly == null)" @onclick="DeleteDolly" style="padding:4px;">
+                        <Blazicon Svg="Lucide.Trash"/>
+                        Delete
+                    </button>
+                    @*<button disabled="@(_selectedDolly == null)" @onclick="AddToDirector" style="padding:4px;">
+                        <Blazicon Svg="Lucide.ListPlus"/>
+                        Queue
+                    </button>*@
+                </div>
+            </th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<div class="table-body">
+    <table>
+        <tbody>
+        <Virtualize @ref="_virtualizeRef" ItemsProvider="LoadDollyData" ItemSize="40">
+            <ItemContent Context="dolly">
+                <DollyRowItem Dolly="dolly" Selected="_selectedDolly == dolly" OnSelect="OnSelect"/>
+            </ItemContent>
+        </Virtualize>
+        </tbody>
+    </table>
+</div>
+
+
+<Modal @ref="Edit" Title="Edit Dolly" OnClose="((r) =>  RefreshTable() )" Size="ModalSize.Large">
+    <ChildContent>
+        <DollyForm DollyModel="_selectedDolly"/>
+    </ChildContent>
+    <FooterContent>
+        <button disabled="@(_selectedDolly == null)" @onclick="DownloadVdm">
+            <Blazicon Svg="@(Lucide.FileUp)"/>
+            Export VDM
+        </button>
+        <button disabled="@(_selectedDolly == null)"  style="margin-right: auto;"  @onclick="DownloadDolly">
+            <Blazicon Svg="@(Lucide.Camera)"/>
+            Export Dolly
+        </button>
+        <button form="dollyForm" @onclick="UpdateEditDolly">
+            <Blazicon Svg="Lucide.Save"/>
+            Save
+        </button>
+    </FooterContent>
+</Modal>
+
+
+@code
+{
+    [Parameter] public List<Dolly> DollyList { get; set; } = new();
+    [Parameter] public string Filter { get; set; } = string.Empty;
+    
+    [Parameter] public Dolly? SelectedDolly { get; set; }
+    private Dolly? _selectedDolly = null;
+    [Parameter] public EventCallback<Dolly?> SelectedDollyChanged { get; set; }
+    [Parameter] public EventCallback<Dolly?> OnAddToDirector { get; set; }
+    
+    private List<Dolly> _dollies = new();
+    private string _filter = string.Empty;
+    private Modal? Edit { get; set; } = null!;
+
+    private Virtualize<Dolly>? _virtualizeRef;
+    private uint _dollyCount = 0;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _filter = Filter;
+        _dollies = DollyList;
+        await RefreshTable();
+        StateHasChanged();
+    }
+    
+    private void OnSelect(Dolly dolly)
+    {
+        _selectedDolly = _selectedDolly == dolly ? null : dolly;
+        SelectedDollyChanged.InvokeAsync(_selectedDolly);
+    }
+    private void AddToDirector()
+    {
+        if (_selectedDolly == null) return;
+        OnAddToDirector.InvokeAsync(_selectedDolly);
+    }
+
+    public async Task RefreshTable()
+    {
+        if (_virtualizeRef == null) return;
+        await _virtualizeRef.RefreshDataAsync();
+    }
+
+
+    private async ValueTask<ItemsProviderResult<Dolly>> LoadDollyData(ItemsProviderRequest request)
+    {
+        var query = _dollies.AsQueryable();
+        await Task.CompletedTask;
+        if (!string.IsNullOrWhiteSpace(_filter))
+            query = query.Where(dolly =>
+                (!string.IsNullOrEmpty(dolly.Name) &&
+                 dolly.Name.Contains(_filter, StringComparison.OrdinalIgnoreCase)) ||
+                (!string.IsNullOrEmpty(dolly.Alias) &&
+                 dolly.Alias.Contains(_filter, StringComparison.OrdinalIgnoreCase)) ||
+                dolly.Tags.Any(tag => tag.Contains(_filter, StringComparison.OrdinalIgnoreCase)));
+        _dollyCount = (uint)query.Count(); // Get the total filtered count
+        var filteredItems = query.Skip(request.StartIndex).Take(request.Count).ToList();
+        return new ItemsProviderResult<Dolly>(filteredItems, query.Count());
+    }
+
+    private async Task OnFilterUpdate(string filter)
+    {
+        _filter = filter;
+        if (_virtualizeRef == null) return;
+        await _virtualizeRef.RefreshDataAsync();
+    }
+    private void OpenEdit()
+    {
+        if(_selectedDolly == null) return;
+        Edit?.OpenModal();
+    }    
+    private void DeleteDolly()
+    {
+        if (_selectedDolly == null) return;
+        DollyService.RemoveDollyAsync(_selectedDolly.Name);
+        CloseEdit();
+    }
+    
+    private void UpdateEditDolly()
+    {
+        if (_selectedDolly == null) return;
+        DollyService.UpdateDollyAsync(_selectedDolly);
+        CloseEdit();
+    }
+    
+    private void CloseEdit()
+    {
+        Edit?.Close();
+        SelectedDollyChanged.InvokeAsync(_selectedDolly);
+    }
+    private async void DownloadVdm()
+    {
+        if(_selectedDolly == null) return;
+        await JS.DownloadJsonAsync("VDM_Dolly.json", _selectedDolly);
+    }
+    private async void DownloadDolly()
+    {
+        if(_selectedDolly == null) return;
+        await JS.DownloadJsonAsync(_selectedDolly.Name, _selectedDolly.KeyFrames);
+    }
+
+
+}

@@ -1,11 +1,13 @@
-﻿<div class="chip @(CanClick ? "clickable" : string.Empty)" @onclick="OnClickHandler">
+﻿<div class="chip ">
     <Blazicon Svg="Lucide.Tag"/>
     <div class="text">
         @Tag
     </div>
     @if (CanClick)
     {
-        <Blazicon Svg="Lucide.X"/>
+        <button  @onclick="OnClickHandler">
+            <Blazicon Svg="Lucide.X"/>
+        </button>
     }
 </div>
 

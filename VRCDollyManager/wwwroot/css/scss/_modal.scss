@@ -1,164 +1,190 @@
-﻿@import "variables"; // Import your dark mode variables
+﻿@import "variables";
 
-.modal-overlay
-{
+$animation-speed: 0.2s;
+
+.modal-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); // Dark overlay
-  backdrop-filter: blur(10px); // Blur background
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  visibility: hidden;
   
-  .modal-container
+  &.show
   {
-	background: $surface;
-	color: $on-surface;
-	border-radius: 12px;
-	padding: 8px;
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	max-width: 100%;
-	max-height: 100%;
-	overflow: hidden;
-	position: relative;
-	z-index: 1001;
-  }
-  
-  
-  .modal-header
-  {
-	padding: 4px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: start;
-	border-bottom: 1px solid $background;
 	
-	h2
+	.modal-backdrop
 	{
-	  padding: 0;
-	  margin: 0;
-	  flex-grow: 1;
-	  user-select: none;
+	  opacity: 1;
+	  visibility: visible;
 	}
 	
-	button
+	.modal-overlay
 	{
-	  padding: 4px;
-	  color: $on-background;
-	  cursor: pointer;
-	  background: transparent;
-	  
-	  &:hover
+	  .modal-content
 	  {
-		color: $on-surface;
+		transform: translateY(0) scale(1);
+		opacity: 1;
+		visibility: visible;
+		
+	  }
+	}
+  }
+    
+  &.hide {
+
+	.modal-backdrop{
+	  opacity: 0;
+	  visibility: hidden;
+	}
+	
+	.modal-overlay{
+	  .modal-content{
+		transform: translateY(50px) scale(0.8);
+		opacity: 0;
+		visibility: hidden;
+		
 	  }
 	}
   }
   
-  .modal-content
-  {
-	background: rgba($surface, 0.9);
-	color: $on-surface;
-	padding-left: 8px; // Ensures modal stays centered on small screens
-	border-radius: 12px;
-	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-	backdrop-filter: blur(5px);
-	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-	max-height: 90vh; // Prevents from exceeding the screen height
-	overflow: hidden; // Ensures the modal does not overflow
+  .modal-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(10px);
+	transition: opacity $animation-speed ease-in-out, visibility $animation-speed ease-in-out;
 	
+  }
+  
+  .modal-overlay {
 	display: flex;
-	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
 	
-	// Scrollable Body
-	.modal-body
-	{
+	.modal-content {
+	  background: $surface;
+	  color: $on-surface;
+	  border-radius: 12px;
+	  padding: 8px 0;
+	  display: flex;
+	  flex-direction: column;
+	  gap: 8px;
+	  max-width: 100%;
+	  max-height: 100%;
+	  overflow: hidden;
+	  position: relative;
+	  z-index: 1001;
+	  transform: translateY(50px) scale(0.8);
+	  transition: transform $animation-speed ease-in-out, opacity $animation-speed ease-in-out, visibility $animation-speed ease-in-out;
+	  // Modal Sizes
+	  &.modal-small{
+		width: 300px;
+		min-height: auto;
+	  }
+	  
+	  &.modal-medium  {
+		width: 500px;
+		min-height: auto;
+	  }
+	  
+	  &.modal-large {
+		width: 700px;
+		min-height: auto;
+	  }
+	  
+	}
+	
+	.modal-header {
+	  padding: 4px;
+	  display: flex;
+	  flex-direction: row;
+	  align-items: center;
+	  justify-content: start;
+	  border-bottom: 1px solid $background;
+	  
+	  h2 {
+		padding: 0;
+		padding-left: 4px;
+		margin: 0;
+		flex-grow: 1;
+		user-select: none;
+	  }
+	  
+	  .close-button {
+		padding: 4px;
+		color: $on-background;
+		cursor: pointer;
+		background: transparent;
+		
+		&:hover {
+		  color: $on-surface;
+		}
+	  }
+	}
+	
+	.modal-body {
 	  overflow: hidden;
 	  overflow-y: auto;
 	  max-height: 70vh; // Allows scrolling if content is too long
 	  max-width: 100%;
-	  padding-right: 10px; // Prevents scrollbar overlay
+	  padding: 0 10px; // Prevents scrollbar overlay
 	}
 	
-	.modal-footer
-	{
-	  padding: 4px;
+	.modal-footer {
+	  padding: 6px 4px;
+	  gap: 8px;
 	  display: flex;
 	  flex-direction: row;
 	  align-items: center;
 	  justify-content: end;
 	  border-top: 1px solid $background;
 	  
-	  button
-	  {
+	  button {
 		padding: 4px;
 		
-		svg
-		{
+		svg {
 		  height: 20px;
 		  width: 20px;
 		}
-		
-		
 	  }
 	}
 	
-	
-	&::-webkit-scrollbar
-	{
+	// Scrollbar Styling
+	.modal-content::-webkit-scrollbar {
 	  width: 10px;
 	}
 	
-	&::-webkit-scrollbar-track
-	{
+	.modal-content::-webkit-scrollbar-track {
 	  background: $surface;
 	}
 	
-	&::-webkit-scrollbar-thumb
-	{
+	.modal-content::-webkit-scrollbar-thumb {
 	  background: $primary;
 	  border-radius: 4px;
 	}
 	
-	&::-webkit-scrollbar-thumb:hover
-	{
+	.modal-content::-webkit-scrollbar-thumb:hover {
 	  background: lighten($primary, 10%);
 	}
 	
 	// Firefox Scrollbar
-	scrollbar-color: $primary $surface;
-	scrollbar-width: thin;
+	.modal-content {
+	  scrollbar-color: $primary $surface;
+	  scrollbar-width: thin;
+	}
+	
+
   }
   
   
 }
-
-
-// Modal Sizes
-.modal-small
-{
-  width: 300px;
-  min-height: auto; // Matches content height
-}
-
-.modal-medium
-{
-  width: 500px;
-  min-height: auto;
-}
-
-.modal-large
-{
-  width: 700px;
-  min-height: auto;
-}
-  
-
-

@@ -57,14 +57,13 @@
   }
 }
 
-
-button
-{
+button{
+  
   background-color: $primary;
   color: $on-primary;
   border: none;
   padding: 4px 16px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
@@ -93,40 +92,172 @@ button
 	color: rgba($on-primary, 0.5);
 	cursor: not-allowed;
   }
+  
+  &.dolly-option
+  {
+	background: transparent;
+	color: darken($on-surface, 50%);
+	border: none;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	display: inline-flex;
+	align-items: center;
+	justify-content: start;
+	text-align: center;
+	gap: 2px;
+	user-select: none;
+	padding: 2px 8px;
+	border-radius: 8px;
+	svg{
+	  height: 16px;
+	}
+	
+	&:hover
+	{
+	  color: $on-surface;
+	  
+	  &:active{
+		color: $on-surface;
+	
+	  }
+	  &.selected
+	  {
+		color: $on-surface;
+		
+	  }
+	}
+	
+	&:active
+	{
+	  color: $on-surface;
+	}
+	
+	&.selected
+	{
+	  color: $on-surface;
+	}
+	
+	
+	&:disabled
+	{
+	  color: rgba($on-surface, 0.5);
+	  cursor: not-allowed;
+	}
+  }
+  
+  &.toggle{
+	
+	&.surface{
+	  &.inactive
+	  {
+		color: $on-surface;
+		background: $surface;
+		border-radius: 8px;
+		
+		&:hover
+		{
+		  background: darken($surface,5%);
+		}
+	  }
+	}
+	
+	&.active
+	{
+	  
+	}
+	
+	&.inactive
+	{
+	  color: $on-background;
+	  background: $background;
+	  border-radius: 8px;
+	  
+	  &:hover
+	  {
+		background: $surface;
+	  }
+	}
+  }
 }
 
-// Secondary button variant
-button.secondary
-{
-  background-color: $secondary;
-  color: $on-secondary;
-  
-  &:hover
-  {
-	background-color: darken($secondary, 10%);
-  }
-  
-  &:active
-  {
-	background-color: lighten($secondary, 5%);
-  }
-}
 
-button.danger
-{
-  background-color: $danger;
-  color: $on-secondary;
-  
-  &:hover
-  {
-	background-color: darken($danger, 10%);
-  }
-  
-  &:active
-  {
-	background-color: lighten($danger, 5%);
-  }
-}
+
+
+
+//
+//button
+//{
+//  &:not(.dolly-option){
+//	background-color: $primary;
+//	color: $on-primary;
+//	border: none;
+//	padding: 4px 16px;
+//	font-size: 16px;
+//	font-weight: bold;
+//	border-radius: 6px;
+//	cursor: pointer;
+//	transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+//	display: inline-flex;
+//	align-items: center;
+//	justify-content: center;
+//	text-align: center;
+//	gap: 8px;
+//	user-select: none;
+//	
+//	&:hover
+//	{
+//	  background-color: darken($primary, 10%);
+//	}
+//	
+//	&:active
+//	{
+//	  background-color: lighten($primary, 5%);
+//	  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+//	}
+//	
+//	&:disabled
+//	{
+//	  background-color: rgba($primary, 0.5);
+//	  color: rgba($on-primary, 0.5);
+//	  cursor: not-allowed;
+//	}
+//  }
+//  
+//  
+//  
+//  &.toggle{
+//	button
+//	{
+//	  
+//	  
+//	  
+//	  svg
+//	  {
+//		height: 20px;
+//		width: 20px;
+//	  }
+//	  
+//	  &.active
+//	  {
+//		
+//	  }
+//	  
+//	  &.inactive
+//	  {
+//		color: $on-background;
+//		background: $background;
+//		border-radius: 8px;
+//		
+//		&:hover
+//		{
+//		  background: $surface;
+//		}
+//	  }
+//	}
+//  }
+//}
 
 // Apply dark theme to form container
 #dollyForm
@@ -201,25 +332,6 @@ ul
   gap: 0.5rem;
 }
 
-li
-{
-  background: $secondary;
-  color: $on-secondary;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  
-  button
-  {
-	background: none;
-	border: none;
-	color: $on-secondary;
-	font-weight: bold;
-	margin-left: 0.5rem;
-	cursor: pointer;
-  }
-}
 
 // Error styling
 .error-message
