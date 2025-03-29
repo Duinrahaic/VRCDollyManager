@@ -1,4 +1,4 @@
-<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 0;">
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 0; width: 100%;">
   <br>
     <img src="assets/DollyManagerLogo.png" style="width: 400px; height:230px" alt="Dolly Manager Logo">
     <div style="font-size: 30px">Dolly Manager</div>
