@@ -1,22 +1,23 @@
-<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 0;">
+<center>
   <br>
-    <img src="assets/DollyManagerLogo.png" style="width: 400px; height:230px" alt="Dolly Manager Logo">
-    <div style="font-size: 30px">Dolly Manager</div>
-    <i style="font-size: 20px">A VRChat Dolly Management System</i>
+  <img src="assets/DollyManagerLogo.png" width="400" height="230" alt="Dolly Manager Logo">
+  <div style="font-size: 30px">Dolly Manager</div>
+  <i style="font-size: 20px">A VRChat Dolly Management System</i>
   <br>
-    <div style="text-align: center; font-size: 18px;">
-      <a href="#key-features" style="margin-right: 10px;">Key Features</a> •
-      <a href="#pre-requisites" style="margin-right: 10px;">Pre-requisites</a> •
-      <a href="#how-to-use" style="margin-right: 10px;">How To Use</a> •
-      <a href="#support" style="margin-right: 10px;">Support</a> •
-      <a href="#other-projects" style="margin-right: 10px;">Other Projects</a> •
-      <a href="#license">License</a>
-    </div>
+  <center>
+    <a href="#key-features">Key Features</a> •
+    <a href="#pre-requisites">Pre-requisites</a> •
+    <a href="#how-to-use">How To Use</a> •
+    <a href="#support">Support</a> •
+    <a href="#other-projects">Other Projects</a> •
+    <a href="#license">License</a>
+   </center>
+ 
+  <br>
 
-![Dolly Manager Example](assets/DM-Example.gif)
+  ![Dolly Manager Example](assets/DM-Example.gif)
 
-</div>
-
+</center>
  
 
 
