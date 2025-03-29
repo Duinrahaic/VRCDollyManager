@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>2x7uy2l81v</Fingerprint>
-      <Integrity>aoKSl1kpeObhdBDItRxKYTZcQV8FI6wk+xJX71luBqU=</Integrity>
+      <Fingerprint>1zeyopwz5q</Fingerprint>
+      <Integrity>s6NUpUwLih2p9DV6xp/foBetEdgB9SUkSSw1/jnK3bc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\app.css'))</OriginalItemSpec>
@@ -354,8 +354,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>yvmpyvlpth</Fingerprint>
-      <Integrity>4vGaOaRz0xj+0VnxP+021tuKfUZXeqOXa4wik//ZP0Y=</Integrity>
+      <Fingerprint>3dvc20iko4</Fingerprint>
+      <Integrity>x4uwhu38DPcI2EHJDmA++lIqUNaIFFk/R2DFzppp1nA=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\threejs\three.core.min.js'))</OriginalItemSpec>

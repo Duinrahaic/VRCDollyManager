@@ -58,9 +58,9 @@
         <DollyForm DollyModel="_selectedDolly"/>
     </ChildContent>
     <FooterContent>
-        <button disabled="@(_selectedDolly == null)"  style="margin-right: auto;"  @onclick="Copy">
+        <button disabled="@(_selectedDolly == null)"  style="margin-right: auto;"  @onclick="Copy" @onmouseleave="ResetClipboardText">
             <Blazicon Svg="@(Lucide.Clipboard)"/>
-            Copy To Clipboard
+            <span style="width: @(GetMaxClipboardTextLength())ch;">@GetClipboardText()</span>
         </button>
         <button form="dollyForm" @onclick="UpdateEditDolly">
             <Blazicon Svg="Lucide.Save"/>
@@ -94,7 +94,7 @@
         await RefreshTable();
         StateHasChanged();
     }
-    
+ 
     private void OnSelect(Dolly dolly)
     {
         _selectedDolly = _selectedDolly == dolly ? null : dolly;
@@ -160,10 +160,31 @@
         SelectedDollyChanged.InvokeAsync(_selectedDolly);
     }
  
+    private bool _clipboardPressed = false;
+    private const string ClipboardText = "Copy To Clipboard";
+    private const string ClipboardTextPressed = "Copied To Clipboard!";
+
+    private int GetMaxClipboardTextLength()
+    {
+        return Math.Max(ClipboardText.Length, ClipboardTextPressed.Length);
+    }
  
-    private async void Copy()
+    private string GetClipboardText()
+    {
+        if (_clipboardPressed)
+        {   
+            return ClipboardTextPressed;
+        }
+        else
+        {
+            return ClipboardText;
+        }
+    }
+    
+    private void Copy()
     {
         if(_selectedDolly == null) return;
+        _clipboardPressed = true;
         var copy = _selectedDolly.Clone();
         var keyframes = _selectedDolly.GetCameraKeyFrames() ?? new List<CameraKeyFrame>();
         copy.KeyFrames = keyframes;
@@ -182,7 +203,14 @@
         {
             // ignored
         }
+        StateHasChanged();
     }
-
+    
+    private async void ResetClipboardText()
+    {
+        await Task.Delay(750);
+        _clipboardPressed = false;
+        StateHasChanged();
+    }
 
 }
