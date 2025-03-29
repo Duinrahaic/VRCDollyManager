@@ -90,6 +90,11 @@ build_metadata.AdditionalFiles.SourceItemGroup =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEb2xseVRhYmxlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/FileDropZoneWatcher.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xGaWxlRHJvcFpvbmVXYXRjaGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/LinkButton.razor]
 build_metadata.AdditionalFiles.SourceItemGroup = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMaW5rQnV0dG9uLnJhem9y

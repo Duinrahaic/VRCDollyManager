@@ -19,12 +19,35 @@ html, body
   position: relative;
 }
 
+
+.app-fileDrop
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  color: white;
+  font-size: 2rem;
+}
+
+
+
 .app-frame
 {
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  
+  
+
+  
   
   .app-frame-header
   {
@@ -34,8 +57,18 @@ html, body
 	align-items: center;
 	color: $on-background;
 	gap: 12px;
-	padding: 4px 8px;
-	margin-top: 4px;
+	padding: 0 8px;
+	margin-top: 8px;
+	
+	.logo{
+	  width: 40px;
+	  height: 40px;
+	  margin-left: 8px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+ 
+	}
 	
 	h1
 	{

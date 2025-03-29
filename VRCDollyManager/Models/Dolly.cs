@@ -7,11 +7,13 @@ using VRCDollyManager.Extensions;
 
 namespace VRCDollyManager.Models;
 
+
 public class Dolly : IEquatable<Dolly>
 {
     [Key] public int Id { get; set; }
 
-    [Required] [MaxLength(255)] public string Name { get; set; } = string.Empty;
+    [Required, MaxLength(255)] 
+    public string Name { get; set; } = string.Empty;
 
     public string Alias { get; set; } = string.Empty;
 

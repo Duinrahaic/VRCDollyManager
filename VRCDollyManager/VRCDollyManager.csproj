@@ -9,9 +9,10 @@
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-        <PackageIcon>icon.ico</PackageIcon>
+        <PackageIcon>Assets\icon.ico</PackageIcon>
         <PublishSingleFile>true</PublishSingleFile>
         <ServerGarbageCollection>false</ServerGarbageCollection>
+        <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
 
     </PropertyGroup>
     <ItemGroup>
@@ -19,6 +20,9 @@
         <Compile Remove="GPUCache\**"/>
         <Content Remove="DawnCache\**"/>
         <Content Remove="GPUCache\**"/>
+        <AvaloniaResource Include="Assets\icon.ico">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </AvaloniaResource>
         <EmbeddedResource Remove="DawnCache\**"/>
         <EmbeddedResource Remove="GPUCache\**"/>
         <None Remove="DawnCache\**"/>
@@ -41,6 +45,10 @@
         </Compile>
         <Compile Remove="Devices\FTMSDevice.cs"/>
         <Compile Remove="MainWindow.axaml.cs"/>
+        <Content Update="Assets\DollyManagerLogo.ico">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Blazicons.Lucide" Version="1.5.16"/>
@@ -69,12 +77,8 @@
         <PackageReference Include="OscQueryLibrary" Version="1.1.1"/>
         <PackageReference Include="VRChat.OSCQuery" Version="0.0.7"/>
         <PackageReference Include="LucHeart.CoreOSC" Version="1.4.0"/>
-    </ItemGroup>
-    <ItemGroup>
-        <None Remove="Assets\icon.ico"/>
-        <AvaloniaResource Include="Assets\icon.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </AvaloniaResource>
+
+        <Reference Include="System.Windows.Forms" /> <!-- Needed for Windows Clipboard -->
     </ItemGroup>
     <ItemGroup>
         <_ContentIncludedByDefault Remove="wwwroot\js\lucide-init.js"/>

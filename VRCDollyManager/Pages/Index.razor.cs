@@ -31,8 +31,14 @@ public partial class Index : IDisposable
     {
         if (firstRender)
         {
-            SidePanel?.QueueDolly(_dollies.First());
-            StateHasChanged();
+            var dolly = _dollies.FirstOrDefault();
+            if (dolly != null)
+            {
+                SidePanel?.QueueDolly(dolly);
+                StateHasChanged();
+            }
+            
+       
         }
     }
 

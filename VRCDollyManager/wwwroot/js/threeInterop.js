@@ -140,7 +140,7 @@
 
         // ✅ Render the path
         const geometry = new THREE.BufferGeometry().setFromPoints(this.pathCurve.getPoints(100));
-        const material = new THREE.LineBasicMaterial({ color: 0xBB86FC });
+        const material = new THREE.LineBasicMaterial({ color: 0x9B54FD });
         this.curveObject = new THREE.Line(geometry, material);
         this.scene.add(this.curveObject);
 

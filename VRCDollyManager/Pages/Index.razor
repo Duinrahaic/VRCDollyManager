@@ -7,7 +7,8 @@
 
 
 <div class="app-frame-header">
-    <h1>VRC Dolly Manager </h1>
+    @*<h1>VRC Dolly Manager </h1>*@
+    <img src="images/DollyManagerLogo.png" alt="Logo" class="logo"/>
     <button id="refresh" @onclick="RefreshButton" class="@(_onRefresh ? "refreshing" : "")">
         <Blazicon Svg="Lucide.RefreshCw"/>
     </button>
@@ -38,7 +39,7 @@
             <NotificationBar/>
             <div class="social-media">
                 <OSCButton/>
-                <LinkButton Icon="Lucide.Github" OnClick="@(() => BrowserHelper.OpenUrl("www.github.com"))"/>
+                <LinkButton Icon="Lucide.Github" OnClick="@(() => BrowserHelper.OpenUrl("https://github.com/Duinrahaic/VRCDollyManager"))"/>
                 <LinkButton Icon="Lucide.Rabbit" OnClick="OpenAbout"/>
             </div>
         </div>

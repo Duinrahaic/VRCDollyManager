@@ -65,12 +65,16 @@
       "PackagePath": "staticwebassets\\css\\scss\\_variables.scss"
     },
     {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\images\\DollyManagerLogo.png",
+      "PackagePath": "staticwebassets\\images\\DollyManagerLogo.png"
+    },
+    {
       "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\download.js",
-      "PackagePath": "staticwebassets\\js\\download.js"
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\fileDrop.js",
+      "PackagePath": "staticwebassets\\js\\fileDrop.js"
     },
     {
       "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\js\\threeInterop.js",

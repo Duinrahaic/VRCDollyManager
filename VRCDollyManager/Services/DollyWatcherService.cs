@@ -1,11 +1,13 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using VRCDollyManager.Data;
 using VRCDollyManager.Models;
 
 namespace VRCDollyManager.Services;
 
-public class DollyFileWatcherService : BackgroundService, IDollyFileWatcherService, IDisposable
+public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatcherService, IDisposable
 {
     private readonly string _watchPath;
     private readonly FileSystemWatcher _fileWatcher;
@@ -17,7 +19,10 @@ public class DollyFileWatcherService : BackgroundService, IDollyFileWatcherServi
     public DollyFileWatcherService(IDbContextFactory<DollyDbContext> dbContextFactory)
     {
         _dbContextFactory = dbContextFactory;
-
+        using (var context = _dbContextFactory.CreateDbContext())
+        {
+            context.Database.EnsureCreated();
+        }
         _watchPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "VRChat",
             "CameraPaths");
 
@@ -41,16 +46,29 @@ public class DollyFileWatcherService : BackgroundService, IDollyFileWatcherServi
     {
         foreach (var file in Directory.GetFiles(_watchPath, "*.json")) IndexFile(file);
     }
-
+    private string _ignore = string.Empty;
     private void OnFileChanged(object sender, FileSystemEventArgs e)
     {
+        if (e.Name == _ignore)
+        {
+            _ignore = string.Empty;
+            return;
+        }
+
         if (e.ChangeType == WatcherChangeTypes.Created || e.ChangeType == WatcherChangeTypes.Changed)
-            IndexFile(e.FullPath);
+            _ = IndexFile(e.FullPath);
     }
 
     private void OnFileDeleted(object sender, FileSystemEventArgs e)
     {
-        RemoveDollyAsync(Path.GetFileName(e.FullPath)).Wait();
+        try
+        {
+            RemoveDollyAsync(Path.GetFileName(e.FullPath)).Wait();
+        }
+        catch (Exception ex)
+        {
+            // _ignore
+        }
     }
 
     private async Task IndexFile(string filePath)
@@ -115,6 +133,66 @@ public class DollyFileWatcherService : BackgroundService, IDollyFileWatcherServi
             OnDollyChanged(new DollyChangedEventArgs(dolly.Name, DollyChangeType.Added));
         }
     }
+    
+ 
+
+    
+    public async Task ImportDollyFile(Dolly dolly)
+    {
+        
+        if (dolly == null || string.IsNullOrWhiteSpace(dolly.Name))
+        {
+            throw new ArgumentException("Dolly data is invalid.");
+        }
+
+        string filePath = Path.Combine(_watchPath, $"{dolly.Name}");
+ 
+        // If the file exists, create a unique name for the new file
+        
+        var exits = await _dbContextFactory.CreateDbContext().Dollies.AnyAsync(d => d.Name == dolly.Name);
+        
+        
+        if (File.Exists(filePath) || exits)
+        {
+            string newFileName = GenerateUniqueFileName(dolly.Name);
+            filePath = Path.Combine(_watchPath, newFileName);
+            dolly.Name = Path.GetFileNameWithoutExtension(newFileName).Replace(".json",string.Empty) + ".json";  
+        }
+
+        _ignore = Path.Combine(_watchPath, $"{dolly.Name}");    
+        await Task.Delay(1);
+        try
+        {
+            var data = JsonSerializer.Serialize(dolly.KeyFrames, new JsonSerializerOptions()
+            {
+                WriteIndented = true,
+       
+            });
+
+
+            await using var dbContext = await _dbContextFactory.CreateDbContextAsync();
+            if (!await dbContext.Dollies.AnyAsync(d => d.Name == dolly.Name))
+            {
+                dbContext.Dollies.Add(dolly);
+                await dbContext.SaveChangesAsync();
+            } 
+            await File.WriteAllTextAsync(_ignore, data);
+
+            OnDollyChanged(new DollyChangedEventArgs(dolly.Name, DollyChangeType.Added));
+            _ignore = string.Empty;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Failed to write file {filePath}: {ex.Message}");
+        }
+    }
+
+    private string GenerateUniqueFileName(string baseName)
+    {
+        
+        string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+        return $"VRM_Import_{timeStamp}";
+    }
 
     public async Task UpdateDollyAsync(Dolly dolly)
     {
@@ -161,26 +239,34 @@ public class DollyFileWatcherService : BackgroundService, IDollyFileWatcherServi
 
     public async Task SyncFileSystemWithDatabaseAsync()
     {
-        using var dbContext = _dbContextFactory.CreateDbContext();
-        var existingFiles = Directory.GetFiles(_watchPath, "*.json").Select(Path.GetFileName).ToHashSet();
-        var existingDollies = await dbContext.Dollies.ToDictionaryAsync(d => d.Name);
+        try
+        {
+            using var dbContext = _dbContextFactory.CreateDbContext();
+            var existingFiles = Directory.GetFiles(_watchPath, "*.json").Select(Path.GetFileName).ToHashSet();
+            var existingDollies = await dbContext.Dollies.ToDictionaryAsync(d => d.Name);
 
-        foreach (var file in existingFiles)
-            if (!existingDollies.ContainsKey(file))
-            {
-                Console.WriteLine($"Adding missing file to database: {file}");
-                await AddDollyAsync(new Dolly { Name = file });
-            }
+            foreach (var file in existingFiles)
+                if (!existingDollies.ContainsKey(file))
+                {
+                    Console.WriteLine($"Adding missing file to database: {file}");
+                    await AddDollyAsync(new Dolly { Name = file });
+                }
 
-        foreach (var dolly in existingDollies.Values)
-            if (!existingFiles.Contains(dolly.Name))
-            {
-                Console.WriteLine($"Removing orphaned database entry: {dolly.Name}");
-                await RemoveDollyAsync(dolly.Name);
-            }
+            foreach (var dolly in existingDollies.Values)
+                if (!existingFiles.Contains(dolly.Name))
+                {
+                    Console.WriteLine($"Removing orphaned database entry: {dolly.Name}");
+                    await RemoveDollyAsync(dolly.Name);
+                }
+        }catch (Exception ex)
+        {
+            Console.WriteLine($"Failed to sync file system with database: {ex.Message}");
+            return;
+        }
+
     }
 
-    protected virtual void OnDollyChanged(DollyChangedEventArgs e)
+    private void OnDollyChanged(DollyChangedEventArgs e)
     {
         DollyChanged?.Invoke(this, e);
     }
@@ -210,7 +296,7 @@ public class DollyFileWatcherService : BackgroundService, IDollyFileWatcherServi
         GC.SuppressFinalize(this);
     }
 
-    protected virtual void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
         if (!_disposed)
         {

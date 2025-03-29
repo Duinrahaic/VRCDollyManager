@@ -127,11 +127,7 @@ public class BlazorWebView : NativeControlHost
             
             _blazorWebView.WebView.CoreWebView2InitializationCompleted+= (sender, args) =>
             {
-                _blazorWebView.WebView.CoreWebView2.IsDefaultDownloadDialogOpenChanged += (sender, e) =>
-                {
-                    if (_blazorWebView.WebView.CoreWebView2.IsDefaultDownloadDialogOpen)
-                        _blazorWebView.WebView.CoreWebView2.CloseDefaultDownloadDialog();
-                };
+              
             };
 
         foreach (var component in RootComponents) _blazorWebView.RootComponents.Add(component);

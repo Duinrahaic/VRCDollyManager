@@ -1,4 +1,6 @@
-﻿@using VRCDollyManager.Extensions
+﻿@using System.Text.Json
+@using System.Text.Json.Serialization
+@using VRCDollyManager.Extensions
 @using VRCDollyManager.Models
 @using VRCDollyManager.Services
 @inject IDollyFileWatcherService DollyService
@@ -56,13 +58,9 @@
         <DollyForm DollyModel="_selectedDolly"/>
     </ChildContent>
     <FooterContent>
-        <button disabled="@(_selectedDolly == null)" @onclick="DownloadVdm">
-            <Blazicon Svg="@(Lucide.FileUp)"/>
-            Export VDM
-        </button>
-        <button disabled="@(_selectedDolly == null)"  style="margin-right: auto;"  @onclick="DownloadDolly">
-            <Blazicon Svg="@(Lucide.Camera)"/>
-            Export Dolly
+        <button disabled="@(_selectedDolly == null)"  style="margin-right: auto;"  @onclick="Copy">
+            <Blazicon Svg="@(Lucide.Clipboard)"/>
+            Copy To Clipboard
         </button>
         <button form="dollyForm" @onclick="UpdateEditDolly">
             <Blazicon Svg="Lucide.Save"/>
@@ -161,15 +159,29 @@
         Edit?.Close();
         SelectedDollyChanged.InvokeAsync(_selectedDolly);
     }
-    private async void DownloadVdm()
+ 
+ 
+    private async void Copy()
     {
         if(_selectedDolly == null) return;
-        await JS.DownloadJsonAsync("VDM_Dolly.json", _selectedDolly);
-    }
-    private async void DownloadDolly()
-    {
-        if(_selectedDolly == null) return;
-        await JS.DownloadJsonAsync(_selectedDolly.Name, _selectedDolly.KeyFrames);
+        var copy = _selectedDolly.Clone();
+        var keyframes = _selectedDolly.GetCameraKeyFrames() ?? new List<CameraKeyFrame>();
+        copy.KeyFrames = keyframes;
+        var data = JsonSerializer.Serialize(copy, new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            WriteIndented = true,
+            PropertyNameCaseInsensitive = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        });
+        try
+        {
+            BrowserHelper.CopyToClipboard("VRCDolly.json", data);
+        }
+        catch
+        {
+            // ignored
+        }
     }
 
 

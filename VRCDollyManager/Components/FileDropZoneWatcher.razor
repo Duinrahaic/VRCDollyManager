@@ -1,0 +1,41 @@
+﻿@using System.Text.Json
+@using VRCDollyManager.Models
+@using VRCDollyManager.Services
+@inject IJSRuntime JS
+@inject IDollyFileWatcherService DollyService
+<div class="app-fileDrop" id="fileDrop">
+    
+</div>
+@code{
+ 
+ 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var dotNetRef = DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("initAppDropMonitoring", dotNetRef);
+        }
+    }
+
+    [JSInvokable]
+    public async Task OnFileDropped(string fileContent)    {
+        try
+        {
+            var dolly = System.Text.Json.JsonSerializer.Deserialize<Dolly>(fileContent, new JsonSerializerOptions()
+            {
+                 PropertyNameCaseInsensitive = true,
+            });
+            if (dolly != null)
+            {
+                await DollyService.ImportDollyFile(dolly);
+            }
+        }
+        catch
+        {
+            // ignored
+        }
+        await InvokeAsync(StateHasChanged);
+    }
+    
+}

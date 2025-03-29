@@ -9,6 +9,7 @@ public interface IDollyFileWatcherService
     Task<List<Dolly>> GetAllDolliesAsync();
     Task<Dolly?> GetDollyByNameAsync(string name);
     Task AddDollyAsync(Dolly dolly);
+    Task ImportDollyFile(Dolly dolly);
     Task UpdateDollyAsync(Dolly dolly);
     Task RemoveDollyAsync(string fileName);
     Task SyncFileSystemWithDatabaseAsync();

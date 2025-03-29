@@ -13,7 +13,7 @@ public class DollyDbContext : DbContext
     public DollyDbContext()
     {
         _dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-            "VRChat", "CameraPaths", "vdm_database.sqlite");
+            "VRChat", "vdm_database.sqlite");
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
