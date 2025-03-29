@@ -1,19 +1,26 @@
-<center>
-  <br>
-  <img src="assets/DollyManagerLogo.png" width="400" height="230" alt="Dolly Manager Logo">
-  <div style="font-size: 30px">Dolly Manager</div>
-  <i style="font-size: 20px">A VRChat Dolly Management System</i>
-  <br>
-  <center>
-    <a href="#key-features">Key Features</a> •
-    <a href="#pre-requisites">Pre-requisites</a> •
-    <a href="#how-to-use">How To Use</a> •
-    <a href="#support">Support</a> •
-    <a href="#other-projects">Other Projects</a> •
-    <a href="#license">License</a>
-   </center>
+<center> 
+
+   ![Logo](assets/DollyManagerLogo.png)
+    <h1>Dolly Manager</h1>
+    <p> A Dolly Manager for VRChat</p>
+</center>
  
-  <br>
+
+<center>
+
+[Key Features](#key-features) •
+[Pre-requisites](#pre-requisites) •
+[How To Use](#how-to-use) •
+[Support](#support) •
+[Other Projects](#other-projects) •
+[License](#license)
+
+</center>
+
+<br>
+<br>
+
+<center>
 
   ![Dolly Manager Example](assets/DM-Example.gif)
 
