@@ -15,14 +15,35 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
     private bool _disposed = false;
 
     public event EventHandler<DollyChangedEventArgs>? DollyChanged;
-
     public DollyFileWatcherService(IDbContextFactory<DollyDbContext> dbContextFactory)
     {
+        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "VRChat");
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+            Console.WriteLine($"Directory created at: {path}");
+        }
+        else
+        {
+            Console.WriteLine($"Directory already exists at: {path}");
+        }
+        if (!Directory.Exists(Path.Combine(path, "CameraPaths")))
+        {
+            Directory.CreateDirectory(Path.Combine(path, "CameraPaths"));
+            Console.WriteLine($"Directory created at: {Path.Combine(path, "CameraPaths")}");
+        }
+        else
+        {
+            Console.WriteLine($"Directory already exists at: {Path.Combine(path, "CameraPaths")}");
+        }
+        
         _dbContextFactory = dbContextFactory;
         using (var context = _dbContextFactory.CreateDbContext())
         {
             context.Database.EnsureCreated();
         }
+
+       
         _watchPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "VRChat",
             "CameraPaths");
 
@@ -41,7 +62,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
 
         LoadExistingFiles();
     }
-
+    
     private void LoadExistingFiles()
     {
         foreach (var file in Directory.GetFiles(_watchPath, "*.json")) IndexFile(file);

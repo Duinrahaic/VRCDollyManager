@@ -8,31 +8,38 @@
     <div class="dolly-renderer-container">
         <canvas id="preview"></canvas>
     </div>
-    @*<div class="dolly-details">
-        <div class="dolly-details-header">
-            <Blazicon Svg="Lucide.Tags"/>
-            Tags
-        </div>
-        <div class="dolly-details-body">
 
-            <div class="chip-container">
-                @foreach (var tag in Tags)
-                {
-                    <Chip Tag="@tag"/>
-                }
-            </div>
-        </div>
-    </div>*@
 </div>
-
+<div class="dolly-renderer-path-details">
+    <div class="dolly-renderer-path-detail">
+        <label>Tags:</label>
+        <div> @_tagCount </div>
+    </div>
+    <div class="dolly-renderer-path-detail">
+        <label>Paths:</label>
+        <div> @_pathCount </div>
+    </div>
+</div>
 @code {
-    List<string> Tags { get; set; } = new();
+    uint _pathCount = 0;
+    uint _tagCount = 0;    
+    
+    
+    
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await JS.InvokeVoidAsync("ThreeInterop.initScene");
+            try
+            {
+                await JS.InvokeVoidAsync("ThreeInterop.initScene");
+
+            }
+            catch(Exception ex)
+            {
+                await JS.InvokeVoidAsync("console.error", ex.Message);
+            }
         }
     }
     
@@ -41,7 +48,10 @@
         //Tags = dolly.Tags;
         StateHasChanged();
         var keyframes = dolly.GetCameraKeyFrames() ?? new List<CameraKeyFrame>();
-
+        
+        _pathCount = (uint)keyframes.DistinctBy(x=> x.PathIndex).Count();
+        _tagCount = (uint)dolly.Tags.Count();
+        
         if (!keyframes.Any() || keyframes.Count < 2)
         {
             Console.WriteLine("Error: No keyframes provided.");
@@ -49,6 +59,8 @@
             return;
         }
 
+        var groups = keyframes.GroupBy(x => x.PathIndex).ToDictionary(x=> x.Key, x => x.ToList());
+        
         var options = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase, // Change to CamelCase for JS compatibility
@@ -57,12 +69,13 @@
 
         var json = JsonSerializer.Serialize(keyframes, options);
 
-        await JS.InvokeVoidAsync("ThreeInterop.renderPath", json);
+        await JS.InvokeVoidAsync("ThreeInterop.renderPaths", json);
     }
 
     public async Task ClearScene()
     {
-        Tags.Clear();
+        _pathCount = 0;
+        _tagCount = 0;
         StateHasChanged();
         await JS.InvokeVoidAsync("ThreeInterop.clearScene");
     }

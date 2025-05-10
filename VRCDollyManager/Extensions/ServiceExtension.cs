@@ -10,9 +10,9 @@ public static class ServiceExtension
     {
         services.AddSingleton<OscService>();
         services.AddSingleton<IDollyFileWatcherService, DollyFileWatcherService>();
-        services.AddHostedService<DollyFileWatcherService>();
         services.AddSingleton<NotificationService>();
-        services.AddDbContextFactory<DollyDbContext>(options =>
+        services.AddSingleton<ISteamVrService, SteamVrService>();
+         services.AddDbContextFactory<DollyDbContext>(options =>
             options.UseSqlite(@$"Data Source={DollyExtensions.GetDollyDbPath()}"));
         return services;
     }

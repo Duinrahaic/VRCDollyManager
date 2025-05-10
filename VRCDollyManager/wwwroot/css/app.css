@@ -961,6 +961,32 @@ ul {
   height: 100%;
 }
 
+.dolly-renderer-path-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 4px 8px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  user-select: none;
+  color: #FFFFFF;
+  backdrop-filter: blur(2px) saturate(150%);
+  border-top-right-radius: 8px;
+  background: transparent;
+  border-top: 1px solid rgba(18, 18, 18, 0.2);
+  border-right: 1px solid rgba(18, 18, 18, 0.2);
+}
+.dolly-renderer-path-details .dolly-renderer-path-detail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: lighter;
+  flex-grow: 1;
+}
 .dolly-details {
   display: block;
   width: 100%;

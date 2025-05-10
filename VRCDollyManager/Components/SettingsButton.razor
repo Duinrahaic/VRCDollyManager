@@ -1,0 +1,48 @@
+﻿@using VRCDollyManager.Models
+@using VRCDollyManager.Services
+@inject ISteamVrService SteamVr; 
+@implements IDisposable
+
+<button class="social-button" @onclick="OnClick">
+    <Blazicon Svg="Lucide.Cog"/>
+</button>
+
+
+@code{
+
+ 
+    private void OnClick()
+    {
+        if (SteamVr.TryIsInstalled(out var isInstalled))
+        {
+            if (!isInstalled)
+            {
+                SteamVr.TryRegister();
+            }
+            else
+            {
+                SteamVr.TryUnregister();
+            }
+        }
+ 
+    }
+    
+    
+    protected override void OnInitialized()
+    {
+        // Check if SteamVR is installed
+ 
+        SteamVr.ManifestChanged += OnManifestChanged;
+    }
+
+    private void OnManifestChanged(object? sender, SteamVrManifestChangedEvent e)
+    {
+        
+    }
+
+    public void Dispose()
+    {
+        SteamVr.ManifestChanged -= OnManifestChanged;
+    }
+}
+ 
