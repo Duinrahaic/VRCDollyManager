@@ -4,9 +4,9 @@ using OscQueryLibrary;
 using OscQueryLibrary.Utils;
 using VRCDollyManager.Models;
 
-namespace VRCDollyManager.Services;
+namespace VRCDollyManager.Services.OSC;
 
-public class OscService : IDisposable
+public class OscService : IDisposable, IOscService
 {
     public delegate void OscSubscriptionEventHandler(OscSubscriptionEvent e);
 

@@ -1,8 +1,8 @@
 using VRCDollyManager.Models;
 
-namespace VRCDollyManager.Services;
+namespace VRCDollyManager.Services.SteamVR;
 
-public interface ISteamVrService
+public interface ISteamVrService 
 {
     /// <summary>
     /// Raised whenever the SteamVR application manifest is added or removed.
@@ -40,4 +40,11 @@ public interface ISteamVrService
     /// </summary>
     /// <returns><c>true</c> if unregistration succeeded; <c>false</c> otherwise.</returns>
     bool TryUnregister();
+
+    /// <summary>
+    /// Defines if OpenVr is connected (<c>true</c>) or disconnected (<c> false </c>)
+    /// </summary>
+    /// <returns><c>true</c> if connected; <c>false</c> if disconnected.</returns>
+    public bool IsInitialized { get; }
+
 }

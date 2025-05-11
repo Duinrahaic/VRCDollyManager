@@ -1,0 +1,350 @@
+﻿@import "variables";
+
+
+.settings-container {
+  flex-grow: 1;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 70vh;
+  $settingsColumn: 140px;
+
+  .settings-context {
+    width: $settingsColumn;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    border-right: 1px solid $background;
+
+    .settings-context-item {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      transition: background-color .3s ease-in-out;
+      align-items: center;
+      justify-content: start;
+      user-select: none;
+      cursor: pointer;
+      padding: 12px 8px;
+
+      svg {
+        min-height: 24px;
+        min-width: 24px;
+        aspect-ratio: 1/1;
+
+      }
+
+      label {
+        cursor: inherit;
+
+      }
+
+
+      &:hover:not(.active) {
+        background: darken($surface, 1%);
+      }
+
+      &.active {
+        background: darken($primary, 5%);
+
+      }
+    }
+
+
+  }
+
+  .settings-detail {
+    width: calc(100% - $settingsColumn);
+    flex-grow: 1;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 14px 8px;
+    background: darken($surface, 1%);
+
+    hr {
+      width: 100%;
+      padding: 4px 0;
+      border: none;
+      border-bottom: 1px solid darken($surface, 4%);
+      transform: translateY(-50%);
+      height: 10px;
+    }
+
+    .settings-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-radius: 8px;
+      border: 1px solid $background;
+      background: $surface;
+      margin-bottom: 12px;
+      
+
+      .settings-group-label {
+        font-size: 22px;
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        align-items: center;
+        justify-content: start;
+        text-align: left;
+        
+        border-bottom: 1px solid $background;
+        padding: 4px 8px;
+        margin-bottom: 8px;
+        .settings-indicator-container{
+          flex-grow: 1;
+          .settings-indicator{
+            margin-right: unset;
+          }
+        }
+        
+ 
+      }
+
+      .settings-group-description {
+        font-size: 14px;
+        font-style: italic;
+        
+      }
+
+   
+
+      .settings-indicator-container{
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        flex-direction: row;
+        gap: 8px;
+
+        @function led-glow($color, $intensity: 0.6) {
+          @return 0 0 6px rgba($color, $intensity * 0.4),
+          0 0 12px rgba($color, $intensity * 0.3),
+          0 0 20px rgba($color, $intensity * 0.2);
+        }
+        
+        .settings-indicator {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          display: inline-block;
+          background-color: $led-grey;
+          box-shadow: none;
+          transition: background-color 0.2s ease, box-shadow 0.2s ease;
+          margin-right: 20px;
+          &.off {
+            background-color: $led-grey;
+            box-shadow: none;
+          }
+
+          &.red {
+            background-color: $led-red;
+            box-shadow: led-glow($led-red);
+          }
+
+          &.green {
+            background-color: $led-green;
+            box-shadow: led-glow($led-green);
+          }
+
+          &.yellow {
+            background-color: $led-yellow;
+            box-shadow: led-glow($led-yellow);
+          }
+        }
+        
+        .settings-indicator-label{
+          font-size: 16px;
+        }
+      }
+      
+      .settings-toggle-switch-container{
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
+        margin-right: 16px;
+        
+        .settings-indicator-label{
+          font-size: 20px;
+        }
+
+        .settings-toggle-switch-input{
+          input[type="checkbox"] {
+            position: relative;
+            width: 40px;
+            height: 20px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: $led-grey;
+            outline: none;
+            border-radius: 8px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: background 0.7s;
+            cursor: pointer;
+
+            &::before {
+              content: '';
+              position: absolute;
+              width: 20px;
+              height: 20px;
+              border-radius: 8px;
+              top: 0;
+              left: 0;
+              background: $on-surface;
+              transform: scale(1);
+              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+              transition: left 0.5s, background 0.3s;
+            }
+
+            &:checked {
+              background: $led-green;
+
+              &::before {
+                left: 20px;
+              }
+            }
+
+            &:disabled {
+              background: $led-grey;
+              cursor: not-allowed;
+
+              &::before {
+                background: lighten($on-surface,30%);
+              }
+            }
+
+            &:checked:disabled {
+              background: lighten($led-green, 30%);
+            }
+          }
+        }
+        
+
+      }
+      
+
+      .settings-group-content {
+        display: flex;
+        width: calc(100% - 12px);
+        gap: 18px;
+        flex-direction: column;
+
+        &:last-child {
+          margin-bottom: 12px;
+        }
+
+        .settings-item {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+          width: calc(100% - 12px);
+          margin-left: 24px;
+      
+          label {
+            flex-grow: 1;
+            text-align: start;
+          }
+          
+          button {
+            margin-right: 20px;
+          }
+
+        }
+      }
+    }
+  }
+
+
+}
+
+
+.settings-about {
+  position: relative;
+  width: 100%;
+  max-height: 70vh;
+  height: 100%;
+  display: flex;
+
+  .settings-about-bg {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    .settings-about-bg-frame{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 8px 8px darken($surface,1%) inset;
+      background: url("/images/duin.jpg") center center no-repeat;
+      background-size: cover;
+      width: 60%;
+      height: 100%;
+      img{
+        display: none;
+  
+      }
+    }
+
+
+    flex-grow: 1;
+  }
+
+  .settings-about-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    
+    h1 {
+      margin: 0;
+    }
+    
+    ul{
+      display: inline-block;
+      li{
+        margin-bottom: 12px;
+        .social-icon
+        {
+          
+          width: 180px;
+
+          a{
+            background: lighten($surface,1%);
+            padding: 8px 12px;
+            width: 100%;
+            border-radius: 8px;
+            display: flex;;
+            flex-direction: row; 
+            gap: 8px;
+            text-decoration: none;
+            color: $on-surface;
+            transition: background-color .3s ease-in-out;
+            border: 1px solid $background;
+            
+            label{
+              cursor: pointer;
+            }
+            
+            &:hover{
+              background: $surface;
+  
+            }
+          }
+          
+          
+        }
+        
+      }
+    }
+    
+  }
+
+} 

@@ -1,0 +1,40 @@
+﻿@using VRCDollyManager.Services.OSC
+@inject IOscService Osc
+@implements IDisposable
+
+<div class="settings-group">
+    <div class="settings-group-label">
+        <Blazicon Svg="Lucide.Signal"></Blazicon>
+        <label>OSCQuery</label>
+        <SettingsIndicator Color="@(_isConnected ? SettingsIndicatorColor.Green : SettingsIndicatorColor.Red)"
+                           Label="@(_isConnected ? "Connected":"Disconnected")"/>
+    </div>
+    <div class="settings-group-content">
+        <div class="settings-item">
+            <label>Restart Connection</label>
+            <button @onclick="@(()=>Osc.RestartService())"> Restart </button>
+        </div>
+        
+    </div>
+</div>
+ 
+@code
+{
+    private bool _isConnected = false;
+    protected override void OnInitialized()
+    {
+        _isConnected = Osc.IsConnected;
+        Osc.OnConnectionStateChanged += ConnectionStateChanged;
+    }
+
+    private void ConnectionStateChanged(bool isConnected)
+    {
+        _isConnected = isConnected;
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        Osc.OnConnectionStateChanged -= ConnectionStateChanged;
+    }
+}

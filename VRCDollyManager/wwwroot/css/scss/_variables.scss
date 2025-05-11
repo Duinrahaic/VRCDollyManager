@@ -5,7 +5,7 @@ $primary: #9b54fd; // Primary color (Material Dark Purple)
 $secondary: #03DAC6; // Secondary color (Teal)
 $on-background: #E0E0E0; // Text/icons on background
 $on-surface: #FFFFFF; // Text/icons on surface
-$on-primary: #000000; // Text/icons on primary (usually high contrast)
+$on-primary: #FFFFFF; // Text/icons on primary (usually high contrast)
 $on-secondary: #000000; // Text/icons on secondary (usually high contrast)
 $danger: #dc1536; // Error color
 
@@ -26,3 +26,9 @@ $danger: #dc1536; // Error color
   background-color: #2196F3; // Info color
   color: #FFFFFF; // Text/icons on info
 }
+
+
+$led-grey:  #555;
+$led-red: #ff1e1e;
+$led-green: #00ff33;
+$led-yellow: #ffcc00;

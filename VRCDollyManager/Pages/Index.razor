@@ -3,7 +3,7 @@
 @using VRCDollyManager.Extensions
 @using VRCDollyManager.Services
 @inject IDollyFileWatcherService DollyService
-@inject OscService OSC
+@inject IOscService OSC
 
 
 <div class="app-frame-header">
@@ -39,22 +39,9 @@
             <NotificationBar/>
             <div class="social-media">
                 <OSCButton/>
-                <SettingsButton/>
                 <LinkButton Icon="Lucide.Github" OnClick="@(() => BrowserHelper.OpenUrl("https://github.com/Duinrahaic/VRCDollyManager"))"/>
-                <LinkButton Icon="Lucide.Rabbit" OnClick="OpenAbout"/>
+                <SettingsButton/>
             </div>
         </div>
     </div>
-
 </div>
-
-
-<Modal @ref="About" Title="About">
-    <ChildContent>
-        <About/>
-    </ChildContent>
-</Modal>
-
-@*<Modal @ref="Settings" Title="VRM Settings">
-
-</Modal>*@

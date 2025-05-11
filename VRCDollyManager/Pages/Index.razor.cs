@@ -14,8 +14,6 @@ public partial class Index : IDisposable
     private bool _onRefresh = false;
     private bool _relative = false;
     private string _filter = "";
-    private Modal? About { get; set; } = null!;
-    private Modal? Settings { get; set; } = null!;
     private DollyRenderer? Renderer { get; set; }
     private DollyTable? Table { get; set; }
     private DollySideContainer? SidePanel { get; set; }
@@ -84,16 +82,7 @@ public partial class Index : IDisposable
     {
         Refresh();
     }
-    private void OpenAbout()
-    {
-        About?.OpenModal();
-    }
-
-    private void OpenSettings()
-    {
-        Settings?.OpenModal();
-    }
-    
+ 
     private async void LoadDolly()
     {
         if (_selectedDolly == null) return;

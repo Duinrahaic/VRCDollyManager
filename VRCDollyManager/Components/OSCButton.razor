@@ -1,5 +1,5 @@
 ﻿@using VRCDollyManager.Services
-@inject OscService OscService
+@inject IOscService OscService
 @implements IDisposable
 <button class="social-button @(OscService.IsConnected ? "active" : "inactive")">
     <Blazicon Svg="Lucide.Signal"/>

@@ -1,0 +1,25 @@
+﻿<div class="settings-context-item @(OptionSelectedCss())"
+     @onclick="OnClick">
+    <Blazicon Svg="@Icon" />
+    <label>@Label</label>
+</div>
+@code {
+    [Parameter]
+    public required SettingsOptions Option { get; set; } 
+    [Parameter]
+    public SettingsOptions SelectedOption { get; set; }
+    [Parameter]
+    public EventCallback<SettingsOptions> SelectedOptionChanged { get; set; }
+    [Parameter]
+    public required string Label { get; set; } 
+    [Parameter]
+    public required SvgIcon Icon { get; set; }
+    
+    private void OnClick()
+    {
+        SelectedOptionChanged.InvokeAsync(Option);
+    }
+    
+    private string OptionSelectedCss() => SelectedOption == Option ? "active" : string.Empty ;
+    
+}

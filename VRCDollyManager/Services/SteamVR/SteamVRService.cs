@@ -4,14 +4,14 @@ using System.Windows.Forms;
 using Valve.VR;
 using VRCDollyManager.Models;
 
-namespace VRCDollyManager.Services
+namespace VRCDollyManager.Services.SteamVR
 {
     /// <summary>
     /// A hosted background service that manages SteamVR integration via OpenVR.
     /// It can check installation status, register/unregister your app's VR manifest,
     /// and polls for quit events to trigger a shutdown callback.
     /// </summary>
-    public class SteamVrService : BackgroundService, ISteamVrService
+    public class SteamVrService : ISteamVrService, IDisposable
     {
         /// <summary>
         /// Raised whenever the SteamVR application manifest is added or removed.
@@ -28,7 +28,15 @@ namespace VRCDollyManager.Services
 
         private CVRSystem? _cVr;
         private readonly ILogger<SteamVrService> _logger;
-        private bool _isInitialized = false;
+        private Task? _pollingTask;
+        private CancellationTokenSource? _cts;
+        
+        /// <summary>
+        /// Defines if OpenVr is connected (<c>true</c>) or disconnected (<c> false </c>)
+        /// </summary>
+        /// <returns><c>true</c> if connected; <c>false</c> if disconnected.</returns>
+        public bool IsInitialized { get; private set; } = false;
+        
 
         /// <summary>
         /// Creates a new instance of <see cref="SteamVrService"/>.
@@ -38,6 +46,7 @@ namespace VRCDollyManager.Services
         {
             _logger = logger;
             _logger.LogInformation("SteamVrService Started.");
+            StartPolling();
         }
 
         /// <summary>
@@ -178,8 +187,9 @@ namespace VRCDollyManager.Services
             _logger.LogInformation("Shutdown requested by SteamVR. VR mode: " + (AppFlags.IsVRMode ?  "Enabled" : "Disabled"));
             StateChanged?.Invoke(this, new SteamVrMonitorChangeEvent(false));
             if (!AppFlags.IsVRMode) return;
+            StopPolling();
             _logger.LogError("Shutdown requested by SteamVR.");
-            // Environment.Exit(0);
+            Environment.Exit(0);
         }
 
         /// <summary>
@@ -192,12 +202,8 @@ namespace VRCDollyManager.Services
             if (error == EVRInitError.None)
             {
                 _logger.LogInformation("OpenVR initialized successfully.");
-                _isInitialized = true;
+                IsInitialized = true;
                 StateChanged?.Invoke(this, new SteamVrMonitorChangeEvent(true));
-            }
-            else
-            {
-                _logger.LogError($"OpenVR initialization failed: {error}");
             }
         }
 
@@ -208,20 +214,20 @@ namespace VRCDollyManager.Services
         /// A cancellation token that signals when the host is stopping.
         /// </param>
         /// <returns>A task that completes when the service is stopped.</returns>
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        private void PollSteamVrEvents(CancellationToken token)
         {
             VREvent_t evt = new VREvent_t();
             uint eventSize = (uint)Marshal.SizeOf(evt);
 
-            while (!stoppingToken.IsCancellationRequested)
+            while (!token.IsCancellationRequested)
             {
                 try
                 {
-                    if (!_isInitialized)
+                    if (!IsInitialized)
                     {
                         Initialize();
                     }
-                    else if (_isInitialized 
+                    else if (IsInitialized 
                              && OpenVR.System != null 
                              && OpenVR.System.PollNextEvent(ref evt, eventSize))
                     {
@@ -236,8 +242,32 @@ namespace VRCDollyManager.Services
                     // Ignore polling errors
                 }
 
-                await Task.Delay(100, stoppingToken);
+                Thread.Sleep(100);
             }
+        }
+        
+        private void StartPolling()
+        {
+            if (_pollingTask is { IsCompleted: false })
+                return;
+
+            _cts = new CancellationTokenSource();
+            var token = _cts.Token;
+
+            _pollingTask = Task.Run(() => PollSteamVrEvents(token), token);
+        }
+
+        private void StopPolling()
+        {
+            if (_cts is { IsCancellationRequested: false })
+            {
+                _cts.Cancel();
+            }
+        }
+
+        public void Dispose()
+        {
+            StopPolling();
         }
     }
 }
