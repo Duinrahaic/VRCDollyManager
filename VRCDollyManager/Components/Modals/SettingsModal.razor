@@ -1,0 +1,44 @@
+﻿@using VRCDollyManager.Models
+@using VRCDollyManager.Components.Modals.Settings
+
+<Modal @ref="_settings" Title="Settings" Size="ModalSize.Large" ScrollBody="false" Icon="Lucide.Cog">
+
+ 
+    <div class="settings-container">
+        <div class="settings-context">
+            <SettingsContextItem Option="SettingsOptions.General" Icon="Lucide.FileCog" Label="General" @bind-SelectedOption="_selectedOption"/>
+            <SettingsContextItem Option="SettingsOptions.Integrations" Icon="Lucide.Plug" Label="Integrations" @bind-SelectedOption="_selectedOption"/>
+            <SettingsContextItem Option="SettingsOptions.About" Icon="Lucide.Rabbit" Label="About" @bind-SelectedOption="_selectedOption"/>
+        </div>
+        <div class="settings-detail">
+            @switch (_selectedOption)
+            {
+                case SettingsOptions.Integrations:
+                    <Integrations/>
+                    break;
+                case SettingsOptions.About:
+                    <About/>
+                    break;
+                default:
+                    break;
+            }
+    
+        </div>
+    </div>
+    
+</Modal>
+@code {
+    private Modal _settings = new();
+    private SettingsOptions _selectedOption = SettingsOptions.Integrations;
+    
+    public void Open() => _settings.OpenModal();
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _settings.OpenModal();
+
+        }
+    }
+}

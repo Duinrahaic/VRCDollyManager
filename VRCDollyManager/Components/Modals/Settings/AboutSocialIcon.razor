@@ -1,0 +1,16 @@
+﻿<li>
+    <div class="social-icon">
+        <a href="@Link" target="_blank">
+            <i class="@Icon"></i>
+            <label> @Label </label>
+        </a>
+    </div>
+</li>
+
+
+@code 
+{    
+    [Parameter] public required string Icon { get; set; }
+    [Parameter] public required string Link { get; set; }
+    [Parameter] public required string Label{ get; set; }
+}

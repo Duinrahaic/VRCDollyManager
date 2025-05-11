@@ -1,0 +1,91 @@
+﻿@using VRCDollyManager.Services.SteamVR
+@inject ISteamVrService Vr
+@implements IDisposable
+
+
+<div class="settings-group">
+    <div class="settings-group-label">
+        <i class="fa-brands fa-steam-symbol"></i>
+        <label>SteamVR</label>
+    </div>
+    <div class="settings-group-content">
+        <div class="settings-item">
+            <label>Connection Status</label>
+            <SettingsIndicator Label="@GetConnectionLabel()" Color="GetConnectionStatus()"/>
+        </div>
+        <div class="settings-item">
+            <label>Auto-launch with SteamVR</label>
+            <SettingsToggleSwitch Disabled="@(!_initialized)" Label="@GetRegistrationLabel()" 
+                                  Value="@(_installed ?? false)" ValueChanged="@ToggleRegistration"/>
+        </div>
+    </div>
+</div>
+
+@code
+{
+    bool _initialized = false;
+    bool? _installed = null;
+
+
+    protected override void OnInitialized()
+    {
+        _initialized = Vr.IsInitialized;
+        if (Vr.TryIsInstalled(out var installed))
+        {
+            _installed = installed;
+        }
+        Vr.ManifestChanged += VrOnManifestChanged;
+        Vr.StateChanged += VrOnStateChanged;
+    }
+
+    private SettingsIndicatorColor GetConnectionStatus() => 
+        _initialized ? SettingsIndicatorColor.Green : SettingsIndicatorColor.Red;
+
+    private SettingsIndicatorColor GetRegistrationStatusColor()
+    {
+        if (_installed.HasValue)
+        {
+            return _installed.Value ? SettingsIndicatorColor.Green : SettingsIndicatorColor.Red;
+        }
+        return SettingsIndicatorColor.Grey;
+    }
+
+    private string GetConnectionLabel() =>        
+        _initialized ? "Connected" : "Disconnected";
+
+    private string GetRegistrationLabel() =>        
+        _installed.HasValue ? _installed.Value ? "Installed" : "Uninstalled" : "Unknown";
+
+    private void ToggleRegistration(bool state)
+    {
+        if (!_initialized || _installed == null) return;
+
+        if (_installed.Value)
+        {
+            Vr.TryUnregister();
+        }
+        else
+        {
+            Vr.TryRegister();
+        }
+    }
+    
+    
+    private void VrOnStateChanged(object? sender, SteamVrMonitorChangeEvent e)
+    {
+        _initialized = e.Connected;
+        
+    }
+
+    private void VrOnManifestChanged(object? sender, SteamVrManifestChangedEvent e)
+    {
+        _installed = e.IsManifestInstalled;
+    }
+
+
+    public void Dispose()
+    {
+        Vr.ManifestChanged -= VrOnManifestChanged;
+        Vr.StateChanged -= VrOnStateChanged;
+    }
+}

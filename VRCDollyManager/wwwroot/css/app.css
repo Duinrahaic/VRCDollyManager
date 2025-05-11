@@ -373,7 +373,7 @@ html, body {
 
 button {
   background-color: #9b54fd;
-  color: #000000;
+  color: #FFFFFF;
   border: none;
   padding: 4px 16px;
   font-size: 14px;
@@ -397,7 +397,7 @@ button:active {
 }
 button:disabled {
   background-color: rgba(155, 84, 253, 0.5);
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.5);
   cursor: not-allowed;
 }
 button.dolly-option {
@@ -655,7 +655,7 @@ ul {
   gap: 8px;
   justify-content: end;
   align-items: center;
-  color: #000000;
+  color: #FFFFFF;
   transition: opacity 0.2s ease-in-out;
 }
 .table-body td .controls-container button {
@@ -674,7 +674,7 @@ ul {
   padding: 4px 8px;
   margin: 2px;
   background-color: #9b54fd;
-  color: #000000;
+  color: #FFFFFF;
   border-radius: 16px;
   width: min-content;
   user-select: none;
@@ -701,7 +701,7 @@ ul {
 .chip button {
   background: transparent;
   border: none;
-  color: #000000;
+  color: #FFFFFF;
   cursor: pointer;
   padding: 2px;
   border-radius: 50%;
@@ -866,7 +866,6 @@ ul {
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
   max-width: 100%;
   max-height: 100%;
   overflow: hidden;
@@ -895,6 +894,9 @@ ul {
   justify-content: start;
   border-bottom: 1px solid #121212;
 }
+.modal-container .modal-overlay .modal-header .modal-header-icon {
+  padding: 0 4px;
+}
 .modal-container .modal-overlay .modal-header h2 {
   padding: 0;
   padding-left: 4px;
@@ -917,6 +919,11 @@ ul {
   max-height: 70vh;
   max-width: 100%;
   padding: 0 10px;
+  display: flex;
+}
+.modal-container .modal-overlay .modal-body.no-scroll {
+  overflow-y: hidden;
+  padding: unset;
 }
 .modal-container .modal-overlay .modal-footer {
   padding: 8px;
@@ -1096,7 +1103,7 @@ ul {
   left: 53%;
   top: 53%;
   border-width: 0 13px 19px 13px;
-  border-color: transparent transparent #000000 transparent;
+  border-color: transparent transparent #FFFFFF transparent;
 }
 .o-pad a.up:active:after {
   border-bottom-color: #333;
@@ -1119,7 +1126,7 @@ ul {
   left: 47%;
   top: 47%;
   border-width: 19px 13px 0px 13px;
-  border-color: #000000 transparent transparent transparent;
+  border-color: #FFFFFF transparent transparent transparent;
 }
 .o-pad a.down:active:after {
   border-top-color: #333;
@@ -1142,7 +1149,7 @@ ul {
   left: 53%;
   top: 47%;
   border-width: 13px 19px 13px 0;
-  border-color: transparent #000000 transparent transparent;
+  border-color: transparent #FFFFFF transparent transparent;
 }
 .o-pad a.left:active:after {
   border-right-color: #333;
@@ -1165,7 +1172,7 @@ ul {
   left: 47%;
   top: 53%;
   border-width: 13px 0 13px 19px;
-  border-color: transparent transparent transparent #000000;
+  border-color: transparent transparent transparent #FFFFFF;
 }
 .o-pad a.right:active:after {
   border-left-color: #333;
@@ -1226,6 +1233,269 @@ ul {
 }
 .about-info .about-links a:hover {
   background: #121212;
+}
+
+.settings-container {
+  flex-grow: 1;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 70vh;
+}
+.settings-container .settings-context {
+  width: 140px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border-right: 1px solid #121212;
+}
+.settings-container .settings-context .settings-context-item {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  transition: background-color 0.3s ease-in-out;
+  align-items: center;
+  justify-content: start;
+  user-select: none;
+  cursor: pointer;
+  padding: 12px 8px;
+}
+.settings-container .settings-context .settings-context-item svg {
+  min-height: 24px;
+  min-width: 24px;
+  aspect-ratio: 1/1;
+}
+.settings-container .settings-context .settings-context-item label {
+  cursor: inherit;
+}
+.settings-container .settings-context .settings-context-item:hover:not(.active) {
+  background: #1b1b1b;
+}
+.settings-container .settings-context .settings-context-item.active {
+  background: #111111;
+}
+.settings-container .settings-detail {
+  width: calc(100% - 140px);
+  flex-grow: 1;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 14px 8px;
+  background: #1b1b1b;
+}
+.settings-container .settings-detail hr {
+  width: 100%;
+  padding: 4px 0;
+  border: none;
+  border-bottom: 1px solid #141414;
+  transform: translateY(-50%);
+  height: 10px;
+}
+.settings-container .settings-detail .settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 8px;
+  border: 1px solid #121212;
+  background: #1E1E1E;
+  margin-bottom: 12px;
+}
+.settings-container .settings-detail .settings-group .settings-group-label {
+  font-size: 22px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  justify-content: start;
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid #121212;
+}
+.settings-container .settings-detail .settings-group .settings-group-description {
+  font-size: 14px;
+  font-style: italic;
+}
+.settings-container .settings-detail .settings-group .settings-indicator-container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+}
+.settings-container .settings-detail .settings-group .settings-indicator-container .settings-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #555;
+  box-shadow: none;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  margin-right: 20px;
+}
+.settings-container .settings-detail .settings-group .settings-indicator-container .settings-indicator.off {
+  background-color: #555;
+  box-shadow: none;
+}
+.settings-container .settings-detail .settings-group .settings-indicator-container .settings-indicator.red {
+  background-color: #ff1e1e;
+  box-shadow: 0 0 6px rgba(255, 30, 30, 0.24), 0 0 12px rgba(255, 30, 30, 0.18), 0 0 20px rgba(255, 30, 30, 0.12);
+}
+.settings-container .settings-detail .settings-group .settings-indicator-container .settings-indicator.green {
+  background-color: #00ff33;
+  box-shadow: 0 0 6px rgba(0, 255, 51, 0.24), 0 0 12px rgba(0, 255, 51, 0.18), 0 0 20px rgba(0, 255, 51, 0.12);
+}
+.settings-container .settings-detail .settings-group .settings-indicator-container .settings-indicator.yellow {
+  background-color: #ffcc00;
+  box-shadow: 0 0 6px rgba(255, 204, 0, 0.24), 0 0 12px rgba(255, 204, 0, 0.18), 0 0 20px rgba(255, 204, 0, 0.12);
+}
+.settings-container .settings-detail .settings-group .settings-indicator-container .settings-indicator-label {
+  font-size: 16px;
+}
+.settings-container .settings-detail .settings-group .settings-toggle-switch-container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16px;
+}
+.settings-container .settings-detail .settings-group .settings-toggle-switch-container .settings-indicator-label {
+  font-size: 20px;
+}
+.settings-container .settings-detail .settings-group .settings-toggle-switch-container .settings-toggle-switch-input input[type=checkbox] {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #555;
+  outline: none;
+  border-radius: 8px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: background 0.7s;
+  cursor: pointer;
+}
+.settings-container .settings-detail .settings-group .settings-toggle-switch-container .settings-toggle-switch-input input[type=checkbox]::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 8px;
+  top: 0;
+  left: 0;
+  background: #FFFFFF;
+  transform: scale(1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: left 0.5s, background 0.3s;
+}
+.settings-container .settings-detail .settings-group .settings-toggle-switch-container .settings-toggle-switch-input input[type=checkbox]:checked {
+  background: #00ff33;
+}
+.settings-container .settings-detail .settings-group .settings-toggle-switch-container .settings-toggle-switch-input input[type=checkbox]:checked::before {
+  left: 20px;
+}
+.settings-container .settings-detail .settings-group .settings-toggle-switch-container .settings-toggle-switch-input input[type=checkbox]:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+.settings-container .settings-detail .settings-group .settings-toggle-switch-container .settings-toggle-switch-input input[type=checkbox]:disabled::before {
+  background: white;
+}
+.settings-container .settings-detail .settings-group .settings-toggle-switch-container .settings-toggle-switch-input input[type=checkbox]:checked:disabled {
+  background: #99ffad;
+}
+.settings-container .settings-detail .settings-group .settings-group-content {
+  display: flex;
+  width: calc(100% - 12px);
+  gap: 18px;
+  flex-direction: column;
+}
+.settings-container .settings-detail .settings-group .settings-group-content:last-child {
+  margin-bottom: 12px;
+}
+.settings-container .settings-detail .settings-group .settings-group-content .settings-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: calc(100% - 12px);
+  margin-left: 24px;
+}
+.settings-container .settings-detail .settings-group .settings-group-content .settings-item label {
+  flex-grow: 1;
+  text-align: start;
+}
+.settings-container .settings-detail .settings-group .settings-group-content .settings-item button {
+  margin-right: 20px;
+}
+
+.settings-about {
+  position: relative;
+  width: 100%;
+  max-height: 70vh;
+  height: 100%;
+  display: flex;
+}
+.settings-about .settings-about-bg {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-grow: 1;
+}
+.settings-about .settings-about-bg .settings-about-bg-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 8px 8px #1b1b1b inset;
+  background: url("/images/duin.jpg") center center no-repeat;
+  background-size: cover;
+  width: 60%;
+  height: 100%;
+}
+.settings-about .settings-about-bg .settings-about-bg-frame img {
+  display: none;
+}
+.settings-about .settings-about-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+}
+.settings-about .settings-about-content h1 {
+  margin: 0;
+}
+.settings-about .settings-about-content ul {
+  display: inline-block;
+}
+.settings-about .settings-about-content ul li {
+  margin-bottom: 12px;
+}
+.settings-about .settings-about-content ul li .social-icon {
+  width: 180px;
+}
+.settings-about .settings-about-content ul li .social-icon a {
+  background: #212121;
+  padding: 8px 12px;
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: background-color 0.3s ease-in-out;
+  border: 1px solid #121212;
+}
+.settings-about .settings-about-content ul li .social-icon a label {
+  cursor: pointer;
+}
+.settings-about .settings-about-content ul li .social-icon a:hover {
+  background: #1E1E1E;
 }
 
 /*# sourceMappingURL=app.css.map */

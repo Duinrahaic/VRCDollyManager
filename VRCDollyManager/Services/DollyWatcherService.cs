@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using System.Text.Json.Serialization;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using VRCDollyManager.Data;
@@ -100,7 +99,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
             var fileName = Path.GetFileName(filePath);
             var exists = await dbContext.Dollies.AnyAsync(d => d.Name == fileName);
 
-            if (await TryAddDollyAsync(new Dolly { Name = fileName }))
+            if (await TryAddDollyAsync(new Models.Dolly { Name = fileName }))
                 OnDollyChanged(new DollyChangedEventArgs(fileName,
                     exists ? DollyChangeType.Updated : DollyChangeType.Added));
         }
@@ -110,7 +109,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
         }
     }
 
-    public async Task<bool> TryAddDollyAsync(Dolly dolly)
+    public async Task<bool> TryAddDollyAsync(Models.Dolly dolly)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
         try
@@ -132,7 +131,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
         return false;
     }
 
-    public async Task<List<Dolly>> GetAllDolliesAsync()
+    public async Task<List<Models.Dolly>> GetAllDolliesAsync()
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
         return await dbContext.Dollies.ToListAsync();
@@ -144,7 +143,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
         return await dbContext.Dollies.FirstOrDefaultAsync(d => d.Name == name);
     }
 
-    public async Task AddDollyAsync(Dolly dolly)
+    public async Task AddDollyAsync(Models.Dolly dolly)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
         if (!await dbContext.Dollies.AnyAsync(d => d.Name == dolly.Name))
@@ -158,7 +157,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
  
 
     
-    public async Task ImportDollyFile(Dolly dolly)
+    public async Task ImportDollyFile(Models.Dolly dolly)
     {
         
         if (dolly == null || string.IsNullOrWhiteSpace(dolly.Name))
@@ -215,7 +214,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
         return $"VRM_Import_{timeStamp}";
     }
 
-    public async Task UpdateDollyAsync(Dolly dolly)
+    public async Task UpdateDollyAsync(Models.Dolly dolly)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
         var existingDolly = await dbContext.Dollies.FirstOrDefaultAsync(d => d.Name == dolly.Name);
@@ -270,7 +269,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
                 if (!existingDollies.ContainsKey(file))
                 {
                     Console.WriteLine($"Adding missing file to database: {file}");
-                    await AddDollyAsync(new Dolly { Name = file });
+                    await AddDollyAsync(new Models.Dolly { Name = file });
                 }
 
             foreach (var dolly in existingDollies.Values)

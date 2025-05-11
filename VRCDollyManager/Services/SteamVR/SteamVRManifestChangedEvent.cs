@@ -1,4 +1,4 @@
-﻿namespace VRCDollyManager.Models;
+﻿namespace VRCDollyManager.Services.SteamVR;
 
 public class SteamVrManifestChangedEvent(bool isManifestInstalled) : EventArgs
 {

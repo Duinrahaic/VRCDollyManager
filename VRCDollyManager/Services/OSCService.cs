@@ -6,7 +6,7 @@ using VRCDollyManager.Models;
 
 namespace VRCDollyManager.Services;
 
-public class OscService : IDisposable
+public class OscService : IDisposable, IOscService
 {
     public delegate void OscSubscriptionEventHandler(OscSubscriptionEvent e);
 

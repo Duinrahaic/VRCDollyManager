@@ -1,0 +1,22 @@
+﻿@using VRCDollyManager.Services
+@inject IOscService Osc
+ 
+
+<div class="settings-group">
+    <div class="settings-group-label">
+        <Blazicon Svg="Lucide.Signal"></Blazicon>
+        <label>OSCQuery</label>
+    </div>
+    <div class="settings-group-content">
+        <div class="settings-item">
+            <label>Connection Status</label>
+            <SettingsIndicator Color="@(Osc.IsConnected ? SettingsIndicatorColor.Green : SettingsIndicatorColor.Red)" 
+                               Label="@(Osc.IsConnected ? "Connected":"Disconnected")"/>
+         </div>
+        <div class="settings-item">
+            <label>Restart Connection</label>
+            <button> Restart </button>
+        </div>
+    </div>
+</div>
+ 
