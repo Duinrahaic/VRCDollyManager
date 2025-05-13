@@ -1,4 +1,5 @@
-﻿@using VRCDollyManager.Services.OSC
+﻿@using System.Timers
+@using VRCDollyManager.Services.OSC
 @inject IOscService Osc
 @implements IDisposable
 
@@ -6,35 +7,64 @@
     <div class="settings-group-label">
         <Blazicon Svg="Lucide.Signal"></Blazicon>
         <label>OSCQuery</label>
-        <SettingsIndicator Color="@(_isConnected ? SettingsIndicatorColor.Green : SettingsIndicatorColor.Red)"
-                           Label="@(_isConnected ? "Connected":"Disconnected")"/>
+        <SettingsIndicator Color="@(GetConnectionStatus())"
+                           Label="@(GetConnectionLabel())"/>
     </div>
     <div class="settings-group-content">
         <div class="settings-item">
-            <label>Restart Connection</label>
-            <button @onclick="@(()=>Osc.RestartService())"> Restart </button>
+            <label>Listening Port</label>
+            <div class="value">
+                @GetPortLabel()
+            </div>
         </div>
-        
     </div>
 </div>
  
 @code
 {
     private bool _isConnected = false;
+    private int? _port = null;
+    System.Timers.Timer _timer = new(1000);
+
     protected override void OnInitialized()
     {
-        _isConnected = Osc.IsConnected;
+        Refresh();
+        _timer.Elapsed += TimerOnElapsed;
+        _timer.Start();
         Osc.OnConnectionStateChanged += ConnectionStateChanged;
     }
 
-    private void ConnectionStateChanged(bool isConnected)
+    private string GetConnectionLabel() =>
+        _isConnected ? "Connected" : "Disconnected";
+    private SettingsIndicatorColor GetConnectionStatus() =>
+        _isConnected ? SettingsIndicatorColor.Green : SettingsIndicatorColor.Red;
+    private string GetPortLabel() =>
+        _port.HasValue ? _port.Value.ToString() : "Unknown";
+    
+    private void Refresh()
     {
-        _isConnected = isConnected;
+        _isConnected = Osc.IsConnected;
+        _port = Osc.ListeningPort;
+    }
+
+    
+    private void TimerOnElapsed(object? sender, ElapsedEventArgs e)
+    {
+        Refresh();
         InvokeAsync(StateHasChanged);
+    }
+    
+    private void ConnectionStateChanged(object? sender, OSCServiceConnectionEvent e)
+    {
+        _isConnected = e.Connected;
+        _port = e.ListeningPort;
+        InvokeAsync(StateHasChanged);
+        
     }
 
     public void Dispose()
-    {
+    {        
+        _timer.Dispose();
         Osc.OnConnectionStateChanged -= ConnectionStateChanged;
     }
 }

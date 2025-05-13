@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>1zeyopwz5q</Fingerprint>
-      <Integrity>s6NUpUwLih2p9DV6xp/foBetEdgB9SUkSSw1/jnK3bc=</Integrity>
+      <Fingerprint>b3cpf644l0</Fingerprint>
+      <Integrity>iW/TYGjyPBSAhp77XIvc7SrCl4wmSKq+IdNoPmNYzNc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\app.css'))</OriginalItemSpec>
@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>d0b37itr06</Fingerprint>
-      <Integrity>fdmCTokhvGFSRFQC+6F/zZplb9wtrwjCXLYCOvIMutw=</Integrity>
+      <Fingerprint>sm2s4n8hn5</Fingerprint>
+      <Integrity>rANLEXZXUWi93vSAw5rY2CGMYI/g1DJa6iRxBkFLtaw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\app.scss'))</OriginalItemSpec>
@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>vfri6qiio2</Fingerprint>
-      <Integrity>a2krP1dH4QQKafjjQNDoc2bpVUEWrRBwqW7FDE19S4w=</Integrity>
+      <Fingerprint>r61xh10v4b</Fingerprint>
+      <Integrity>vWYw6YdCDZ3qof1g4lVTGn/P0R6TkyfOp1Ghb8MjDXM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\app.css.map'))</OriginalItemSpec>
@@ -156,8 +156,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>wx0emccc5f</Fingerprint>
-      <Integrity>vL3hX21fI0WPl4FURNQQIzz76OyHgN8JuG3fA8EHDX0=</Integrity>
+      <Fingerprint>27g4mmdxjb</Fingerprint>
+      <Integrity>/igqQZ9S2YUYpd12ptdrSWT6FAf2yynuw8B43XJxKX0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\scss\_modal.scss'))</OriginalItemSpec>
@@ -198,6 +198,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\scss\_pad.scss'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\scss\_settings.scss'))">
+      <SourceType>Package</SourceType>
+      <SourceId>VRCDollyManager</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>/</BasePath>
+      <RelativePath>css/scss/_settings.scss</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>fiy7bmowr8</Fingerprint>
+      <Integrity>dy1GlKtJCftZCQlnbDOctHFCkUInSs4ce1FBzY9utUM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\scss\_settings.scss'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\scss\_social.scss'))">
       <SourceType>Package</SourceType>
       <SourceId>VRCDollyManager</SourceId>
@@ -228,8 +246,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>q2xkxoss1i</Fingerprint>
-      <Integrity>csWJ7CM4q5kc8BNaGoVRbNpyCj0/GvtAbr+vqvN+TbY=</Integrity>
+      <Fingerprint>815t3h6pqr</Fingerprint>
+      <Integrity>RNoEC5bM2D+CKAYi+GT/vP5p2KmSi1RaUvCHiA6g/ro=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\scss\_table.scss'))</OriginalItemSpec>
@@ -246,8 +264,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>0ony413acd</Fingerprint>
-      <Integrity>UITl7xPf24gfitpOkyBiTixfHsFZbAfbgdDzUQL23XU=</Integrity>
+      <Fingerprint>tyxmcogap1</Fingerprint>
+      <Integrity>dcEv1aGU9781NnvvBIFCJcktJVMbwdsXDxsaLwUn0oo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\scss\_threejs.scss'))</OriginalItemSpec>
@@ -264,8 +282,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>krxezmr6na</Fingerprint>
-      <Integrity>kBJvB+Lk+QnkLbnA67lm0DjwDyJRLb9oAnHeuK51JAY=</Integrity>
+      <Fingerprint>vvfzew0y2a</Fingerprint>
+      <Integrity>1fasQYcrFA+lLCHPN0Zgy4z5iQYsLoXokNiHSh7xO6Q=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\scss\_variables.scss'))</OriginalItemSpec>
@@ -287,6 +305,42 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\DollyManagerLogo.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\duin.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>VRCDollyManager</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>/</BasePath>
+      <RelativePath>images/duin.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>jqy690bldq</Fingerprint>
+      <Integrity>W45xqrwX8hk8Lz+wtJs07/tjoYdyaY/mbWy9tQdHWAM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\duin.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\Duin.svg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>VRCDollyManager</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>/</BasePath>
+      <RelativePath>images/Duin.svg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ulr0c12rcj</Fingerprint>
+      <Integrity>wpsV1FmG8dBRv7a5NbV5DUa+mob7dFIYbVQIuDSnBVs=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\Duin.svg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))">
       <SourceType>Package</SourceType>
@@ -336,8 +390,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>sl68nlsdza</Fingerprint>
-      <Integrity>kEHjc65Ogq2Xx2x1FL+19Qp35P5u6JX8ZzjQyA/gMto=</Integrity>
+      <Fingerprint>ux6y70qjwh</Fingerprint>
+      <Integrity>XuE5C0JMHFjc2HSV4H3jltO2jlDTep/OSsWi4kwZmJ4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\threeInterop.js'))</OriginalItemSpec>

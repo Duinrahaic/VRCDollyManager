@@ -13,6 +13,9 @@
         <div class="settings-detail">
             @switch (_selectedOption)
             {
+                case SettingsOptions.General:
+                    <General/>
+                    break;
                 case SettingsOptions.Integrations:
                     <Integrations/>
                     break;
@@ -29,16 +32,7 @@
 </Modal>
 @code {
     private Modal _settings = new();
-    private SettingsOptions _selectedOption = SettingsOptions.Integrations;
+    private SettingsOptions _selectedOption = SettingsOptions.General;
     
     public void Open() => _settings.OpenModal();
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (firstRender)
-        {
-            _settings.OpenModal();
-
-        }
-    }
 }

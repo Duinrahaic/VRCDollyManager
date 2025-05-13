@@ -1,4 +1,5 @@
-﻿@using VRCDollyManager.Services.SteamVR
+﻿@using System.Timers
+@using VRCDollyManager.Services.SteamVR
 @inject ISteamVrService Vr
 @implements IDisposable
 
@@ -10,13 +11,13 @@
         <SettingsIndicator Label="@GetConnectionLabel()" Color="GetConnectionStatus()"/>
     </div>
     <div class="settings-group-content">
-        <div class="settings-item">
-            <label>Connection Status</label>
-            <SettingsIndicator Label="@GetConnectionLabel()" Color="GetConnectionStatus()"/>
+        <div class="settings-message info">
+            <Blazicon Svg="Lucide.Info"/>
+            Configuration is only available when SteamVR is running.
         </div>
         <div class="settings-item">
             <label>Auto-launch with SteamVR</label>
-            <SettingsToggleSwitch Disabled="@(!_initialized)" Label="@GetRegistrationLabel()" 
+            <SettingsToggleSwitch Disabled="@(!_initialized)" Label="@GetRegistrationLabel()"
                                   Value="@(_installed ?? false)" ValueChanged="@ToggleRegistration"/>
         </div>
     </div>
@@ -26,17 +27,32 @@
 {
     bool _initialized = false;
     bool? _installed = null;
-
+    
+    System.Timers.Timer _timer = new(1000);
 
     protected override void OnInitialized()
+    {
+        _timer.Elapsed += TimerOnElapsed;
+        _timer.Start();
+        Refresh();
+        Vr.ManifestChanged += VrOnManifestChanged;
+        Vr.StateChanged += VrOnStateChanged;
+    }
+
+    private void Refresh()
     {
         _initialized = Vr.IsInitialized;
         if (Vr.TryIsInstalled(out var installed))
         {
             _installed = installed;
         }
-        Vr.ManifestChanged += VrOnManifestChanged;
-        Vr.StateChanged += VrOnStateChanged;
+    }
+    
+    
+    private void TimerOnElapsed(object? sender, ElapsedEventArgs e)
+    {
+        Refresh();
+        InvokeAsync(StateHasChanged);
     }
 
     private SettingsIndicatorColor GetConnectionStatus() => 
@@ -75,17 +91,19 @@
     private void VrOnStateChanged(object? sender, SteamVrMonitorChangeEvent e)
     {
         _initialized = e.Connected;
-        
+        InvokeAsync(StateHasChanged);
     }
 
     private void VrOnManifestChanged(object? sender, SteamVrManifestChangedEvent e)
     {
         _installed = e.IsManifestInstalled;
+        InvokeAsync(StateHasChanged);
     }
 
 
     public void Dispose()
     {
+        _timer.Dispose();
         Vr.ManifestChanged -= VrOnManifestChanged;
         Vr.StateChanged -= VrOnStateChanged;
     }

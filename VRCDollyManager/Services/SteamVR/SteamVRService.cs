@@ -64,12 +64,10 @@ namespace VRCDollyManager.Services.SteamVR
             {
                 if (OpenVR.System == null)
                 {
-                    _logger.LogError("Unable to verify registration state with SteamVR: OpenVR.System is not initialized.");
                     return false;
                 }
 
                 isInstalled = OpenVR.Applications.IsApplicationInstalled(AppConstants.VrApplicationName);
-                _logger.LogInformation($"{AppConstants.VrApplicationName} is installed: {isInstalled}");
                 return true;
             }
             catch (Exception ex)

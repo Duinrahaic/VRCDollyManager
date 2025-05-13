@@ -15,6 +15,7 @@
           "Avalonia.ReactiveUI": "11.1.4",
           "Avalonia.Themes.Fluent": "11.1.4",
           "Avalonia.Themes.Simple": "11.1.4",
+          "Blazicons.FontAwesome": "2.3.29",
           "Blazicons.Lucide": "1.5.16",
           "Blazored.LocalStorage": "4.5.0",
           "Dapper": "2.1.66",
@@ -269,6 +270,17 @@
           "lib/net6.0/Blazicons.dll": {
             "assemblyVersion": "2.1.30.0",
             "fileVersion": "2.1.30.0"
+          }
+        }
+      },
+      "Blazicons.FontAwesome/2.3.29": {
+        "dependencies": {
+          "Blazicons": "2.1.30"
+        },
+        "runtime": {
+          "lib/net6.0/Blazicons.FontAwesome.dll": {
+            "assemblyVersion": "2.3.29.0",
+            "fileVersion": "2.3.29.0"
           }
         }
       },
@@ -2097,6 +2109,13 @@
       "sha512": "sha512-FIKg+kPOFvtH84yDCwqvC9cSpyvHqFmyTU4KgCHdY1oVwSRaKbsuViyLf3a6vNxC92TYPp4cuh0T5gm5zQInVQ==",
       "path": "blazicons/2.1.30",
       "hashPath": "blazicons.2.1.30.nupkg.sha512"
+    },
+    "Blazicons.FontAwesome/2.3.29": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TF5E2miqGYsyR+JPJJ0xxGxlFpBZnZO4LsQPlhA0F9h0JDp17GKT5ReymHTnqjK1xCBFEG7RcdJbkEgM7XNyAw==",
+      "path": "blazicons.fontawesome/2.3.29",
+      "hashPath": "blazicons.fontawesome.2.3.29.nupkg.sha512"
     },
     "Blazicons.Lucide/1.5.16": {
       "type": "package",

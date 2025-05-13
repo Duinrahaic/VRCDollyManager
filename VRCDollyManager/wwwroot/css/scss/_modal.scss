@@ -80,6 +80,7 @@ $animation-speed: 0.2s;
       overflow: hidden;
       position: relative;
       z-index: 1001;
+      border: 1px solid $surface;
       transform: translateY(50px) scale(0.8);
       transition: transform $animation-speed ease-in-out, opacity $animation-speed ease-in-out, visibility $animation-speed ease-in-out;
       // Modal Sizes

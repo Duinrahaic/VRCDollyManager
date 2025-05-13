@@ -111,7 +111,7 @@
             return groups;
         }, {});
 
-        const colors = [0x9B54FD, 0xFF6F61, 0x6B5B95, 0x88B04B, 0xF7CAC9, 0x92A8D1]; // Some random colors for distinction
+        const colors = [0x9B54FD, 0xff2614, 0x0C51FF, 0x40f12a, 0xF7CAC9, 0x92A8D1]; // Some random colors for distinction
         const paths = [];
         this.dollies = [];
         this.curveObjects = [];

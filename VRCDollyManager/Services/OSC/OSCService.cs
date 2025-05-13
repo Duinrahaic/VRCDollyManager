@@ -8,14 +8,9 @@ namespace VRCDollyManager.Services.OSC;
 
 public class OscService : IDisposable, IOscService
 {
-    public delegate void OscSubscriptionEventHandler(OscSubscriptionEvent e);
-
-    public event OscSubscriptionEventHandler? OnOscMessageReceived;
-
-    public delegate void ConnectionStateChangedHandler(bool isConnected);
-
-    public event ConnectionStateChangedHandler? OnConnectionStateChanged;
-
+    
+    public event EventHandler<OscSubscriptionEvent>? OnOscMessageReceived;
+    public event EventHandler<OSCServiceConnectionEvent>? OnConnectionStateChanged;
     private readonly ILogger<OscService> _logger;
     private readonly CancellationTokenSource _cts;
     private OscQueryServer? _server;
@@ -24,7 +19,7 @@ public class OscService : IDisposable, IOscService
     private OscQueryServer? _currentOscQueryServer = null;
     private bool _isConnected;
     private bool _isReconnecting = false;
-
+    public int? ListeningPort { get; private set; } = null;
     public bool IsConnected
     {
         get => _isConnected;
@@ -33,7 +28,6 @@ public class OscService : IDisposable, IOscService
             if (_isConnected != value)
             {
                 _isConnected = value;
-                OnConnectionStateChanged?.Invoke(_isConnected);
                 _logger.LogInformation(
                     $"OSC Connection state changed: {(_isConnected ? "Connected" : "Disconnected")}");
 
@@ -111,9 +105,11 @@ public class OscService : IDisposable, IOscService
         _connection = new OscDuplex(new IPEndPoint(ipEndPoint.Address, oscQueryServer.OscReceivePort), ipEndPoint);
 
         _currentOscQueryServer = oscQueryServer;
+        ListeningPort = oscQueryServer.OscReceivePort;
         IsConnected = true; // Set connected state
         _isReconnecting = false; // Stop reconnect attempts
-
+        OnConnectionStateChanged?.Invoke(this,
+            new OSCServiceConnectionEvent(_isConnected, ListeningPort  ));
         AppDomain.CurrentDomain.ProcessExit += (s, e) => Cleanup();
         ErrorHandledTask.Run(ReceiverLoopAsync);
     }
@@ -136,16 +132,8 @@ public class OscService : IDisposable, IOscService
                 if (_connection != null)
                 {
                     var received = await _connection.ReceiveMessageAsync();
-                    if (received.Address.Contains("VDM"))
-                    {
-                        var message = received;
-                        _ = Task.Run(() => OnOscMessageReceived?.Invoke(new OscSubscriptionEvent(message)),
-                            currentCancellationToken);
-                    }
-                    else if (received.Address.Contains("dolly"))
-                    {
-                        
-                    }
+                    var message = received;
+                    OnOscMessageReceived?.Invoke(this,new OscSubscriptionEvent(message));
                 }
                 else
                 {
@@ -200,7 +188,7 @@ public class OscService : IDisposable, IOscService
                 Start(); // Restart the service
             }
         }
-
+        
         _isReconnecting = false;
     }
 

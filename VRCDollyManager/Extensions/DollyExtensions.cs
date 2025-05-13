@@ -5,6 +5,18 @@ namespace VRCDollyManager.Extensions;
 
 public static class DollyExtensions
 {
+    public static void OpenDollyFolder()
+    {
+        var path = GetDollyPath();
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = path,
+            UseShellExecute = true
+        });
+    }
+    
     public static string GetDollyPath()
     {
         return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
@@ -70,5 +82,50 @@ public static class DollyExtensions
         if (!File.Exists(keyFramePath))
             return string.Empty;
         return File.ReadAllText(keyFramePath);
+    }
+    
+    /// <summary>
+    /// Groups keyframes by PathIndex, sorts each group by Index,
+    /// then computes DistanceFromPrevious and TravelDuration for each.
+    /// </summary>
+    public static Dictionary<int, List<CameraKeyFrame>> CalculateTravelDurations(
+        this IEnumerable<CameraKeyFrame> keyframes)
+    {
+        return keyframes
+            .GroupBy(kf => kf.PathIndex)
+            .ToDictionary(
+                grp => grp.Key,
+                grp =>
+                {
+                    var sorted = grp
+                        .OrderBy(kf => kf.Index)
+                        .ToList();
+
+                    for (int i = 0; i < sorted.Count; i++)
+                    {
+                        if (i == 0)
+                        {
+                            // First frame in path: no travel yet
+                            sorted[i].DistanceFromPrevious = 0;
+                            sorted[i].TravelDuration       = 0;
+                        }
+                        else
+                        {
+                            var prev = sorted[i - 1];
+                            var curr = sorted[i];
+
+                            // Euclidean distance
+                            double dx = curr.Position.X - prev.Position.X;
+                            double dy = curr.Position.Y - prev.Position.Y;
+                            double dz = curr.Position.Z - prev.Position.Z;
+                            double distance = Math.Sqrt(dx*dx + dy*dy + dz*dz);
+
+                            curr.DistanceFromPrevious = distance;
+                            curr.TravelDuration       = distance / curr.Speed;
+                        }
+                    }
+
+                    return sorted;
+                });
     }
 }

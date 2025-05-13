@@ -31,6 +31,55 @@
   border-top: 1px solid transparentize($background, 0.8);
   border-right: 1px solid transparentize($background, 0.8);
   
+  &.right{
+	right: 0;
+	left: unset;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 0;
+	border-left: 1px solid transparentize($background, 0.8);
+	border-right: unset;
+	
+  }
+  
+  .dolly-renderer-path-indicator
+  {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	font-size: 12px;
+	font-weight: lighter;
+	flex-grow: 1;
+	
+	
+	
+	div{
+	}
+	
+	.path-indicator{
+	  height: 12px;
+	  width: 12px;
+	  border-radius: 50%;
+	  background: grey;
+	  
+	  &.path-one{
+		background: $path-one;
+	  }
+	  &.path-two{
+		background: $path-two;
+	  }
+	  &.path-three{
+		background: $path-three;
+	  }
+	  &.path-four{
+		background: $path-four;
+	  }
+	  
+	}
+	
+	
+  }
   .dolly-renderer-path-detail
   {
 	display: flex;

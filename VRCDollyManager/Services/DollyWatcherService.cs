@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Reflection;
+using System.Text.Json;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using VRCDollyManager.Data;
@@ -6,13 +7,13 @@ using VRCDollyManager.Models;
 
 namespace VRCDollyManager.Services;
 
-public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatcherService, IDisposable
+public sealed class DollyFileWatcherService : IDollyFileWatcherService, IDisposable
 {
     private readonly string _watchPath;
     private readonly FileSystemWatcher _fileWatcher;
     private readonly IDbContextFactory<DollyDbContext> _dbContextFactory;
     private bool _disposed = false;
-
+    
     public event EventHandler<DollyChangedEventArgs>? DollyChanged;
     public DollyFileWatcherService(IDbContextFactory<DollyDbContext> dbContextFactory)
     {
@@ -58,6 +59,8 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
         _fileWatcher.Created += OnFileChanged;
         _fileWatcher.Changed += OnFileChanged;
         _fileWatcher.Deleted += OnFileDeleted;
+
+        SyncFileSystemWithDatabaseAsync();
 
         LoadExistingFiles();
     }
@@ -291,27 +294,15 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
         DollyChanged?.Invoke(this, e);
     }
 
-    public override async Task StartAsync(CancellationToken cancellationToken)
+    public string GetVersion()
     {
-        Console.WriteLine("DollyFileWatcherService started...");
-        await SyncFileSystemWithDatabaseAsync();
-        await base.StartAsync(cancellationToken);
-    }
-
-    public override Task StopAsync(CancellationToken cancellationToken)
-    {
-        Console.WriteLine("DollyFileWatcherService stopping...");
-        _fileWatcher.EnableRaisingEvents = false;
-        return base.StopAsync(cancellationToken);
-    }
-
-    protected override Task ExecuteAsync(CancellationToken stoppingToken)
-    {
-        return Task.CompletedTask;
+        string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        return version;
     }
 
     public void Dispose()
-    {
+    {        
+        _fileWatcher.EnableRaisingEvents = false;
         Dispose(true);
         GC.SuppressFinalize(this);
     }

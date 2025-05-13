@@ -364,6 +364,22 @@
           "buildMultiTargeting/Blazicons.props": {}
         }
       },
+      "Blazicons.FontAwesome/2.3.29": {
+        "type": "package",
+        "dependencies": {
+          "Blazicons": "2.1.30"
+        },
+        "compile": {
+          "lib/net6.0/Blazicons.FontAwesome.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Blazicons.FontAwesome.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Blazicons.Lucide/1.5.16": {
         "type": "package",
         "dependencies": {
@@ -3606,6 +3622,22 @@
         },
         "buildMultiTargeting": {
           "buildMultiTargeting/Blazicons.props": {}
+        }
+      },
+      "Blazicons.FontAwesome/2.3.29": {
+        "type": "package",
+        "dependencies": {
+          "Blazicons": "2.1.30"
+        },
+        "compile": {
+          "lib/net6.0/Blazicons.FontAwesome.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Blazicons.FontAwesome.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Blazicons.Lucide/1.5.16": {
@@ -6947,6 +6979,21 @@
         "lib/net6.0/Blazicons.dll",
         "lib/net6.0/Blazicons.xml",
         "staticwebassets/Blazicons.ugzwxlf6d1.bundle.scp.css"
+      ]
+    },
+    "Blazicons.FontAwesome/2.3.29": {
+      "sha512": "TF5E2miqGYsyR+JPJJ0xxGxlFpBZnZO4LsQPlhA0F9h0JDp17GKT5ReymHTnqjK1xCBFEG7RcdJbkEgM7XNyAw==",
+      "type": "package",
+      "path": "blazicons.fontawesome/2.3.29",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "blazicons-md-128.png",
+        "blazicons.fontawesome.2.3.29.nupkg.sha512",
+        "blazicons.fontawesome.nuspec",
+        "lib/net6.0/Blazicons.FontAwesome.dll",
+        "lib/net6.0/Blazicons.FontAwesome.xml"
       ]
     },
     "Blazicons.Lucide/1.5.16": {
@@ -13367,6 +13414,7 @@
       "Avalonia.ReactiveUI >= 11.1.4",
       "Avalonia.Themes.Fluent >= 11.1.4",
       "Avalonia.Themes.Simple >= 11.1.4",
+      "Blazicons.FontAwesome >= 2.3.29",
       "Blazicons.Lucide >= 1.5.16",
       "Blazored.LocalStorage >= 4.5.0",
       "Dapper >= 2.1.66",
@@ -13458,6 +13506,10 @@
           "Avalonia.Themes.Simple": {
             "target": "Package",
             "version": "[11.1.4, )"
+          },
+          "Blazicons.FontAwesome": {
+            "target": "Package",
+            "version": "[2.3.29, )"
           },
           "Blazicons.Lucide": {
             "target": "Package",

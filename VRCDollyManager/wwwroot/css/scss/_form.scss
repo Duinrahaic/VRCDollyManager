@@ -183,7 +183,11 @@ button{
 }
 
 
-
+.dolly-form-container{
+  display: flex;
+  flex-direction: column;
+  width: 92%;
+}
  
 #dollyForm
 {
@@ -191,7 +195,8 @@ button{
   flex-direction: column;
   gap: 8px;
   margin: 1.5rem;
-  
+  flex-grow: 1;
+  width: 100%;
 }
 
 .form-item
@@ -247,6 +252,30 @@ button{
   
 }
 
+input.number
+{
+  padding: 0.5rem; 
+  font-size: 1rem;
+  background: $background;
+  color: $on-surface;
+  transition: border-bottom-color 0.2s ease-in-out;
+  border: 1px solid $background;
+  width: 2ch;
+  text-align: center;
+  outline: none;
+  
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+  }
+  
+  
+  &:focus
+  {
+	border-bottom: 1px solid $primary;
+  }
+}
 
 ul
 {

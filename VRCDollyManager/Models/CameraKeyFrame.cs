@@ -1,4 +1,6 @@
-﻿namespace VRCDollyManager.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace VRCDollyManager.Models;
 
 public class CameraKeyFrame
 {
@@ -17,6 +19,12 @@ public class CameraKeyFrame
     public Position Position { get; set; } = new();
     public Rotation Rotation { get; set; } = new();
     public bool IsLocal { get; set; } = false;
+
+    [JsonIgnore] 
+    public double DistanceFromPrevious { get; set; }
+
+    [JsonIgnore]
+    public double  TravelDuration  { get; set; }
 }
 
 public class Position

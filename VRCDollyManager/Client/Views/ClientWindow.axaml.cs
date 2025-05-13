@@ -1,4 +1,5 @@
 using System.Reactive;
+using System.Reflection;
 using Avalonia.ReactiveUI;
 using VRCDollyManager.Client.ViewModels;
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
@@ -8,8 +9,20 @@ namespace VRCDollyManager.Client.Views;
 
 public partial class ClientWindow : ReactiveWindow<ClientWindowViewModel>
 {
+    private string GetTitle()
+    {
+        return $"Dolly Manager";
+    }
+    
+    private static Version GetAssemblyVersion()
+    {
+        var asm = Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
+        return asm.GetName().Version;
+    }
+    
     public ClientWindow()
     {
+        this.Title = GetTitle();
         var rootComponents = new RootComponentsCollection
         {
             new RootComponent("#app", typeof(Main), null)

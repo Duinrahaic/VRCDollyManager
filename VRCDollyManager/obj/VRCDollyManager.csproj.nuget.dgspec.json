@@ -74,6 +74,10 @@
               "target": "Package",
               "version": "[11.1.4, )"
             },
+            "Blazicons.FontAwesome": {
+              "target": "Package",
+              "version": "[2.3.29, )"
+            },
             "Blazicons.Lucide": {
               "target": "Package",
               "version": "[1.5.16, )"
