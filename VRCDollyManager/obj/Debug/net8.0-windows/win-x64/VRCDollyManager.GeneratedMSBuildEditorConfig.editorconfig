@@ -40,6 +40,16 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/manifest.vrmanifest]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/openvr_api.dll]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 build_metadata.AdditionalFiles.TargetPath = 
@@ -48,11 +58,6 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Client/Views/ClientWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 build_metadata.AdditionalFiles.TargetPath = 
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/About.razor]
-build_metadata.AdditionalFiles.SourceItemGroup = 
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBYm91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Chip.razor]
@@ -80,6 +85,11 @@ build_metadata.AdditionalFiles.SourceItemGroup =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEb2xseVJvd0l0ZW0ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/DollySettings.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEb2xseVNldHRpbmdzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/DollySideContainer.razor]
 build_metadata.AdditionalFiles.SourceItemGroup = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEb2xseVNpZGVDb250YWluZXIucmF6b3I=
@@ -105,6 +115,56 @@ build_metadata.AdditionalFiles.SourceItemGroup =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2RhbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Modals/SettingsModal.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2RhbHNcU2V0dGluZ3NNb2RhbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Modals/Settings/About.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2RhbHNcU2V0dGluZ3NcQWJvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Modals/Settings/AboutSocialIcon.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2RhbHNcU2V0dGluZ3NcQWJvdXRTb2NpYWxJY29uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Modals/Settings/General.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2RhbHNcU2V0dGluZ3NcR2VuZXJhbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Modals/Settings/Integrations.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2RhbHNcU2V0dGluZ3NcSW50ZWdyYXRpb25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Modals/Settings/OSCSettings.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2RhbHNcU2V0dGluZ3NcT1NDU2V0dGluZ3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Modals/Settings/SettingsContextItem.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2RhbHNcU2V0dGluZ3NcU2V0dGluZ3NDb250ZXh0SXRlbS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Modals/Settings/SettingsIndicator.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2RhbHNcU2V0dGluZ3NcU2V0dGluZ3NJbmRpY2F0b3IucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Modals/Settings/SettingsToggleSwitch.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2RhbHNcU2V0dGluZ3NcU2V0dGluZ3NUb2dnbGVTd2l0Y2gucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Modals/Settings/SteamVRSettings.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2RhbHNcU2V0dGluZ3NcU3RlYW1WUlNldHRpbmdzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/Notification.razor]
 build_metadata.AdditionalFiles.SourceItemGroup = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xOb3RpZmljYXRpb24ucmF6b3I=
@@ -123,6 +183,11 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/SearchBar.razor]
 build_metadata.AdditionalFiles.SourceItemGroup = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZWFyY2hCYXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/SettingsButton.razor]
+build_metadata.AdditionalFiles.SourceItemGroup = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZXR0aW5nc0J1dHRvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Duinrahaic/RiderProjects/VRCDollyManager/VRCDollyManager/Components/SocialIcon.razor]

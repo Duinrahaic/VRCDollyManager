@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VRCDollyManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+35d7ce99e4628917236c0f890079b4cb848d1065")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7bd687e9018e08a896ee6b9c5895b1d02923e116")]
 [assembly: System.Reflection.AssemblyProductAttribute("VRCDollyManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VRCDollyManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

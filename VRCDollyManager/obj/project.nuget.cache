@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4ZZAwzQWVYw=",
+  "dgSpecHash": "Rxa87PXRyBA=",
   "success": true,
   "projectFilePath": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\VRCDollyManager.csproj",
   "expectedPackageFiles": [
@@ -21,6 +21,7 @@
     "C:\\Users\\Duinrahaic\\.nuget\\packages\\avalonia.win32\\11.1.4\\avalonia.win32.11.1.4.nupkg.sha512",
     "C:\\Users\\Duinrahaic\\.nuget\\packages\\avalonia.x11\\11.1.4\\avalonia.x11.11.1.4.nupkg.sha512",
     "C:\\Users\\Duinrahaic\\.nuget\\packages\\blazicons\\2.1.30\\blazicons.2.1.30.nupkg.sha512",
+    "C:\\Users\\Duinrahaic\\.nuget\\packages\\blazicons.fontawesome\\2.3.29\\blazicons.fontawesome.2.3.29.nupkg.sha512",
     "C:\\Users\\Duinrahaic\\.nuget\\packages\\blazicons.lucide\\1.5.16\\blazicons.lucide.1.5.16.nupkg.sha512",
     "C:\\Users\\Duinrahaic\\.nuget\\packages\\blazorcomponentutilities\\1.8.0\\blazorcomponentutilities.1.8.0.nupkg.sha512",
     "C:\\Users\\Duinrahaic\\.nuget\\packages\\blazored.localstorage\\4.5.0\\blazored.localstorage.4.5.0.nupkg.sha512",

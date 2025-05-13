@@ -1,0 +1,80 @@
+﻿@using System.Reflection
+@using System.Timers
+@using VRCDollyManager.Extensions
+@using VRCDollyManager.Services
+@using VRCDollyManager.Services.OSC
+@inject IDollyFileWatcherService DollyService
+@implements IDisposable
+
+<div class="settings-group">
+    <div class="settings-group-label">
+        <Blazicon Svg="Lucide.Camera"></Blazicon>
+        <label>Dolly Manager</label>
+    </div>
+    <div class="settings-group-content">
+        <div class="settings-item">
+            <label>Version</label>
+            <div class="value">
+                @DollyService.GetVersion()
+            </div>
+        </div>
+        <div class="settings-item">
+            <label>Dolly Count</label>
+            <div class="value">
+                @_dollyCount
+            </div>
+        </div>
+        <div class="settings-item">
+            <label>Data Folder</label>
+            <button @onclick="OpenDollyFolder"> <Blazicon Svg="Lucide.Folder"/> Open Folder </button>
+        </div>
+        <div class="settings-item">
+            <label>Github</label>
+            <button @onclick="OpenGithub"> <Blazicon Svg="Lucide.Github"/> Open Github </button>
+        </div>
+    </div>
+</div>
+
+@code
+{
+    private int _dollyCount = 0;
+    System.Timers.Timer _timer = new(1000);
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Refresh();
+        _timer.Elapsed += TimerOnElapsed;
+        _timer.Start();
+    }
+
+    private void OpenDollyFolder()
+    {
+        DollyExtensions.OpenDollyFolder();
+    }
+
+    private void OpenGithub()
+    {
+        string url = "https://github.com/Duinrahaic/VRCDollyManager";
+        BrowserHelper.OpenUrl(url);
+    }
+    
+    private async Task Refresh()
+    {
+        _dollyCount = (await DollyService.GetAllDolliesAsync()).Count;
+        
+    }
+
+    
+    private async void TimerOnElapsed(object? sender, ElapsedEventArgs e)
+    {
+        await Refresh();
+        await InvokeAsync(StateHasChanged);
+    }
+    
+ 
+
+    public void Dispose()
+    {        
+        _timer.Dispose();
+    }
+}

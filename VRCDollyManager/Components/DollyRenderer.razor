@@ -19,12 +19,31 @@
         <label>Paths:</label>
         <div> @_pathCount </div>
     </div>
+    <div class="dolly-renderer-path-detail">
+        <label>Duration:</label>
+        <div> @GetFormattedTime(_duration) </div>
+    </div>
 </div>
+
+@if(_pathCount > 0)
+{
+    <div class="dolly-renderer-path-details right">
+        @foreach(var pathClass in _pathClasses)
+        {
+            <div class="dolly-renderer-path-indicator">
+                <label>@GetIndex(pathClass)</label>
+                <div class="path-indicator @(@pathClass)">  </div>
+            </div>
+        }
+    </div>
+}
+
+
 @code {
     uint _pathCount = 0;
-    uint _tagCount = 0;    
-    
-    
+    uint _tagCount = 0;
+    uint _duration = 0; // Seconds
+    List<string> _pathClasses = new List<string>();
     
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -43,6 +62,12 @@
         }
     }
     
+    private string GetFormattedTime(double seconds)
+    {
+        var timeSpan = TimeSpan.FromSeconds(seconds);
+        return $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
+    }
+    
     public async Task LoadDollyPath(Dolly dolly)
     {
         //Tags = dolly.Tags;
@@ -51,6 +76,18 @@
         
         _pathCount = (uint)keyframes.DistinctBy(x=> x.PathIndex).Count();
         _tagCount = (uint)dolly.Tags.Count();
+        _duration = 0;
+        List<double> durations = new List<double>();
+        foreach (var group in keyframes.GroupBy(x => x.PathIndex))
+        {
+            var duration = group.Sum(x => x.Duration);
+            durations.Add(duration);
+        }
+
+        _duration = (uint)durations.Min();
+        _pathClasses = GetPathClasses(_pathCount);
+        
+        
         
         if (!keyframes.Any() || keyframes.Count < 2)
         {
@@ -72,10 +109,47 @@
         await JS.InvokeVoidAsync("ThreeInterop.renderPaths", json);
     }
 
+    public List<string> GetPathClasses(uint pathCount = 0)
+    {
+        List<string> pathClasses = new List<string>();
+        if(pathCount == 0)
+            return pathClasses;
+
+        pathClasses.Add("path-one");
+        if (pathCount >= 2)
+        {
+            pathClasses.Add("path-two");
+        } 
+        if (pathCount >= 3)
+        {
+            pathClasses.Add("path-three");
+        }
+        if (pathCount >= 4)
+        {
+            pathClasses.Add("path-four");  
+        }
+
+        return pathClasses;
+    }
+    
+    public int GetIndex(string pathClass)
+    {
+        return pathClass switch
+        {
+            "path-one" => 1,
+            "path-two" => 2,
+            "path-three" => 3,
+            "path-four" => 4,
+            _ => -1
+        };
+    }
+
     public async Task ClearScene()
     {
         _pathCount = 0;
         _tagCount = 0;
+        _duration = 0;
+        _pathClasses.Clear();
         StateHasChanged();
         await JS.InvokeVoidAsync("ThreeInterop.clearScene");
     }

@@ -94,8 +94,5 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </AdditionalFiles>
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Services\Dolly\" />
-    </ItemGroup>
 
 </Project>

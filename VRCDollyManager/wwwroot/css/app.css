@@ -554,7 +554,6 @@ ul {
   position: sticky;
   top: 0;
   z-index: 2;
-  margin-right: 10px;
 }
 .table-wrapper table {
   width: 100%;
@@ -871,6 +870,7 @@ ul {
   overflow: hidden;
   position: relative;
   z-index: 1001;
+  border: 1px solid #1E1E1E;
   transform: translateY(50px) scale(0.8);
   transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 }
@@ -983,6 +983,42 @@ ul {
   background: transparent;
   border-top: 1px solid rgba(18, 18, 18, 0.2);
   border-right: 1px solid rgba(18, 18, 18, 0.2);
+}
+.dolly-renderer-path-details.right {
+  right: 0;
+  left: unset;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 0;
+  border-left: 1px solid rgba(18, 18, 18, 0.2);
+  border-right: unset;
+}
+.dolly-renderer-path-details .dolly-renderer-path-indicator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: lighter;
+  flex-grow: 1;
+}
+.dolly-renderer-path-details .dolly-renderer-path-indicator .path-indicator {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: grey;
+}
+.dolly-renderer-path-details .dolly-renderer-path-indicator .path-indicator.path-one {
+  background: #9B54FD;
+}
+.dolly-renderer-path-details .dolly-renderer-path-indicator .path-indicator.path-two {
+  background: #ff2614;
+}
+.dolly-renderer-path-details .dolly-renderer-path-indicator .path-indicator.path-three {
+  background: #0C51FF;
+}
+.dolly-renderer-path-details .dolly-renderer-path-indicator .path-indicator.path-four {
+  background: #40f12a;
 }
 .dolly-renderer-path-details .dolly-renderer-path-detail {
   display: flex;
@@ -1281,8 +1317,8 @@ ul {
   flex-grow: 1;
   overflow: hidden;
   overflow-y: auto;
-  padding: 14px 8px;
-  background: #1b1b1b;
+  padding: 8px 8px 0 8px;
+  background: #111111;
 }
 .settings-container .settings-detail hr {
   width: 100%;
@@ -1300,6 +1336,9 @@ ul {
   border: 1px solid #121212;
   background: #1E1E1E;
   margin-bottom: 12px;
+}
+.settings-container .settings-detail .settings-group :last-child {
+  margin-bottom: 0;
 }
 .settings-container .settings-detail .settings-group .settings-group-label {
   font-size: 22px;
@@ -1421,6 +1460,29 @@ ul {
 .settings-container .settings-detail .settings-group .settings-group-content:last-child {
   margin-bottom: 12px;
 }
+.settings-container .settings-detail .settings-group .settings-group-content .settings-message {
+  font-size: 12px;
+  margin-left: 38px;
+  margin-right: 8px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: #121212;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: start;
+  font-weight: bold;
+}
+.settings-container .settings-detail .settings-group .settings-group-content .settings-message svg {
+  width: 16px;
+}
+.settings-container .settings-detail .settings-group .settings-group-content .settings-message.info {
+  background: #1154ff;
+  color: #FFFFFF;
+  border: 1px solid #003edd;
+}
 .settings-container .settings-detail .settings-group .settings-group-content .settings-item {
   display: flex;
   flex-direction: row;
@@ -1433,8 +1495,12 @@ ul {
 .settings-container .settings-detail .settings-group .settings-group-content .settings-item label {
   flex-grow: 1;
   text-align: start;
+  padding-left: 16px;
 }
 .settings-container .settings-detail .settings-group .settings-group-content .settings-item button {
+  margin-right: 20px;
+}
+.settings-container .settings-detail .settings-group .settings-group-content .settings-item .value {
   margin-right: 20px;
 }
 
@@ -1455,7 +1521,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 8px 8px #1b1b1b inset;
+  box-shadow: 0 0 8px 8px #111111 inset;
   background: url("/images/duin.jpg") center center no-repeat;
   background-size: cover;
   width: 60%;
@@ -1476,11 +1542,17 @@ ul {
 .settings-about .settings-about-content h1 {
   margin: 0;
 }
+.settings-about .settings-about-content img {
+  height: 90px;
+  position: absolute;
+  transform: translateY(-10px) translateX(15%);
+}
 .settings-about .settings-about-content ul {
+  margin-top: 70px;
   display: inline-block;
 }
-.settings-about .settings-about-content ul li {
-  margin-bottom: 12px;
+.settings-about .settings-about-content ul li:not(:last-child) {
+  margin-bottom: 10px;
 }
 .settings-about .settings-about-content ul li .social-icon {
   width: 180px;
