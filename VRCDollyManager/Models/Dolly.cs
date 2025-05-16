@@ -34,6 +34,13 @@ public class Dolly : IEquatable<Dolly>
         return string.IsNullOrEmpty(Alias) ? Name : Alias;
     }
 
+    public Dictionary<int, List<CameraKeyFrame>> GetKeyFramesByIndex()
+    {
+        return KeyFrames
+            .GroupBy(kf => kf.Index)
+            .ToDictionary(g => g.Key, g => g.ToList());
+    }
+    
 
     public override bool Equals(object? obj)
     {

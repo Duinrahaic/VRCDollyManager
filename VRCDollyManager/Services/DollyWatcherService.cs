@@ -1,5 +1,5 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using System.Reflection;
+using System.Text.Json;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using VRCDollyManager.Data;
@@ -7,22 +7,43 @@ using VRCDollyManager.Models;
 
 namespace VRCDollyManager.Services;
 
-public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatcherService, IDisposable
+public sealed class DollyFileWatcherService : IDollyFileWatcherService, IDisposable
 {
     private readonly string _watchPath;
     private readonly FileSystemWatcher _fileWatcher;
     private readonly IDbContextFactory<DollyDbContext> _dbContextFactory;
     private bool _disposed = false;
-
+    
     public event EventHandler<DollyChangedEventArgs>? DollyChanged;
-
     public DollyFileWatcherService(IDbContextFactory<DollyDbContext> dbContextFactory)
     {
+        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "VRChat");
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+            Console.WriteLine($"Directory created at: {path}");
+        }
+        else
+        {
+            Console.WriteLine($"Directory already exists at: {path}");
+        }
+        if (!Directory.Exists(Path.Combine(path, "CameraPaths")))
+        {
+            Directory.CreateDirectory(Path.Combine(path, "CameraPaths"));
+            Console.WriteLine($"Directory created at: {Path.Combine(path, "CameraPaths")}");
+        }
+        else
+        {
+            Console.WriteLine($"Directory already exists at: {Path.Combine(path, "CameraPaths")}");
+        }
+        
         _dbContextFactory = dbContextFactory;
         using (var context = _dbContextFactory.CreateDbContext())
         {
             context.Database.EnsureCreated();
         }
+
+       
         _watchPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "VRChat",
             "CameraPaths");
 
@@ -39,9 +60,11 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
         _fileWatcher.Changed += OnFileChanged;
         _fileWatcher.Deleted += OnFileDeleted;
 
+        SyncFileSystemWithDatabaseAsync();
+
         LoadExistingFiles();
     }
-
+    
     private void LoadExistingFiles()
     {
         foreach (var file in Directory.GetFiles(_watchPath, "*.json")) IndexFile(file);
@@ -79,7 +102,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
             var fileName = Path.GetFileName(filePath);
             var exists = await dbContext.Dollies.AnyAsync(d => d.Name == fileName);
 
-            if (await TryAddDollyAsync(new Dolly { Name = fileName }))
+            if (await TryAddDollyAsync(new Models.Dolly { Name = fileName }))
                 OnDollyChanged(new DollyChangedEventArgs(fileName,
                     exists ? DollyChangeType.Updated : DollyChangeType.Added));
         }
@@ -89,7 +112,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
         }
     }
 
-    public async Task<bool> TryAddDollyAsync(Dolly dolly)
+    public async Task<bool> TryAddDollyAsync(Models.Dolly dolly)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
         try
@@ -111,7 +134,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
         return false;
     }
 
-    public async Task<List<Dolly>> GetAllDolliesAsync()
+    public async Task<List<Models.Dolly>> GetAllDolliesAsync()
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
         return await dbContext.Dollies.ToListAsync();
@@ -123,7 +146,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
         return await dbContext.Dollies.FirstOrDefaultAsync(d => d.Name == name);
     }
 
-    public async Task AddDollyAsync(Dolly dolly)
+    public async Task AddDollyAsync(Models.Dolly dolly)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
         if (!await dbContext.Dollies.AnyAsync(d => d.Name == dolly.Name))
@@ -137,7 +160,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
  
 
     
-    public async Task ImportDollyFile(Dolly dolly)
+    public async Task ImportDollyFile(Models.Dolly dolly)
     {
         
         if (dolly == null || string.IsNullOrWhiteSpace(dolly.Name))
@@ -194,7 +217,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
         return $"VRM_Import_{timeStamp}";
     }
 
-    public async Task UpdateDollyAsync(Dolly dolly)
+    public async Task UpdateDollyAsync(Models.Dolly dolly)
     {
         using var dbContext = _dbContextFactory.CreateDbContext();
         var existingDolly = await dbContext.Dollies.FirstOrDefaultAsync(d => d.Name == dolly.Name);
@@ -249,7 +272,7 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
                 if (!existingDollies.ContainsKey(file))
                 {
                     Console.WriteLine($"Adding missing file to database: {file}");
-                    await AddDollyAsync(new Dolly { Name = file });
+                    await AddDollyAsync(new Models.Dolly { Name = file });
                 }
 
             foreach (var dolly in existingDollies.Values)
@@ -271,27 +294,15 @@ public sealed class DollyFileWatcherService : BackgroundService, IDollyFileWatch
         DollyChanged?.Invoke(this, e);
     }
 
-    public override async Task StartAsync(CancellationToken cancellationToken)
+    public string GetVersion()
     {
-        Console.WriteLine("DollyFileWatcherService started...");
-        await SyncFileSystemWithDatabaseAsync();
-        await base.StartAsync(cancellationToken);
-    }
-
-    public override Task StopAsync(CancellationToken cancellationToken)
-    {
-        Console.WriteLine("DollyFileWatcherService stopping...");
-        _fileWatcher.EnableRaisingEvents = false;
-        return base.StopAsync(cancellationToken);
-    }
-
-    protected override Task ExecuteAsync(CancellationToken stoppingToken)
-    {
-        return Task.CompletedTask;
+        string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        return version;
     }
 
     public void Dispose()
-    {
+    {        
+        _fileWatcher.EnableRaisingEvents = false;
         Dispose(true);
         GC.SuppressFinalize(this);
     }

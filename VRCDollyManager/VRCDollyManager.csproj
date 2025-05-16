@@ -51,6 +51,7 @@
         </Content>
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="Blazicons.FontAwesome" Version="2.3.29" />
         <PackageReference Include="Blazicons.Lucide" Version="1.5.16"/>
         <PackageReference Include="Blazored.LocalStorage" Version="4.5.0"/>
         <PackageReference Include="Dapper" Version="2.1.66"/>
@@ -82,6 +83,16 @@
     </ItemGroup>
     <ItemGroup>
         <_ContentIncludedByDefault Remove="wwwroot\js\lucide-init.js"/>
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="manifest.vrmanifest" />
+      <AdditionalFiles Include="manifest.vrmanifest">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </AdditionalFiles>
+      <None Remove="openvr_api.dll" />
+      <AdditionalFiles Include="openvr_api.dll">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </AdditionalFiles>
     </ItemGroup>
 
 </Project>

@@ -73,6 +73,7 @@ public class App : Application, IDisposable
 
         try
         {
+            
             AppHost.Start();
 
             buildAvaloniaApp().StartWithClassicDesktopLifetime(args);

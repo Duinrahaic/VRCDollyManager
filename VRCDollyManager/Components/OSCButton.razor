@@ -1,21 +1,26 @@
-﻿@using VRCDollyManager.Services
-@inject OscService OscService
+﻿@using VRCDollyManager.Services.OSC
+@inject IOscService OscService
 @implements IDisposable
-<button class="social-button @(OscService.IsConnected ? "active" : "inactive")">
+<button class="social-button @(_isConnected ? "active" : "inactive")">
     <Blazicon Svg="Lucide.Signal"/>
 </button>
 
 @code {
-
+    
+    private bool _isConnected = false;
+    
     protected override void OnInitialized()
     {
+        _isConnected = OscService.IsConnected;
         OscService.OnConnectionStateChanged += UpdateConnection;
     }
 
-    private void UpdateConnection(bool connected)
+    private void UpdateConnection(object? sender, OSCServiceConnectionEvent e)
     {
+        _isConnected = e.Connected;
         InvokeAsync(StateHasChanged);
     }
+
 
     public void Dispose()
     {

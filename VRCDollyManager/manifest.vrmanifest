@@ -1,0 +1,18 @@
+{
+	"source": "builtin",
+	"applications": [
+		{
+			"app_key": "com.duinrahaic.dollymanager",
+			"launch_type": "binary",
+			"binary_path_windows": "VRCDollyManager.exe",
+			"is_dashboard_overlay": true,
+            "arguments": "--mode vr",
+			"strings": {
+				"en_us": {
+					"name": "Dolly Manager",
+					"description": " A Dolly Manager for VRChat"
+				}
+			}
+		}
+	]
+}

@@ -5,8 +5,8 @@ namespace VRCDollyManager.Services;
 public interface IDollyFileWatcherService
 {
     event EventHandler<DollyChangedEventArgs>? DollyChanged;
-
-    Task<List<Dolly>> GetAllDolliesAsync();
+    string GetVersion();
+    Task<List<Models.Dolly>> GetAllDolliesAsync();
     Task<Dolly?> GetDollyByNameAsync(string name);
     Task AddDollyAsync(Dolly dolly);
     Task ImportDollyFile(Dolly dolly);

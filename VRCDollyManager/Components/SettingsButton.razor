@@ -1,0 +1,22 @@
+﻿@using VRCDollyManager.Components.Modals
+
+<button class="social-button" @onclick="OnClick">
+    <Blazicon Svg="Lucide.Cog"/>
+</button>
+<SettingsModal @ref="_settings" />
+
+@code{
+
+
+    private SettingsModal _settings = new();
+    
+ 
+    private void OnClick()
+    {
+        _settings.Open();
+    }
+    
+    
+  
+}
+ 

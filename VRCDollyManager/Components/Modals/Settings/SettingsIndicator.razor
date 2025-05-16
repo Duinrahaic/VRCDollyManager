@@ -1,0 +1,11 @@
+﻿
+<div class="settings-indicator-container">
+    <label class="settings-indicator-label">@Label</label>
+    <div class="settings-indicator @(Color.ToString().ToLower())"></div>
+</div>
+
+
+@code {
+    [Parameter] public SettingsIndicatorColor Color { get; set; } = SettingsIndicatorColor.Grey;
+    [Parameter] public string Label { get; set; } = string.Empty;
+}

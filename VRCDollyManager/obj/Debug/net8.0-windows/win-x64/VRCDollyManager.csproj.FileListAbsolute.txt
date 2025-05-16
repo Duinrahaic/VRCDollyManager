@@ -213,3 +213,6 @@ C:\Users\Duinrahaic\RiderProjects\VRCDollyManager\VRCDollyManager\bin\Debug\net8
 C:\Users\Duinrahaic\RiderProjects\VRCDollyManager\VRCDollyManager\bin\Debug\net8.0-windows\win-x64\System.Text.Encodings.Web.dll
 C:\Users\Duinrahaic\RiderProjects\VRCDollyManager\VRCDollyManager\bin\Debug\net8.0-windows\win-x64\System.Text.Json.dll
 C:\Users\Duinrahaic\RiderProjects\VRCDollyManager\VRCDollyManager\obj\Debug\net8.0-windows\win-x64\VRCDollyManager.sourcelink.json
+C:\Users\Duinrahaic\RiderProjects\VRCDollyManager\VRCDollyManager\bin\Debug\net8.0-windows\win-x64\Blazicons.FontAwesome.dll
+C:\Users\Duinrahaic\RiderProjects\VRCDollyManager\VRCDollyManager\bin\Debug\net8.0-windows\win-x64\openvr_api.dll
+C:\Users\Duinrahaic\RiderProjects\VRCDollyManager\VRCDollyManager\bin\Debug\net8.0-windows\win-x64\manifest.vrmanifest

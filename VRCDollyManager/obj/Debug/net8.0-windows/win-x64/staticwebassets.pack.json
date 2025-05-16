@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\css\\scss\\_pad.scss"
     },
     {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_settings.scss",
+      "PackagePath": "staticwebassets\\css\\scss\\_settings.scss"
+    },
+    {
       "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\css\\scss\\_social.scss",
       "PackagePath": "staticwebassets\\css\\scss\\_social.scss"
     },
@@ -67,6 +71,14 @@
     {
       "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\images\\DollyManagerLogo.png",
       "PackagePath": "staticwebassets\\images\\DollyManagerLogo.png"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\images\\Duin.svg",
+      "PackagePath": "staticwebassets\\images\\Duin.svg"
+    },
+    {
+      "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\images\\duin.jpg",
+      "PackagePath": "staticwebassets\\images\\duin.jpg"
     },
     {
       "Id": "C:\\Users\\Duinrahaic\\RiderProjects\\VRCDollyManager\\VRCDollyManager\\wwwroot\\index.html",

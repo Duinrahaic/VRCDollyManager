@@ -5,6 +5,18 @@ namespace VRCDollyManager.Extensions;
 
 public static class DollyExtensions
 {
+    public static void OpenDollyFolder()
+    {
+        var path = GetDollyPath();
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = path,
+            UseShellExecute = true
+        });
+    }
+    
     public static string GetDollyPath()
     {
         return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
