@@ -1,0 +1,106 @@
+﻿@using System.Windows.Forms
+<button @onclick="StartListening"
+        @onkeydown="HandleKeyDown"
+        @onkeyup="HandleKeyUp"
+        tabindex="0"
+        class="btn btn-primary" style="margin-right: 0; min-width: 150px;">
+    @(isListening ? (previewText ?? "Press a key...") : displayText)
+</button>
+
+@code {
+    private bool isListening;
+    private string displayText = "Set Keybind";
+    private string? previewText;
+
+     [Parameter] public string InitialText { get; set; } = "Set Keybind";
+
+    [Parameter] public EventCallback<(Keys key, uint modifiers)> OnKeyCaptured { get; set; }
+
+    private const uint MOD_ALT     = 0x0001;
+    private const uint MOD_CONTROL = 0x0002;
+    private const uint MOD_SHIFT   = 0x0004;
+
+    protected override void OnInitialized()
+    {
+        displayText = InitialText;
+    }
+
+    private void StartListening()
+    {
+        isListening = true;
+        previewText = null;
+    }
+
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (!isListening)
+            return;
+
+        if (e.Key == "Meta")
+            return;
+
+        // Escape = unbind
+        if (e.Key == "Escape")
+        {
+            isListening = false;
+            previewText = null;
+            displayText = "Unbound";
+
+            if (OnKeyCaptured.HasDelegate)
+                await OnKeyCaptured.InvokeAsync((Keys.None, 0));
+            return;
+        }
+
+        // Collect modifiers
+        uint modifiers = 0;
+        if (e.CtrlKey)  modifiers |= MOD_CONTROL;
+        if (e.AltKey)   modifiers |= MOD_ALT;
+        if (e.ShiftKey) modifiers |= MOD_SHIFT;
+
+        // Live preview updates
+        if (e.Key is "Control" or "Shift" or "Alt")
+        {
+            previewText = FormatModifiers(modifiers);
+            return;
+        }
+
+        previewText = $"{(modifiers != 0 ? FormatModifiers(modifiers) + "+" : "")}{e.Key}";
+    }
+
+    private async Task HandleKeyUp(KeyboardEventArgs e)
+    {
+        if (!isListening)
+            return;
+
+        if (previewText == null)
+            return;
+
+        // Finalize when a non-modifier is released
+        if (e.Key is not ("Control" or "Shift" or "Alt" or "Meta"))
+        {
+            isListening = false;
+            displayText = previewText;
+            previewText = null;
+
+            // Save hotkey
+            uint modifiers = 0;
+            if (e.CtrlKey)  modifiers |= MOD_CONTROL;
+            if (e.AltKey)   modifiers |= MOD_ALT;
+            if (e.ShiftKey) modifiers |= MOD_SHIFT;
+
+            if (Enum.TryParse<Keys>(e.Key, true, out var key))
+                await OnKeyCaptured.InvokeAsync((key, modifiers));
+            else
+                await OnKeyCaptured.InvokeAsync((Keys.None, modifiers));
+        }
+    }
+
+    private static string FormatModifiers(uint mods)
+    {
+        var parts = new List<string>();
+        if ((mods & MOD_CONTROL) != 0) parts.Add("Ctrl");
+        if ((mods & MOD_ALT)     != 0) parts.Add("Alt");
+        if ((mods & MOD_SHIFT)   != 0) parts.Add("Shift");
+        return string.Join("+", parts);
+    }
+}

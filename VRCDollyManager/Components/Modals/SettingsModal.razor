@@ -8,6 +8,7 @@
         <div class="settings-context">
             <SettingsContextItem Option="SettingsOptions.General" Icon="Lucide.FileCog" Label="General" @bind-SelectedOption="_selectedOption"/>
             <SettingsContextItem Option="SettingsOptions.Integrations" Icon="Lucide.Plug" Label="Integrations" @bind-SelectedOption="_selectedOption"/>
+            <SettingsContextItem Option="SettingsOptions.Hotkeys" Icon="Lucide.Keyboard" Label="Hotkeys" @bind-SelectedOption="_selectedOption"/>
             <SettingsContextItem Option="SettingsOptions.About" Icon="Lucide.Rabbit" Label="About" @bind-SelectedOption="_selectedOption"/>
         </div>
         <div class="settings-detail">
@@ -18,6 +19,9 @@
                     break;
                 case SettingsOptions.Integrations:
                     <Integrations/>
+                    break;
+                case SettingsOptions.Hotkeys:
+                    <HotkeySettings/>
                     break;
                 case SettingsOptions.About:
                     <About/>

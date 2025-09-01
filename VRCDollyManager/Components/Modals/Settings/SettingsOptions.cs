@@ -4,5 +4,6 @@ public enum SettingsOptions
 {
     General,
     Integrations,
+    Hotkeys,
     About
 }

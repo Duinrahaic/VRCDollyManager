@@ -3,9 +3,9 @@
 @using VRCDollyManager.Extensions
 @using VRCDollyManager.Services
 @using VRCDollyManager.Services.OSC
-@inject IDollyFileWatcherService DollyService
 @inject IOscService OSC
-
+@inject DollyFileWatcherService DollyService
+@inject IKeypressWatcherService KeypressService
 
 <div class="app-frame-header">
     @*<h1>VRC Dolly Manager </h1>*@

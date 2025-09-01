@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Serilog;
 using VRCDollyManager.Client.ViewModels;
 using VRCDollyManager.Client.Views;
 using VRCDollyManager.Extensions;
@@ -61,22 +62,23 @@ public class App : Application, IDisposable
         var appBuilder = Host.CreateApplicationBuilder(args);
         appBuilder.Services.AddWindowsFormsBlazorWebView();
         appBuilder.Services.AddBlazorWebViewDeveloperTools();
-
-#if DEBUG
-
-#endif
-
-        appBuilder.Services.RegisterServices();
-
-        using var myApp = appBuilder.Build();
-        AppHost = myApp;
+ 
 
         try
         {
-            
+  
+            appBuilder.Logging
+                .ClearProviders()
+                .AddSerilog( new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Information)
+                .Enrich.FromLogContext()
+                .CreateLogger());   
+            appBuilder.Services.RegisterServices();
+            AppHost = appBuilder.BuildApp();
             AppHost.Start();
-
             buildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+            
         }
         catch (Exception ex)
         {

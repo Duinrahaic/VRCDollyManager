@@ -1504,6 +1504,7 @@ ul {
 }
 .settings-container .settings-detail .settings-group .settings-group-content .settings-message svg {
   width: 16px;
+  min-width: 16px;
 }
 .settings-container .settings-detail .settings-group .settings-group-content .settings-message.info {
   background: #1154ff;

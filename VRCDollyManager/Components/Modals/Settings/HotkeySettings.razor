@@ -1,0 +1,84 @@
+﻿@using System.Timers
+@using System.Windows.Forms
+@using VRCDollyManager.Services
+@inject IKeypressWatcherService Watcher
+
+<div class="settings-group">
+    <div class="settings-group-label">
+        <Blazicon Svg="Lucide.Signal"></Blazicon>
+        <label>Hotkey Settings</label>
+    </div>
+    <div class="settings-group-content">
+        <div class="settings-message info">
+            <Blazicon Svg="Lucide.Info"/>
+            Hotkeys are global and will work even when VRCDollyManager is not focused. These keys are not logged and are only used to trigger actions in VRCDollyManager.
+        </div>
+        <div class="settings-item">
+            <label>Enable</label>
+            <SettingsToggleSwitch Label="@GetConnectionLabel()" Value="@(_isEnabled)" ValueChanged="ToggleRegistration"/>
+        </div>
+        <div class="settings-item">
+            <label>Play Dolly</label>
+            <div class="value">
+                <KeybindCapture  InitialText="@_hotkey" OnKeyCaptured="SaveKeybind" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    
+    System.Timers.Timer _timer = new(1000);
+    private bool _isEnabled = false;
+    private bool _hasHotkey = false;
+    private string _hotkey = string.Empty;
+    
+    protected override void OnInitialized()
+    {
+        Refresh();
+        _timer.Elapsed += TimerOnElapsed;
+        _timer.Start();
+     }
+
+    private string GetConnectionLabel() =>
+        _isEnabled ? "Listening" : "Not Listening";
+    
+    private void Refresh()
+    {
+        _isEnabled = Watcher.IsEnabled();
+        _hasHotkey = Watcher.IsHotkeySet();
+        _hotkey = Watcher.GetHotkey();
+    }
+    
+    private void TimerOnElapsed(object? sender, ElapsedEventArgs e)
+    {
+        Refresh();
+        InvokeAsync(StateHasChanged);
+    }
+    
+    private void ToggleRegistration(bool value)
+    {
+        if (value)
+        {
+            Watcher.Enable();
+        }
+        else
+        {
+            Watcher.Disable();
+        }
+        Refresh();
+        InvokeAsync(StateHasChanged);
+    }
+    
+    private void SaveKeybind((Keys key, uint modifiers) hotkey)
+    {
+        Watcher.RegisterHotkey(hotkey.key, hotkey.modifiers);
+        Refresh();
+        InvokeAsync(StateHasChanged);
+    }
+    
+    public void Dispose()
+    {        
+        _timer.Dispose();
+     }
+}

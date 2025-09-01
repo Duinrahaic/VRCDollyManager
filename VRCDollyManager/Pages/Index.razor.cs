@@ -1,4 +1,5 @@
-﻿using Blazicons;
+﻿using System.Windows.Forms;
+using Blazicons;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
@@ -26,10 +27,16 @@ public partial class Index : IDisposable
     {
         _dollies = await DollyService.GetAllDolliesAsync();
         DollyService.DollyChanged += OnDollyChanged;
-
+        
         OSC.OnOscMessageReceived += OnOscMessageReceived;
+        KeypressService.OnKeyPress += OnKeyPress;
     }
-    
+
+    private void OnKeyPress(object sender, object e)
+    {
+         Play();
+    }
+
     private bool _delayIncPressed = false;
     private bool _delayDecPressed = false;
     private void OnOscMessageReceived(object? sender, OscSubscriptionEvent e)
@@ -202,6 +209,7 @@ public partial class Index : IDisposable
         ReleaseUnmanagedResources();
         if (disposing)
         {
+            KeypressService.OnKeyPress -= OnKeyPress;
             DollyService.DollyChanged -= OnDollyChanged;
             OSC.OnOscMessageReceived -= OnOscMessageReceived;
         }
