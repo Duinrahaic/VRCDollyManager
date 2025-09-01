@@ -95,7 +95,6 @@ Additionally, a pre-made version of the avatar menu can be purchased [here]()
 For additional support, please consider joining my discord server [here](https://duinrahaic.booth.pm/items/6930308).
 
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-F16061?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/Duinrahaic)
-[![Patreon](https://img.shields.io/badge/Patreon-F96854?style=flat-square&logo=patreon&logoColor=white)](https://patreon.com/Duinrahaic)
 [![X](https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/Duinrahaic)
 [![Bluesky](https://img.shields.io/badge/Bluesky-00A0DC?style=flat-square&logo=bluesky&logoColor=white)](https://bsky.app/profile/duinrahaic.app)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Duinrahaic)
