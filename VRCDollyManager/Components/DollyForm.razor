@@ -4,21 +4,23 @@
 {
     return;
 }
+<div class="dolly-form-container">
+    <EditForm Model="@DollyModel" id="dollyForm">
+        <DataAnnotationsValidator/>
 
-<EditForm Model="@DollyModel" id="dollyForm">
-    <DataAnnotationsValidator/>
+        <!-- Name Field (Binds to Alias but Displays Name) -->
+        <div class="form-item">
+            <label for="alias">
+                <Blazicon Svg="Lucide.Signature"/>
+                Name:
+            </label>
+        </div>
+        <div class="form-item row">
+            <InputText id="alias" autocomplete="off" @bind-Value="DollyModel.Alias" class="form-control" placeholder="@DollyModel.Name"/>
+        </div>
+    </EditForm>
 
-    <!-- Name Field (Binds to Alias but Displays Name) -->
-    <div class="form-item">
-        <label for="alias">
-            <Blazicon Svg="Lucide.Signature"/>
-            Name:
-        </label>
-    </div>
-    <div class="form-item row">
-        <InputText id="alias" autocomplete="off" @bind-Value="DollyModel.Alias" class="form-control" placeholder="@DollyModel.Name"/>
-    </div>
-</EditForm>
+</div>
 
 @code {
     [Parameter] public required Dolly DollyModel { get; set; } = new Dolly() ?? new Dolly();

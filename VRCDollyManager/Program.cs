@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using VRCDollyManager.Extensions;
 using VRCDollyManager.Models;
 
 namespace VRCDollyManager;
@@ -15,6 +16,9 @@ internal class Program
             globalMutex.Close();
             return;
         }
+        
+
+        
         AppFlags.CheckArgs(args);
         SetupClient.Start(args);
         globalMutex.Close();

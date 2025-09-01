@@ -246,7 +246,7 @@ html, body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: 8px;
+  gap: 3px;
   padding: 8px;
   position: relative;
 }
@@ -456,11 +456,19 @@ button.toggle.inactive:hover {
   background: #1E1E1E;
 }
 
+.dolly-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 92%;
+}
+
 #dollyForm {
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin: 1.5rem;
+  flex-grow: 1;
+  width: 100%;
 }
 
 .form-item {
@@ -502,6 +510,25 @@ button.toggle.inactive:hover {
 .form-item input:focus {
   border-color: #9b54fd;
   outline: 1px solid #9b54fd;
+}
+
+input.number {
+  padding: 0.5rem;
+  font-size: 1rem;
+  background: #121212;
+  color: #FFFFFF;
+  transition: border-bottom-color 0.2s ease-in-out;
+  border: 1px solid #121212;
+  width: 2ch;
+  text-align: center;
+  outline: none;
+}
+input.number::-webkit-outer-spin-button, input.number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input.number:focus {
+  border-bottom: 1px solid #9b54fd;
 }
 
 ul {
@@ -1477,6 +1504,7 @@ ul {
 }
 .settings-container .settings-detail .settings-group .settings-group-content .settings-message svg {
   width: 16px;
+  min-width: 16px;
 }
 .settings-container .settings-detail .settings-group .settings-group-content .settings-message.info {
   background: #1154ff;

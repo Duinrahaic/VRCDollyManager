@@ -3,9 +3,9 @@
 @using VRCDollyManager.Extensions
 @using VRCDollyManager.Services
 @using VRCDollyManager.Services.OSC
-@inject IDollyFileWatcherService DollyService
 @inject IOscService OSC
-
+@inject DollyFileWatcherService DollyService
+@inject IKeypressWatcherService KeypressService
 
 <div class="app-frame-header">
     @*<h1>VRC Dolly Manager </h1>*@
@@ -37,10 +37,35 @@
                 <Blazicon Svg="@(Lucide.MonitorDown)"/>
                 Load
             </button>
+            @if (!_isPlaying)
+            {
+                <button @onclick="Play">                 
+                    <Blazicon Svg="@(Lucide.Play)"/>
+                    Play
+                </button> 
+            }
+            else
+            {
+                <button @onclick="Stop">                 
+                    <Blazicon Svg="@(Lucide.Square)"/>
+                    Stop
+                </button>
+            }
+
+            <button class="inactive" style="padding: 4px;"@onclick="DecrementDelay">
+                <Blazicon Svg="@(Lucide.CircleChevronLeft)"/>
+            </button>
+            <input class="number" type="number" max="5" min="0" step="1"
+                   onblur="@OnBlur"
+                   @bind="_delay"/>
+            <button class="inactive"style="padding: 4px;" @onclick="IncrementDelay">
+                <Blazicon Svg="@(Lucide.CircleChevronRight)"/>
+            </button>
+            
+            
             <NotificationBar/>
             <div class="social-media">
                 <OSCButton/>
-                <LinkButton Icon="Lucide.Github" OnClick="@(() => BrowserHelper.OpenUrl("https://github.com/Duinrahaic/VRCDollyManager"))"/>
                 <SettingsButton/>
             </div>
         </div>

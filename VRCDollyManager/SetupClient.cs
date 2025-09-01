@@ -1,6 +1,7 @@
 ﻿using System.Runtime.ExceptionServices;
 using Avalonia;
 using Avalonia.ReactiveUI;
+using VRCDollyManager.Extensions;
 
 namespace VRCDollyManager;
 

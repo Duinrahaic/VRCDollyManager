@@ -11,7 +11,6 @@ public class OscService : IDisposable, IOscService
     
     public event EventHandler<OscSubscriptionEvent>? OnOscMessageReceived;
     public event EventHandler<OSCServiceConnectionEvent>? OnConnectionStateChanged;
-
     private readonly ILogger<OscService> _logger;
     private readonly CancellationTokenSource _cts;
     private OscQueryServer? _server;
@@ -133,16 +132,8 @@ public class OscService : IDisposable, IOscService
                 if (_connection != null)
                 {
                     var received = await _connection.ReceiveMessageAsync();
-                    if (received.Address.Contains("VDM"))
-                    {
-                        var message = received;
-                        _ = Task.Run(() => OnOscMessageReceived?.Invoke(this,new OscSubscriptionEvent(message)),
-                            currentCancellationToken);
-                    }
-                    else if (received.Address.Contains("dolly"))
-                    {
-                        
-                    }
+                    var message = received;
+                    OnOscMessageReceived?.Invoke(this,new OscSubscriptionEvent(message));
                 }
                 else
                 {
@@ -197,7 +188,7 @@ public class OscService : IDisposable, IOscService
                 Start(); // Restart the service
             }
         }
-
+        
         _isReconnecting = false;
     }
 

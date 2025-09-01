@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VRCDollyManager.Models;
 using System.IO;
+using VRCDollyManager.Extensions;
 
 namespace VRCDollyManager.Data;
 
@@ -8,13 +9,7 @@ public class DollyDbContext : DbContext
 {
     public DbSet<Dolly> Dollies { get; set; }
 
-    private readonly string _dbPath;
-
-    public DollyDbContext()
-    {
-        _dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-            "VRChat", "vdm_database.sqlite");
-    }
+    private readonly string _dbPath = DollyManagerFilePaths.GetDatabaseFilePath();
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {

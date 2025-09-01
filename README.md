@@ -77,12 +77,24 @@
 3. If the dolly is already in the list, it will be updated with the new information.
 
 
+### OSC Addresses
+The following are OSC address that are supported for controlling the Dolly Manager from your avatar.
+
+ Address       | Type    | Descripton                   |
+ |---------------|---------|------------------------------|
+| VDM_Delay_Inc | Boolean | Increases Delay              |
+| VDM_Delay_Dec | Boolean | Decreases Delay              |
+| VDM_Play      | Boolean | Plays Currently Loaded Dolly | 
+| VDM_Stop      | Boolean | Stops Currently Loaded Dolly | 
+
+Additionally, a pre-made version of the avatar menu can be purchased [here]()
+
+
 ## Contact & Support
 
-For additional support, please consider joining my discord server [here](https://discord.gg/aZQfy6H9fA).
+For additional support, please consider joining my discord server [here](https://duinrahaic.booth.pm/items/6930308).
 
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-F16061?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/Duinrahaic)
-[![Patreon](https://img.shields.io/badge/Patreon-F96854?style=flat-square&logo=patreon&logoColor=white)](https://patreon.com/Duinrahaic)
 [![X](https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/Duinrahaic)
 [![Bluesky](https://img.shields.io/badge/Bluesky-00A0DC?style=flat-square&logo=bluesky&logoColor=white)](https://bsky.app/profile/duinrahaic.app)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Duinrahaic)

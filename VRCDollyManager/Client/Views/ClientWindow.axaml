@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:VRCDollyManager.Client.ViewModels"
     xmlns:client1="clr-namespace:VRCDollyManager.Client"
-    Title="VRC Dolly Manager"
     Icon="/Assets/icon.ico"
     Width="800"
     Height="480"

@@ -19,10 +19,6 @@
         <label>Paths:</label>
         <div> @_pathCount </div>
     </div>
-    <div class="dolly-renderer-path-detail">
-        <label>Duration:</label>
-        <div> @GetFormattedTime(_duration) </div>
-    </div>
 </div>
 
 @if(_pathCount > 0)
@@ -73,18 +69,32 @@
         //Tags = dolly.Tags;
         StateHasChanged();
         var keyframes = dolly.GetCameraKeyFrames() ?? new List<CameraKeyFrame>();
-        
         _pathCount = (uint)keyframes.DistinctBy(x=> x.PathIndex).Count();
         _tagCount = (uint)dolly.Tags.Count();
         _duration = 0;
         List<double> durations = new List<double>();
-        foreach (var group in keyframes.GroupBy(x => x.PathIndex))
-        {
-            var duration = group.Sum(x => x.Duration);
-            durations.Add(duration);
-        }
+         
 
-        _duration = (uint)durations.Min();
+        
+        var grouped = keyframes.CalculateTravelDurations();
+
+        foreach (var pathGroup in grouped)
+        {
+            Console.WriteLine($"PathIndex = {pathGroup.Key}");
+            foreach (var kf in pathGroup.Value)
+            {
+                Console.WriteLine(
+                    $"  Index {kf.Index}: dist={kf.DistanceFromPrevious:F3}, " +
+                    $"travelTime={kf.TravelDuration:F3}s"
+                );
+            }
+            var pathDuration = pathGroup.Value.Sum(x => x.TravelDuration);
+            durations.Add(pathDuration);
+        }
+        
+        
+        
+        _duration = (uint)durations.Max();
         _pathClasses = GetPathClasses(_pathCount);
         
         
@@ -109,17 +119,15 @@
         await JS.InvokeVoidAsync("ThreeInterop.renderPaths", json);
     }
 
-    public List<string> GetPathClasses(uint pathCount = 0)
+    private List<string> GetPathClasses(uint pathCount = 0)
     {
         List<string> pathClasses = new List<string>();
-        if(pathCount == 0)
+        if(pathCount == 0 || pathCount == 1)
             return pathClasses;
 
         pathClasses.Add("path-one");
-        if (pathCount >= 2)
-        {
-            pathClasses.Add("path-two");
-        } 
+        pathClasses.Add("path-two");
+
         if (pathCount >= 3)
         {
             pathClasses.Add("path-three");
