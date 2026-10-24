@@ -6,6 +6,8 @@
 @inject IOscService OSC
 @inject DollyFileWatcherService DollyService
 @inject IKeypressWatcherService KeypressService
+@inject DollyPlayerService Player
+@inject DollyChainPlayer ChainPlayer
 
 <div class="app-frame-header">
     @*<h1>VRC Dolly Manager </h1>*@
@@ -29,7 +31,7 @@
     </div>
     <div class="app-frame-content">
         <div id="options" class="app-frame-row" style="background:none;">
-            <button class="@(_relative ? "active" : "inactive")" @onclick="() => _relative = !_relative">
+            <button class="@(Player.Relative ? "active" : "inactive")" @onclick="() => Player.Relative = !Player.Relative">
                 <Blazicon Svg="@(Lucide.PersonStanding)"/>
                 Relative
             </button>
@@ -37,7 +39,7 @@
                 <Blazicon Svg="@(Lucide.MonitorDown)"/>
                 Load
             </button>
-            @if (!_isPlaying)
+            @if (!Player.IsPlaying)
             {
                 <button @onclick="Play">                 
                     <Blazicon Svg="@(Lucide.Play)"/>
@@ -55,9 +57,8 @@
             <button class="inactive" style="padding: 4px;"@onclick="DecrementDelay">
                 <Blazicon Svg="@(Lucide.CircleChevronLeft)"/>
             </button>
-            <input class="number" type="number" max="5" min="0" step="1"
-                   onblur="@OnBlur"
-                   @bind="_delay"/>
+            <input class="number" type="number" max="@DollyPlayerService.MaxDelay" min="0" step="1"
+                   @bind="Delay"/>
             <button class="inactive"style="padding: 4px;" @onclick="IncrementDelay">
                 <Blazicon Svg="@(Lucide.CircleChevronRight)"/>
             </button>

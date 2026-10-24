@@ -15,13 +15,16 @@ public partial class Index : IDisposable
     private List<Dolly> _dollies = new();
     private Dolly? _selectedDolly = null;
     private bool _onRefresh = false;
-    private bool _relative = false;
     private string _filter = "";
     private DollyRenderer? Renderer { get; set; }
     private DollyTable? Table { get; set; }
     private DollySideContainer? SidePanel { get; set; }
-    private int _delay = 0;
-    private bool _isPlaying = false;
+
+    private int Delay
+    {
+        get => Player.Delay;
+        set => Player.Delay = value;
+    }
     
     protected override async Task OnInitializedAsync()
     {
@@ -30,7 +33,10 @@ public partial class Index : IDisposable
         
         OSC.OnOscMessageReceived += OnOscMessageReceived;
         KeypressService.OnKeyPress += OnKeyPress;
+        Player.StateChanged += OnPlayerStateChanged;
     }
+
+    private void OnPlayerStateChanged(object? sender, EventArgs e) => InvokeAsync(StateHasChanged);
 
     private void OnKeyPress(object sender, object e)
     {
@@ -73,56 +79,18 @@ public partial class Index : IDisposable
             }
             InvokeAsync(StateHasChanged);
         }
-        else if (e.Message.Address.Contains("/dolly/Play"))
-        {
-            if(e.Message.Arguments[0] is bool isPlaying)
-            {
-                _isPlaying = isPlaying;
-                InvokeAsync(StateHasChanged);
-            }
-        }
-
     }
 
-    private void OnDelayChanged(object? sender, int e)
-    {
-        _delay = e;
-        InvokeAsync(StateHasChanged);
-    }
-
-
-    private void Play()
-    {
-        OSC.SendMessage("/dolly/PlayDelayed", _delay);
-    }
+    private void Play() => Player.Play();
 
     private void Stop()
     {
-        OSC.SendMessage("/dolly/Play",false);
+        ChainPlayer.Stop();
+        Player.Stop();
     }
-    private void OnBlur(FocusEventArgs _) =>
-        _delay = Math.Clamp(_delay, 0, 5);
-    private void DurationLimitChanged(int value)
-    {
-        _delay = Math.Clamp(value, 0, 5);
-        InvokeAsync(StateHasChanged);
-    } 
-    private void IncrementDelay() => DurationLimitChanged(_delay + 1);
-    private void DecrementDelay() => DurationLimitChanged(_delay - 1);
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (firstRender)
-        {
-            var dolly = _dollies.FirstOrDefault();
-            if (dolly != null)
-            {
-                SidePanel?.QueueDolly(dolly);
-                StateHasChanged();
-            }
-            
-       
-        }
-    }
+
+    private void IncrementDelay() => Delay++;
+    private void DecrementDelay() => Delay--;
 
     private Task OnFilterUpdate(string filter)
     {
@@ -167,27 +135,16 @@ public partial class Index : IDisposable
         Refresh();
     }
  
-    private async void LoadDolly()
+    private async Task LoadDolly()
     {
         if (_selectedDolly == null) return;
-        if (_relative)
-        {
-            var path = _selectedDolly.GetRelativeDollyKeyframes();
-            if (path == null) return;
-            OSC.SendMessage("/dolly/Import", path);
-            await Task.Delay(100);
-            File.Delete(path);
-        }
-        else
-        {
-            OSC.SendMessage("/dolly/Import", _selectedDolly.GetDollyFilePath());
-        }
+        await Player.ImportAsync(_selectedDolly);
     }
 
     private void OnAddToDirector(Dolly? dolly)
     {
-        if(_selectedDolly == null || dolly == null) return;  
-        SidePanel?.QueueDolly(_selectedDolly);
+        if (dolly == null) return;
+        SidePanel?.QueueDolly(dolly);
     }
 
     
@@ -210,6 +167,7 @@ public partial class Index : IDisposable
         if (disposing)
         {
             KeypressService.OnKeyPress -= OnKeyPress;
+            Player.StateChanged -= OnPlayerStateChanged;
             DollyService.DollyChanged -= OnDollyChanged;
             OSC.OnOscMessageReceived -= OnOscMessageReceived;
         }

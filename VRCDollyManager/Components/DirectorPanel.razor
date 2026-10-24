@@ -1,199 +1,207 @@
 ﻿@using VRCDollyManager.Models
 @using VRCDollyManager.Services
-@using VRCDollyManager.Services.OSC
-@inject IOscService OSC
 @inject DollyFileWatcherService DollyService
+@inject DollyChainService ChainService
+@inject DollyChainPlayer ChainPlayer
 @implements IDisposable
 
 <div class="dolly-details-header">
     <div class="dolly-details-header-container">
-        <button class="move-up" type="button" @onclick="MoveUp" disabled="@((_selectedDolly == null || DollyList.First().Id == _selectedDolly.Id))">
-                                                                                                                                                  <Blazicon Svg="Lucide.ChevronUp"/>
+        <input list="dolly-chains" placeholder="Chain" value="@_chainName" @onchange="OnChainNameChanged"/>
+        <datalist id="dolly-chains">
+            @foreach (var name in _chainNames)
+            {
+                <option value="@name"></option>
+            }
+        </datalist>
+        <button class="move-up" type="button" @onclick="MoveUp" disabled="@(SelectedIndex <= 0)">
+            <Blazicon Svg="Lucide.ChevronUp"/>
         </button>
-        <button class="move-down" type="button" @onclick="MoveDown" disabled="@(_selectedDolly == null || (DollyList.Last() == _selectedDolly))">
+        <button class="move-down" type="button" @onclick="MoveDown" disabled="@(SelectedIndex < 0 || SelectedIndex == _chain.Count - 1)">
             <Blazicon Svg="Lucide.ChevronDown"/>
         </button>
-        <button class="remove" type="button" @onclick="RemoveDolly" disabled="@(_selectedDolly == null)">
+        <button class="remove" type="button" @onclick="RemoveDolly" disabled="@(SelectedIndex < 0)">
             <Blazicon Svg="Lucide.X"/>
         </button>
     </div>
 </div>
-<div class="dolly-details-body" style="margin-top: 40px;">
+<div class="dolly-details-body">
     <ul class="dolly-list">
-        @foreach (var director in DollyList)
+        @foreach (var entry in _chain)
         {
-        <li class="dolly-item">
-            <span>@director.Dolly.GetDisplayName()</span>
-            <div class="dolly-controls">
-               
-            </div>
-        </li>
+            <li class="dolly-item @(entry.Id == _selectedId ? "selected" : "") @(entry.Id == ChainPlayer.CurrentId ? "playing" : "")"
+                @onclick="() => Select(entry)">
+                <span>@entry.Dolly.GetDisplayName()</span>
+                @if (entry.Id == ChainPlayer.CurrentId)
+                {
+                    <Blazicon Svg="Lucide.Play"/>
+                }
+            </li>
         }
     </ul>
 </div>
 
 <div class="dolly-details-footer">
     <div class="dolly-details-footer-container" style="gap: 8px;">
-        <button class="toggle surface @(_shuffle ? "active" : "inactive")" type="button" @onclick="ToggleShuffle">
+        <button class="toggle surface @(ChainPlayer.Shuffle ? "active" : "inactive")" type="button" @onclick="ToggleShuffle">
             <Blazicon Svg="Lucide.Shuffle"/>
         </button>
-        <button class="toggle surface inactive" type="button">
+        <button class="toggle surface inactive" type="button" @onclick="ChainPlayer.Previous" disabled="@(!ChainPlayer.IsRunning)">
             <Blazicon Svg="Lucide.SkipBack"/>
         </button>
-        <button class="toggle surface @(_isPlaying ? "active" : "inactive")" type="button" @onclick="TogglePlay">
-            <Blazicon Svg="@(GetPlayIcon())"/>
+        <button class="toggle surface @(ChainPlayer.IsRunning ? "active" : "inactive")" type="button" @onclick="TogglePlay" disabled="@(_chain.Count == 0)">
+            <Blazicon Svg="@(ChainPlayer.IsRunning ? Lucide.Square : Lucide.Play)"/>
         </button>
-        <button class="toggle surface inactive" type="button">
+        <button class="toggle surface inactive" type="button" @onclick="ChainPlayer.Next" disabled="@(!ChainPlayer.IsRunning)">
             <Blazicon Svg="Lucide.SkipForward"/>
         </button>
-        <button class="toggle surface @(IsLooping ? "active" : "inactive")" type="button" @onclick="SetLoop">
-            <Blazicon Svg="@(GetLoopIcon())"/>
+        <button class="toggle surface @(ChainPlayer.Loop != ChainLoopMode.None ? "active" : "inactive")" type="button" @onclick="CycleLoop">
+            <Blazicon Svg="@(ChainPlayer.Loop == ChainLoopMode.One ? Lucide.Repeat1 : Lucide.Repeat)"/>
+        </button>
+        <button class="toggle surface @(ChainPlayer.LookAtMe ? "active" : "inactive")" type="button" @onclick="ToggleLookAtMe">
+            <Blazicon Svg="Lucide.ScanFace"/>
         </button>
     </div>
 </div>
 
 @code
 {
-    [Parameter] public List<DirectorDolly> DollyList { get; set; } = new();
-    [Parameter] public EventCallback<List<DirectorDolly>> DollyListChanged { get; set; }
+    private List<DirectorDolly> _chain = new();
+    private List<string> _chainNames = new();
+    private string _chainName = string.Empty;
+    private Guid? _selectedId;
 
-    private DirectorDolly _selectedDolly = null;
-    
-    private bool _isPlaying = false;
-    private LoopType _loopType = LoopType.None;
-    private bool IsLooping => _loopType != LoopType.None;
-    private bool _shuffle = false;
-    
-    private readonly object _lock = new(); // Thread safety lock
+    private int SelectedIndex => _chain.FindIndex(d => d.Id == _selectedId);
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        DollyService.DollyChanged += UpdateDollyList;
+        DollyService.DollyChanged += OnDollyChanged;
+        ChainPlayer.StateChanged += OnChainPlayerStateChanged;
+
+        _chainNames = ChainService.GetChainNames();
+        if (_chainNames.Count > 0) await LoadChainAsync(_chainNames[0]);
     }
 
-    private void UpdateDollyList(object? sender, DollyChangedEventArgs e)
+    public void Queue(Dolly dolly)
     {
-        lock (_lock)
-        {
-            if (e.ChangeType != DollyChangeType.Removed)
-            {
-                var dollyToRemove = DollyList.FirstOrDefault(d => d.Dolly.Name == e.FileName);
-                if (dollyToRemove != null)
-                {
-                    DollyList.Remove(dollyToRemove);
-                    StateHasChanged();
-                }
-            }
-
-            if (e.ChangeType == DollyChangeType.Updated)
-            {
-                
-            }
-
-        }
+        _chain.Add(new DirectorDolly(dolly));
+        Save();
+        InvokeAsync(StateHasChanged);
     }
 
-    private void MoveUp()
+    private async Task OnChainNameChanged(ChangeEventArgs e)
     {
-        if(_selectedDolly == null) return;
-        var id = _selectedDolly.Id;
-        
-        lock (_lock)
+        var name = (e.Value as string ?? string.Empty).Trim();
+        var existing = _chainNames.FirstOrDefault(n => string.Equals(n, name, StringComparison.OrdinalIgnoreCase));
+        if (existing != null)
         {
-            int index = DollyList.FindIndex(d => d.Id == id);
-            if (index > 0)
-            {
-                (DollyList[index], DollyList[index - 1]) = (DollyList[index - 1], DollyList[index]); // Swap elements
-                StateHasChanged();
-            }
+            await LoadChainAsync(existing);
+            return;
         }
+
+        // A new name saves the current list under it.
+        _chainName = name;
+        Save();
     }
 
-    private void MoveDown()
+    private async Task LoadChainAsync(string name)
     {
-        if(_selectedDolly == null) return;
-        var id = _selectedDolly.Id;
-        
-        lock (_lock)
+        var chain = ChainService.GetChain(name);
+        if (chain == null) return;
+
+        var entries = new List<DirectorDolly>();
+        foreach (var fileName in chain.Dollies)
         {
-            int index = DollyList.FindIndex(d => d.Id == id);
-            if (index >= 0 && index < DollyList.Count - 1)
-            {
-                (DollyList[index], DollyList[index + 1]) = (DollyList[index + 1], DollyList[index]); // Swap elements
-                StateHasChanged();
-            }
+            // The file watcher may not have indexed every file yet; the name alone is enough to play it.
+            var dolly = await DollyService.GetDollyByNameAsync(fileName) ?? new Dolly { Name = fileName };
+            entries.Add(new DirectorDolly(dolly));
         }
+
+        _chainName = chain.Name;
+        _chain = entries;
+        _selectedId = null;
+        ChainPlayer.LookAtMe = chain.LookAtMe;
+    }
+
+    private void Save()
+    {
+        if (string.IsNullOrEmpty(_chainName)) return;
+
+        ChainService.SaveChain(new DollyChain
+        {
+            Name = _chainName,
+            Dollies = _chain.Select(d => d.Dolly.Name).ToList(),
+            LookAtMe = ChainPlayer.LookAtMe
+        });
+        _chainNames = ChainService.GetChainNames();
+    }
+
+    private void Select(DirectorDolly entry) =>
+        _selectedId = entry.Id == _selectedId ? null : entry.Id;
+
+    private void MoveUp() => Swap(SelectedIndex, SelectedIndex - 1);
+
+    private void MoveDown() => Swap(SelectedIndex, SelectedIndex + 1);
+
+    private void Swap(int a, int b)
+    {
+        if (a < 0 || b < 0 || a >= _chain.Count || b >= _chain.Count) return;
+        (_chain[a], _chain[b]) = (_chain[b], _chain[a]);
+        Save();
     }
 
     private void RemoveDolly()
     {
-        if(_selectedDolly == null) return;
-        var id = _selectedDolly.Id;
-        
-        lock (_lock)
+        var index = SelectedIndex;
+        if (index < 0) return;
+        _chain.RemoveAt(index);
+        _selectedId = null;
+        Save();
+    }
+
+    private async Task TogglePlay()
+    {
+        if (ChainPlayer.IsRunning)
         {
-            var foundDolly = DollyList.FirstOrDefault(d => d.Id == id);
-            if (foundDolly != null)
-            {
-                DollyList.Remove(foundDolly);
-                StateHasChanged();
-            }
+            ChainPlayer.Stop();
+            return;
         }
+
+        await ChainPlayer.StartAsync(_chain, Math.Max(SelectedIndex, 0));
     }
 
-    private async Task UpdateDollyList()
+    private void ToggleShuffle() => ChainPlayer.Shuffle = !ChainPlayer.Shuffle;
+
+    private void ToggleLookAtMe()
     {
-        await InvokeAsync(StateHasChanged);
-        await DollyListChanged.InvokeAsync(DollyList);
+        ChainPlayer.LookAtMe = !ChainPlayer.LookAtMe;
+        Save();
     }
 
-    private SvgIcon GetPlayIcon() => _isPlaying ? Lucide.Play : Lucide.Square;
-
-    private SvgIcon GetLoopIcon() => _loopType switch
+    private void CycleLoop() => ChainPlayer.Loop = ChainPlayer.Loop switch
     {
-        LoopType.Loop1 => Lucide.Repeat1,
-        _ => Lucide.Repeat
+        ChainLoopMode.None => ChainLoopMode.All,
+        ChainLoopMode.All => ChainLoopMode.One,
+        _ => ChainLoopMode.None
     };
 
-    private enum LoopType
+    private void OnDollyChanged(object? sender, DollyChangedEventArgs e)
     {
-        None,
-        Loop,
-        Loop1
+        if (e.ChangeType != DollyChangeType.Removed) return;
+
+        InvokeAsync(() =>
+        {
+            if (_chain.RemoveAll(d => d.Dolly.Name == e.FileName) == 0) return;
+            Save();
+            StateHasChanged();
+        });
     }
 
-    private void TogglePlay()
-    {
-        lock (_lock)
-        {
-            _isPlaying = !_isPlaying;
-        }
-    }
+    private void OnChainPlayerStateChanged(object? sender, EventArgs e) => InvokeAsync(StateHasChanged);
 
-    private void ToggleShuffle()
-    {
-        lock (_lock)
-        {
-            _shuffle = !_shuffle;
-        }
-    }
-
-    private void SetLoop()
-    {
-        lock (_lock)
-        {
-            _loopType = _loopType switch
-            {
-                LoopType.None => LoopType.Loop,
-                LoopType.Loop => LoopType.Loop1,
-                _ => LoopType.None
-            };
-        }
-    }
-    
-    
     public void Dispose()
     {
-        DollyService.DollyChanged -= UpdateDollyList;
+        DollyService.DollyChanged -= OnDollyChanged;
+        ChainPlayer.StateChanged -= OnChainPlayerStateChanged;
     }
 }
