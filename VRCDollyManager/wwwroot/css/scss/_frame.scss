@@ -382,6 +382,27 @@ html, body
 	background: darken($surface, 5%);
 	color: $on-surface;
 	padding: 4px;
+	cursor: pointer;
+	outline: 1px solid transparent;
+	transition: outline-color 0.2s ease-in-out, background 0.2s ease-in-out;
+
+	&.selected
+	{
+	  outline-color: $primary;
+	}
+
+	&.playing
+	{
+	  background: rgba($primary, 0.25);
+	}
+
+	svg
+	{
+	  height: 16px;
+	  width: 16px;
+	  color: $primary;
+	}
+
 	span{
 	  flex-grow: 1;
 	  overflow: hidden;

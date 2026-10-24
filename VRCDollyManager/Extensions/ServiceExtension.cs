@@ -30,6 +30,9 @@ public static class ServiceExtension
         services.AddSingleton<ISteamVrService, SteamVrService>();
         services.AddSingleton<DollyFileWatcherService>();
         services.AddSingleton<IKeypressWatcherService, KeypressWatcherService>();
+        services.AddSingleton<DollyPlayerService>();
+        services.AddSingleton<DollyChainPlayer>();
+        services.AddSingleton<DollyChainService>();
         
         return services;
     }

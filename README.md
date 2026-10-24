@@ -65,6 +65,16 @@
    - If you want to load the dolly relative to your current position, click the `Relative` button.
    - Note: Loading a will only be available if OSC is enabled and connected. 
 
+### Chaining
+1. Select a dolly and click the `Queue` button to add it to the chain in the `Director` tab.
+2. Type a name in the chain box to save it. Pick an existing name to load that chain. Changes save automatically.
+3. Select a dolly in the chain and use the arrows to reorder it or `X` to remove it.
+4. Click `Play` to play the chain back-to-back. Each dolly is loaded and played when the previous one finishes.
+   - Skip back / forward jumps between dollies while the chain plays.
+   - Loop repeats the whole chain or the current dolly. Shuffle randomizes the order.
+   - The face button turns on Look-At-Me while the chain plays so the camera stays on your face.
+5. Chains are stored in `Documents/VRChat/DollyManager/Chains`.
+
 ### Exporting
 1. Select the dolly you want to export.
 2. Click the 'Edit' button.

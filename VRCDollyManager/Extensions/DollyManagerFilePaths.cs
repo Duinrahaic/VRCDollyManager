@@ -45,6 +45,12 @@ public static class DollyManagerFilePaths
         Path.Combine(GetDollyManagerFolder(), "vdm_config.json");
 
     /// <summary>
+    /// Gets the path to the folder holding saved dolly chains, inside the DollyManager folder.
+    /// </summary>
+    public static string GetChainsFolder() =>
+        Path.Combine(GetDollyManagerFolder(), "Chains");
+
+    /// <summary>
     /// Creates a folder at the specified path if it does not already exist.
     /// </summary>
     /// <param name="path">The path of the folder to create.</param>

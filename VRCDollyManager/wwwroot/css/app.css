@@ -313,6 +313,20 @@ html, body {
   background: #111111;
   color: #FFFFFF;
   padding: 4px;
+  cursor: pointer;
+  outline: 1px solid transparent;
+  transition: outline-color 0.2s ease-in-out, background 0.2s ease-in-out;
+}
+.dolly-list .dolly-item.selected {
+  outline-color: #9b54fd;
+}
+.dolly-list .dolly-item.playing {
+  background: rgba(155, 84, 253, 0.25);
+}
+.dolly-list .dolly-item svg {
+  height: 16px;
+  width: 16px;
+  color: #9b54fd;
 }
 .dolly-list .dolly-item span {
   flex-grow: 1;

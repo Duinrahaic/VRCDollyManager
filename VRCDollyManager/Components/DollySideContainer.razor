@@ -10,7 +10,7 @@
         <Blazicon Svg="Lucide.Tags" />
         Tags
     </button>
-    <button style="display:none;: hidden;" class="dolly-option @GetSelectedClass(DollySidePanelOptions.Director)" @onclick="() => _currentOption = DollySidePanelOptions.Director">
+    <button class="dolly-option @GetSelectedClass(DollySidePanelOptions.Director)" @onclick="() => _currentOption = DollySidePanelOptions.Director">
         <Blazicon Svg="Lucide.Clapperboard" />
         Director
     </button>
@@ -24,7 +24,7 @@
 </div>
 
 <div class="app-details-container @(GetVisibilityClass(DollySidePanelOptions.Director))">
-    <DirectorPanel @bind-DollyList="_directorList" />
+    <DirectorPanel @ref="Director" />
 </div>
 
 
@@ -37,13 +37,11 @@
     [Parameter]
     public EventCallback RefreshCallback { get; set; }
     
-    private List<DirectorDolly> _directorList = new();
-    
-    
     private Dolly? _selectedDolly;
     
     private DollySidePanelOptions _currentOption = DollySidePanelOptions.Preview;
     private DollyRenderer? Renderer { get; set; }
+    private DirectorPanel? Director { get; set; }
     
     protected override void OnParametersSet()
     {
@@ -75,7 +73,8 @@
     
     public void QueueDolly(Dolly dolly)
     {
-        _directorList.Add(new DirectorDolly(dolly));
+        Director?.Queue(dolly);
+        _currentOption = DollySidePanelOptions.Director;
         InvokeAsync(StateHasChanged);
     }
 }
